@@ -1,0 +1,241 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env python3}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}*\PYGZhy{} coding: utf\PYGZhy{}8 \PYGZhy{}*\PYGZhy{}}
+
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+\PYG{k+kn}{import} \PYG{n+nn}{threading}
+
+\PYG{k+kn}{import} \PYG{n+nn}{lcd}
+\PYG{k+kn}{import} \PYG{n+nn}{save}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{button} \PYG{k+kn}{as} \PYG{n+nn}{bt}
+\PYG{k+kn}{import} \PYG{n+nn}{camera} \PYG{k+kn}{as} \PYG{n+nn}{cm}
+\PYG{k+kn}{import} \PYG{n+nn}{resolution} \PYG{k+kn}{as} \PYG{n+nn}{rs}
+
+
+\PYG{k}{class} \PYG{n+nc}{Sudoku}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{number} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{True}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{True}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{None}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{modes} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Automatic\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Practice\PYGZdq{}}\PYG{p}{]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mode} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{modes}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{number}\PYG{p}{]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{((}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{liste\PYGZus{}position} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Backtracking\PYGZdq{}}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{stop} \PYG{o}{=} \PYG{n}{Stop}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{camera} \PYG{o}{=} \PYG{n}{cm}\PYG{o}{.}\PYG{n}{Camera}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution} \PYG{o}{=} \PYG{n}{rs}\PYG{o}{.}\PYG{n}{Resolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button} \PYG{o}{=} \PYG{n}{bt}\PYG{o}{.}\PYG{n}{Buttons}\PYG{p}{([}\PYG{l+m+mi}{11}\PYG{p}{,} \PYG{l+m+mi}{13}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{])}
+
+    \PYG{k}{def} \PYG{n+nf}{start}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{while} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power}\PYG{p}{:}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter Welcome!\PYGZdq{}}\PYG{p}{)}
+            \PYG{n}{bt\PYGZus{}pressed} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{wait}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{bt\PYGZus{}pressed}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quit}\PYG{p}{()}
+            \PYG{k}{elif} \PYG{n}{bt\PYGZus{}pressed}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}
+                \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Choose the mode\PYGZdq{}}\PYG{p}{)}
+                \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mode} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}?\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+                \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)}
+                \PYG{k}{while} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power\PYGZus{}mode}\PYG{p}{:}
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{number} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{number}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mode} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{modes}\PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{number}\PYG{p}{]}
+                        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mode} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}?\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+                        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mode}
+
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quit}\PYG{p}{()}
+
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Automatic\PYGZdq{}}\PYG{p}{:}
+                        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter Automatic Mode\PYGZdq{}}\PYG{p}{)}
+                        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{stop}\PYG{o}{.}\PYG{n}{run}\PYG{p}{()}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{automaticMode}\PYG{p}{()}
+
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Practice\PYGZdq{}}\PYG{p}{:}
+                        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter Practice Mode\PYGZdq{}}\PYG{p}{)}
+                        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{practiceMode}\PYG{p}{()}
+
+                    \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode}\PYG{p}{:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{select\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{None}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+
+                    \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter Goodbye!\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{False}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{stop}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{False}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{stop}\PYG{p}{()}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}sudo shutdown \PYGZhy{}h now\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{automaticMode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Photo Capture... Please Wait!\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{camera}\PYG{o}{.}\PYG{n}{takePhoto}\PYG{p}{()}
+        \PYG{k}{if} \PYG{l+s+s2}{\PYGZdq{}camera\PYGZus{}error\PYGZdq{}} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors}\PYG{p}{:}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Succeeded!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Camera isn\PYGZsq{}t connected!\PYGZdq{}}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Camera error Continue?\PYGZdq{}}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Recognition...\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Please Wait!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}sudo python extraction.py\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Succeeded!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Solving... Please Wait!\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mf}{0.5}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{save}\PYG{o}{.}\PYG{n}{readSudoku}\PYG{p}{()}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{liste\PYGZus{}position} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution}\PYG{o}{.}\PYG{n}{start}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution}\PYG{p}{)}
+        \PYG{k}{if} \PYG{l+s+s2}{\PYGZdq{}sudoku\PYGZus{}insoluble\PYGZdq{}} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors}\PYG{p}{:}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Succeeded!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+            \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}finished /n\PYGZdq{}}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter completed!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+
+        \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors} \PYG{o}{!=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}camera\PYGZus{}error\PYGZdq{}}\PYG{p}{]:}
+            \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Failed!\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{wait}\PYG{p}{()}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors} \PYG{o}{=} \PYG{p}{[]}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+
+    \PYG{k}{def} \PYG{n+nf}{practiceMode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{pass}
+
+    \PYG{k}{def} \PYG{n+nf}{wait}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{sleep}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{):}
+        \PYG{n}{previous\PYGZus{}time} \PYG{o}{=} \PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()}
+        \PYG{k}{while} \PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{n}{previous\PYGZus{}time} \PYG{o}{\PYGZlt{}} \PYG{n}{sleep}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{n+nb+bp}{None}\PYG{p}{:}
+                \PYG{n}{bt} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{pressed} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}
+                \PYG{k}{return} \PYG{n}{bt}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+        \PYG{k}{return} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}
+
+    \PYG{k}{def} \PYG{n+nf}{setError}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{error}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n}{error} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{errors}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{error}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{quit}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Sudoku Plotter Goodbye?\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{bt\PYGZus{}pressed} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{wait}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{bt\PYGZus{}pressed}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o+ow}{or} \PYG{n}{bt\PYGZus{}pressed}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{False}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{False}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+
+
+\PYG{k}{class} \PYG{n+nc}{Stop}\PYG{p}{(}\PYG{n}{threading}\PYG{o}{.}\PYG{n}{Thread}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{boss}\PYG{p}{):}
+        \PYG{n}{threading}\PYG{o}{.}\PYG{n}{Thread}\PYG{o}{.}\PYG{n}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{True}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss} \PYG{o}{=} \PYG{n}{boss}
+
+    \PYG{k}{def} \PYG{n+nf}{start}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{while} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{button}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{False}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{power\PYGZus{}mode} \PYG{o}{=} \PYG{n+nb+bp}{False}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{power} \PYG{o}{=} \PYG{n+nb+bp}{False}
+
+\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    def start(self):}
+\PYG{l+s+sd}{        lcd.write(\PYGZdq{}Sudoku Plotter Welcome!\PYGZdq{})}
+\PYG{l+s+sd}{        time.sleep(2)}
+\PYG{l+s+sd}{        while self.power:}
+\PYG{l+s+sd}{            lcd.write(\PYGZdq{}Sudoku Plotter Welcome!\PYGZdq{})}
+\PYG{l+s+sd}{            print(\PYGZdq{}Welcome\PYGZdq{})}
+\PYG{l+s+sd}{            if self.button.pressed == 0:}
+\PYG{l+s+sd}{                self.button.pressed = None}
+\PYG{l+s+sd}{                self.number = 1 \PYGZhy{} self.number}
+\PYG{l+s+sd}{                self.mode = self.modes[self.number]}
+
+\PYG{l+s+sd}{            if self.button.pressed == 1:}
+\PYG{l+s+sd}{                self.button.pressed = None}
+\PYG{l+s+sd}{                self.select\PYGZus{}mode = self.mode}
+
+\PYG{l+s+sd}{            if self.button.pressed == 2:}
+\PYG{l+s+sd}{                self.button.pressed = None}
+\PYG{l+s+sd}{                lcd.write(\PYGZdq{}Goodbye?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{                while not self.button.pressed:}
+\PYG{l+s+sd}{                    time.sleep(0.1)}
+\PYG{l+s+sd}{                if self.button.pressed == 1:}
+\PYG{l+s+sd}{                    self.power = False}
+\PYG{l+s+sd}{                self.button.pressed = None}
+
+\PYG{l+s+sd}{            while self.select\PYGZus{}mode == \PYGZdq{}automatic\PYGZdq{}:}
+\PYG{l+s+sd}{                lcd.write(\PYGZdq{}Automatic?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{                if self.button.pressed == 2:}
+\PYG{l+s+sd}{                    self.select\PYGZus{}mode = None}
+\PYG{l+s+sd}{                    self.button.pressed = None}
+
+\PYG{l+s+sd}{            while self.select\PYGZus{}mode == \PYGZdq{}practice\PYGZdq{}:}
+\PYG{l+s+sd}{                lcd.write(\PYGZdq{}Practice?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{                if self.button.pressed == 2:}
+\PYG{l+s+sd}{                    self.select\PYGZus{}mode = None}
+\PYG{l+s+sd}{                    self.button.pressed = None}
+
+\PYG{l+s+sd}{            time.sleep(2)}
+\PYG{l+s+sd}{        print(\PYGZdq{}Bye!\PYGZdq{})}
+\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+\PYG{n}{lcd} \PYG{o}{=} \PYG{n}{lcd}\PYG{o}{.}\PYG{n}{LCD}\PYG{p}{()}
+\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{Sudoku}\PYG{p}{()}
+\PYG{n}{sudoku}\PYG{o}{.}\PYG{n}{button}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+\PYG{n}{sudoku}\PYG{o}{.}\PYG{n}{start}\PYG{p}{()}
+
+\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{import resolution as rs}
+\PYG{l+s+sd}{import camera as cm}
+\PYG{l+s+sd}{import step\PYGZus{}motor as stp}
+\PYG{l+s+sd}{import os}
+
+\PYG{l+s+sd}{lcd = lcd.LCD()}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Sudoku Plotter Welcome!\PYGZdq{})}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Automatic?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Practice?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Step by step?\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Photo capture in progress...\PYGZdq{})}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Use the joystick to move or write\PYGZdq{})}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Joystick isn\PYGZsq{}t connected!\PYGZdq{})}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Recognition...\PYGZdq{})}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}in progress...\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Failed!\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Succeeded!\PYGZdq{}, 2)}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Solving...\PYGZdq{})}
+\PYG{l+s+sd}{time.sleep(2)}
+\PYG{l+s+sd}{lcd.write(\PYGZdq{}Sudoku Plotter Goodbye!\PYGZdq{})}
+\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\end{Verbatim}
