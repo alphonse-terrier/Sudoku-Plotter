@@ -53,8 +53,8 @@ class Resolution:
         self.starting_possibilities = copy(self.possibilities)
 
     def start(self, sudoku, methode):
-        self.beforeStart()
         self.sudoku = copy(sudoku)
+        self.beforeStart()
         self.methode_resolution = methode
         zero_time = time.time()
         n = 0
@@ -75,28 +75,13 @@ class Resolution:
                 if np.all(self.sudoku == sudoku):
                     self.resolution = False
                 sudoku = copy(self.sudoku)
-            if np.any(self.sudoku == np.zeros((self.taille[0], self.taille[1]), int)):
+            if np.any(self.sudoku == np.zeros((self.nb_cases, self.nb_cases), int)):
                 self.methode_resolution = "Backtracking"
                 print("Backtracking")
                 self.backTracking()
 
         print(time.time() - zero_time, n)
         return self.sudoku, self.starting_possibilities
-
-    def createListe(self):
-        self.possibilities = []
-        liste_tailles_cases_vides = []
-        liste_tailles = [[] for i in range(self.nb_cases - 1)]
-        for x in range(self.nb_cases):
-            for y in range(self.nb_cases):
-                if not self.sudoku[x][y]:
-                    self.possibilities.append((x, y))
-                    liste_tailles_cases_vides.append(len(self.checkListe(x, y)))
-                    liste_tailles[liste_tailles_cases_vides[-1] - 2].append((x, y))
-        liste_position = []
-        for i in range(self.nb_cases - 1):
-            liste_position += liste_tailles[i]
-        return liste_position
 
     def checkListe(self, x, y):
         """
@@ -245,7 +230,7 @@ if __name__ == "__main__":
                                     [0, 0, 0, 0, 0, 0, 0, 0, 0],
                                     [7, 0, 0, 8, 0, 5, 0, 0, 1]])
             self.Resolution = Resolution(self)
-            self.sudoku, position = self.Resolution.start(self.sudoku, "Inclusion")
+            self.sudoku, position = self.Resolution.start(self.sudoku, "Globale")
             print(self.sudoku)
 
 

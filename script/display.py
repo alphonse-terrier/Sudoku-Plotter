@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import numpy as np
 from tkinter import *
@@ -240,7 +241,7 @@ class Display(Tk):
             self.vitesse = IntVar()
 
             # Sélection par défaut des items
-            self.mode_resolution.set(3)
+            self.mode_resolution.set(0)
             self.vitesse.set(0)
 
             # Création des menus
