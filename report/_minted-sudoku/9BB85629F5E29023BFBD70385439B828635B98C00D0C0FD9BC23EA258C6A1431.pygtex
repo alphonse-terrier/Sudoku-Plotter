@@ -1,0 +1,239 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env python3}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}*\PYGZhy{} coding: utf\PYGZhy{}8 \PYGZhy{}*\PYGZhy{}}
+
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{copy} \PYG{k+kn}{import} \PYG{n}{copy}
+
+
+\PYG{k}{class} \PYG{n+nc}{Resolution}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Classe permettant de résoudre un sudoku grâce à différentes méthodes, à savoir :}
+\PYG{l+s+sd}{        \PYGZhy{} inclusion}
+\PYG{l+s+sd}{        \PYGZhy{} exclusion}
+\PYG{l+s+sd}{        \PYGZhy{} bactracking}
+\PYG{l+s+sd}{        \PYGZhy{} ...}
+\PYG{l+s+sd}{    Si le sudoku n\PYGZsq{}est pas résoluble, lève une erreur}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{boss}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss} \PYG{o}{=} \PYG{n}{boss}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{taille}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{sudoku}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{n+nb+bp}{None}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{starting\PYGZus{}possibilities} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution} \PYG{o}{=} \PYG{n+nb+bp}{False}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne} \PYG{o}{=} \PYG{p}{[]}
+
+    \PYG{k}{def} \PYG{n+nf}{beforeStart}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+            \PYG{n}{values} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{)]}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{values}\PYG{p}{))}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{values}\PYG{p}{))}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{copy}\PYG{p}{(}\PYG{n}{values}\PYG{p}{))}
+            \PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)}
+            \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{3}\PYG{p}{)}
+            \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{y} \PYG{o}{+} \PYG{n}{j} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0} \PYGZbs{}
+                        \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{y} \PYG{o}{+} \PYG{n}{j} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{y} \PYG{o}{+} \PYG{n}{j} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{3}\PYG{p}{])}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{])}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0} \PYG{o+ow}{and} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{])}
+                \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{))}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{starting\PYGZus{}possibilities} \PYG{o}{=} \PYG{n}{copy}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{start}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{sudoku}\PYG{p}{,} \PYG{n}{methode}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{copy}\PYG{p}{(}\PYG{n}{sudoku}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{beforeStart}\PYG{p}{()}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{n}{methode}
+        \PYG{n}{zero\PYGZus{}time} \PYG{o}{=} \PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()}
+        \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{k}{print}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Backtracking\PYGZdq{}}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{backTracking}\PYG{p}{()}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution} \PYG{o}{=} \PYG{n+nb+bp}{True}
+            \PYG{k}{while} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution}\PYG{p}{:}
+                \PYG{n}{n} \PYG{o}{+=} \PYG{l+m+mi}{1}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Inclusion\PYGZdq{}}\PYG{p}{:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inclusion}\PYG{p}{()}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Exclusion\PYGZdq{}}\PYG{p}{:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exclusion}\PYG{p}{()}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}Globale\PYGZdq{}}\PYG{p}{:}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{inclusion}\PYG{p}{()}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{exclusion}\PYG{p}{()}
+                \PYG{k}{if} \PYG{n}{np}\PYG{o}{.}\PYG{n}{all}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{==} \PYG{n}{sudoku}\PYG{p}{):}
+                    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{resolution} \PYG{o}{=} \PYG{n+nb+bp}{False}
+                \PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{copy}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{np}\PYG{o}{.}\PYG{n}{any}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{==} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{((}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{)):}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Backtracking\PYGZdq{}}
+                \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Backtracking\PYGZdq{}}\PYG{p}{)}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{backTracking}\PYG{p}{()}
+
+        \PYG{k}{print}\PYG{p}{(}\PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{n}{zero\PYGZus{}time}\PYG{p}{,} \PYG{n}{n}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{starting\PYGZus{}possibilities}
+
+    \PYG{k}{def} \PYG{n+nf}{checkListe}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{):}
+        \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Renvoie la liste des valeurs possibles pour la case de coordonnées x et y}
+\PYG{l+s+sd}{        :param x: int: ligne}
+\PYG{l+s+sd}{        :param y: int: colonne}
+\PYG{l+s+sd}{        :return: liste: list}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{liste} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{n}{liste} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{)]}
+            \PYG{n}{block\PYGZus{}x} \PYG{o}{=} \PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+            \PYG{n}{block\PYGZus{}y} \PYG{o}{=} \PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+            \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o+ow}{in} \PYG{n}{liste}\PYG{p}{:}
+                    \PYG{n}{liste}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{])}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{y}\PYG{p}{]} \PYG{o+ow}{in} \PYG{n}{liste}\PYG{p}{:}
+                    \PYG{n}{liste}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{y}\PYG{p}{])}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{block\PYGZus{}x} \PYG{o}{+} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{block\PYGZus{}y} \PYG{o}{+} \PYG{n}{i} \PYG{o}{//} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]} \PYG{o+ow}{in} \PYG{n}{liste}\PYG{p}{:}
+                    \PYG{n}{liste}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{block\PYGZus{}x} \PYG{o}{+} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{block\PYGZus{}y} \PYG{o}{+} \PYG{n}{i} \PYG{o}{//} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]])}
+        \PYG{k}{return} \PYG{n}{liste}
+
+    \PYG{k}{def} \PYG{n+nf}{inclusion}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+            \PYG{k}{for} \PYG{n}{y} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{checkValues}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{exclusion}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+            \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]:}
+                \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{n} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{),} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{3}\PYG{p}{)}
+                \PYG{n}{x\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{n}{y\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+                    \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{x} \PYG{o}{+} \PYG{n}{i}\PYG{p}{]:} \PYG{n}{x\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{x} \PYG{o}{+} \PYG{n}{i}\PYG{p}{)}
+                    \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{y} \PYG{o}{+} \PYG{n}{i}\PYG{p}{]:} \PYG{n}{y\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{y} \PYG{o}{+} \PYG{n}{i}\PYG{p}{)}
+                \PYG{n}{case\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{x\PYGZus{}possible}\PYG{p}{:}
+                    \PYG{k}{for} \PYG{n}{y} \PYG{o+ow}{in} \PYG{n}{y\PYGZus{}possible}\PYG{p}{:}
+                        \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:} \PYG{n}{case\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{))}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{setValuesEsclusion}\PYG{p}{(}\PYG{n}{case\PYGZus{}possible}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)}
+
+            \PYG{n}{j} \PYG{o}{=} \PYG{n}{n}
+            \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]:}
+                \PYG{n}{carre\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{n}{case\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+                    \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{l+m+mi}{3} \PYG{o}{*} \PYG{n}{i} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{]:}
+                        \PYG{n}{carre\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+m+mi}{3} \PYG{o}{*} \PYG{n}{i} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)}
+                \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:}
+                        \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{case\PYGZus{}possible} \PYG{o+ow}{and} \PYGZbs{}
+                                \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3} \PYG{o+ow}{in} \PYG{n}{carre\PYGZus{}possible}\PYG{p}{:}
+                            \PYG{n}{case\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{))}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{setValuesEsclusion}\PYG{p}{(}\PYG{n}{case\PYGZus{}possible}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)}
+
+            \PYG{n}{i} \PYG{o}{=} \PYG{n}{n}
+            \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]:}
+                \PYG{n}{carre\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{n}{case\PYGZus{}possible} \PYG{o}{=} \PYG{p}{[]}
+                \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+                    \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{j}\PYG{p}{]:}
+                        \PYG{n}{carre\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{j}\PYG{p}{)}
+                \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{):}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:}
+                        \PYG{k}{if} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n}{case\PYGZus{}possible} \PYG{o+ow}{and} \PYGZbs{}
+                                \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{j} \PYG{o}{//} \PYG{l+m+mi}{3} \PYG{o+ow}{in} \PYG{n}{carre\PYGZus{}possible}\PYG{p}{:}
+                            \PYG{n}{case\PYGZus{}possible}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{))}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{setValuesEsclusion}\PYG{p}{(}\PYG{n}{case\PYGZus{}possible}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{backTracking}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Résoud un sudoku selon la méthode de backtracking}
+\PYG{l+s+sd}{        :return: None or \PYGZhy{}1}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{liste\PYGZus{}sudoku} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{k}{while} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{):}
+            \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+            \PYG{n}{liste} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{checkListe}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{liste}\PYG{p}{:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{liste}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+                \PYG{n}{liste\PYGZus{}sudoku}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{liste}\PYG{p}{)}
+                \PYG{n}{i} \PYG{o}{+=} \PYG{l+m+mi}{1}
+            \PYG{k}{else}\PYG{p}{:}
+                \PYG{k}{while} \PYG{o+ow}{not} \PYG{n}{liste}\PYG{p}{:}
+                    \PYG{n}{i} \PYG{o}{\PYGZhy{}=} \PYG{l+m+mi}{1}
+                    \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+                    \PYG{k}{try}\PYG{p}{:}
+                        \PYG{n}{liste} \PYG{o}{=} \PYG{n}{liste\PYGZus{}sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+                    \PYG{k}{except} \PYG{n+ne}{IndexError}\PYG{p}{:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{sudoku}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{boss}\PYG{o}{.}\PYG{n}{setError}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}sudoku\PYGZus{}insoluble\PYGZdq{}}\PYG{p}{)}
+                        \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+                    \PYG{k}{if} \PYG{n}{liste}\PYG{p}{:}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{liste}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+                        \PYG{n}{liste\PYGZus{}sudoku}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{liste}
+                        \PYG{n}{i} \PYG{o}{+=} \PYG{l+m+mi}{1}
+                        \PYG{k}{break}
+                    \PYG{k}{else}\PYG{p}{:}
+                        \PYG{n}{liste\PYGZus{}sudoku}\PYG{o}{.}\PYG{n}{pop}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+                        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+    \PYG{k}{def} \PYG{n+nf}{checkValues}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{):}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:}
+            \PYG{n}{possibilities} \PYG{o}{=} \PYG{p}{[]}
+            \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{x} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{y} \PYG{o}{//} \PYG{l+m+mi}{3}
+            \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{):}
+                \PYG{k}{if} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o+ow}{and} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o+ow}{and} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]:}
+                    \PYG{n}{possibilities}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{setValues}\PYG{p}{(}\PYG{n}{possibilities}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{setValuesEsclusion}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{case\PYGZus{}possible}\PYG{p}{,} \PYG{n}{k}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{case\PYGZus{}possible}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{case\PYGZus{}possible}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{case\PYGZus{}possible}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}
+            \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{x} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{y} \PYG{o}{//} \PYG{l+m+mi}{3}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{k}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{))}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{setValues}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{possibilities}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{possibilities}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{:}
+            \PYG{n}{k} \PYG{o}{=} \PYG{n}{possibilities}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+            \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{3} \PYG{o}{*} \PYG{p}{(}\PYG{n}{x} \PYG{o}{//} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{+} \PYG{n}{y} \PYG{o}{//} \PYG{l+m+mi}{3}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{[}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{k}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{possibilities}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{((}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{))}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ligne}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{colonne}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{carre}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{k}\PYG{p}{)}
+
+
+\PYG{k}{if} \PYG{n}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{:}
+    \PYG{k}{class} \PYG{n+nc}{Boss}\PYG{p}{:}
+        \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases} \PYG{o}{=} \PYG{l+m+mi}{9}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{([[}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{],}
+                                    \PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]])}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Resolution} \PYG{o}{=} \PYG{n}{Resolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n}{position} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Resolution}\PYG{o}{.}\PYG{n}{start}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Globale\PYGZdq{}}\PYG{p}{)}
+            \PYG{k}{print}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{)}
+
+
+    \PYG{n}{Boss}\PYG{p}{()}
+\end{Verbatim}

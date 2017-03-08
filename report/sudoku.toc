@@ -12,14 +12,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Informatique}{6}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}R\IeC {\'e}solution du sudoku}{6}{section.4.1}
+\contentsline {section}{\numberline {4.1}Reconnaissance du sudoku}{6}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Reconnaissance du sudoku}{6}{section.4.2}
+\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution du sudoku}{9}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}\IeC {\'E}criture et contr\IeC {\^o}le des moteurs}{6}{section.4.3}
+\contentsline {section}{\numberline {4.3}\IeC {\'E}criture et contr\IeC {\^o}le des moteurs}{9}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Fichier principal}{7}{appendix.A}
+\contentsline {chapter}{\numberline {A}Fichier principal}{10}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{11}{appendix.B}
+\contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{12}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{14}{appendix.C}
+\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{16}{appendix.C}
