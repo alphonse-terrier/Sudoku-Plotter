@@ -52,7 +52,7 @@
 	\vspace{1cm}
 	{\scshape\LARGE TIPE\par}
 	\vspace{1.5cm}
-	{\fontsize{45}{45}\selectfont\bfseries Le Rubik's Cube\par}
+	{\fontsize{45}{45}\selectfont\bfseries Bras mécanique et sudoku\par}
 	\vspace{2cm}
 	\includegraphics[width=0.7\textwidth]{../pictures/pagedegarde.png}\par\vspace{1.5cm}
 	{\LARGE Laurent Tainturier \& Alphonse Terrier\par}
@@ -77,8 +77,62 @@
 	\chapter{Électronique}
 	\chapter{Mécanique}
 	\chapter{Informatique}
-	\section{Résolution du sudoku}
+	Tous les algorithmes sont implémentés en Python. Ils sont disponibles en annexe.
 	\section{Reconnaissance du sudoku}
+	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
+	\begin{enumerate}
+	\item Reconnaître les chiffres dans une grille du sudoku
+	\item Déterminer la position spatiale de la grille
+	\end{enumerate}
+	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
+	\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.2]{../pictures/camera.jpg}
+ \caption{Caméra Raspberry Pi V2}
+\end{figure}
+\newpage
+Voici la grille de sudoku qui nous servira d'exemple pour montrer toutes les actions du script :
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.2]{../pictures/example.jpg}
+ \caption{Exemple de grille de sudoku}
+\end{figure}
+
+On applique sur cette photographie un filtre de type seuil (en anglais "threshold") qui va ensuite nous permettre de détecter les contours de la grille :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.2]{../pictures/threshold.jpg}
+ \caption{Exemple de grille "seuillée"}
+ \end{figure}
+ 
+Par cette transformation, on peut ensuite déterminer des équations de droites des contours extérieurs de la grille. Les coordonnées des intersections des droites seront celle des coins de la grille. \smallbreak On découpe alors la grille de la photographie initiale en supprimant les éventuels effets de perspective. 
+ 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.45]{../pictures/unperspectived.png}
+ \caption{Exemple de grille découpée sans perspective}
+\end{figure}
+\newpage
+On découpe chaque petite case de la grille comme ci-dessous :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.6]{../pictures/cutted.png}
+ \caption{Exemple de grille où chaque chiffre a été découpé}
+\end{figure}
+
+On utilise ensuite un module de reconnaissance de digits pour détecter les chiffres et on obtient la grille suivante, prête à être résolue :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/finished.png}
+ \caption{Exemple de grille prête à être résolue}
+\end{figure}
+\newpage
+
+\section{Résolution du sudoku}
+	
 	\section{Écriture et contrôle des moteurs}
 	
 
@@ -87,10 +141,13 @@
 \appendix
 \begin{changemargin}{-2cm}{-4cm}
 \chapter{Fichier principal}
+\label{main}
 \inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/main.py}
 \chapter{Script de résolution des sudokus}
+\label{resolution}
 \inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/resolution.py}
 \chapter{Script de gestion de la caméra}
+\label{camera}
 \inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/camera.py}
 
 
