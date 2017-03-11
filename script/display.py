@@ -17,14 +17,15 @@ class Display(Tk):
         Tk.__init__(self)
 
         self.boss = boss
-        self.taille = self.boss.taille
-        self.nb_cases = self.boss.nb_cases
         self.color = 'black'
-        self.liste_position = []
         self.title("Sudoku")
+        self.resizable(width=False, height=False)
         self.edition = False
         self.rectangle = None
         self.x, self.y = 0, 0
+        self.liste_position = []
+        self.taille = self.boss.taille
+        self.nb_cases = self.boss.nb_cases
         self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
         self.affichage_sudoku = [[0 for i in range(self.nb_cases)] for i in range(self.nb_cases)]
 
@@ -118,6 +119,12 @@ class Display(Tk):
         if key == "r" or key == "R":
             self.color = "red"
             print("red")
+
+        if key == "m" or key == "M":
+            self.boss.writeSudoku(self.sudoku)
+
+        if key == "n" or key == "N":
+            self.boss.writeSudoku(self.sudoku, True)
 
         if key == "v" or key == "V":
             try:
