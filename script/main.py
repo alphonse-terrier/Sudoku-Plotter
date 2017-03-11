@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+import time
 import numpy as np
 
+import save
+import write as w
+import camera as cm
 import display as dp
 import resolution as rs
-import camera as cm
-import traitement_image as tr
 
 
-class Sudoku:
+class Main:
     """
     Permet la gestion des sudoku à savoir :
         - leur édition par l'utilisateur pour obtenir le sudoku à résoudre
@@ -27,16 +30,16 @@ class Sudoku:
         self.taille = (3, 3)
         self.nb_cases = self.taille[0] * self.taille[1]
         self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
-        self.liste_position = []
         self.methode_resolution = "Globale"
+        self.liste_position = []
 
+        self.W = w.Write()
         self.Camera = cm.Camera(self)
-        self.Traitement = tr.Traitement(self)
-        self.Resolution = rs.Resolution(self)
         self.Display = dp.Display(self)
-        self.Display.updateSudoku(self.sudoku)
+        self.Resolution = rs.Resolution(self)
 
         self.Display.mainloop()
+
 
     def setError(self, error, off=True):
         if off:
@@ -47,8 +50,10 @@ class Sudoku:
                 self.error.remove(error)
 
     def getError(self):
-
         return self.error
+
+    def setMethodeResolution(self, methode):
+        self.methode_resolution = methode
 
     def startResolution(self, sudoku):
         self.sudoku, self.liste_position = self.Resolution.start(sudoku, self.methode_resolution)
@@ -57,8 +62,14 @@ class Sudoku:
     def stopResolution(self):
         pass
 
-    def setMethodeResolution(self, methode):
-        self.methode_resolution = methode
+    def write(self, points):
+        pass
+
+    def writeSudoku(self, sudoku, num=False):
+        save.saveSudoku(sudoku)
+        print("start")
+        # os.system("sudo python3 writing_main.py")
 
 
-Sudoku()
+
+Main()
