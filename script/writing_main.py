@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 import time
 
 import save
@@ -16,9 +17,9 @@ def writeSudoku(sudoku):
     InitMoveMotor.movingMotor()
     InitMoveMotor.stop()
 
-
+print("start")
 W = w.Write()
-test = True
+test = False
 sudoku = save.readSudoku()
 if test:
     W.writeSudoku(sudoku)
@@ -26,3 +27,4 @@ if test:
 else:
     InitMoveMotor = stp.InitMoveMotor()
     writeSudoku(sudoku)
+print("finish")

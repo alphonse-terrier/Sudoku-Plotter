@@ -18,8 +18,8 @@ def moveMotor(motor, x):
 pygame.init()
 power = 1
 
-bobines_motor1 = (35, 37, 36, 38)
-bobines_motor2 = (21, 23, 22, 24)
+bobines_motor1 = (7, 11, 13, 15)
+bobines_motor2 = (29, 31, 33, 35)
 motor1 = spm.ManualMotor(bobines_motor1)
 motor2 = spm.ManualMotor(bobines_motor2)
 

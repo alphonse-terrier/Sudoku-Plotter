@@ -23,11 +23,11 @@ class InitMoveMotor:
     def __init__(self):
         self.tryError()
         self.beta_version = True
-        self.bobines_motor1 = (7, 11, 13, 15)
-        self.bobines_motor2 = (31, 33, 33, 35)
-        self.M = Point(12, 3)
-        self.points = []
-        self.r_step = 0.024
+        self.bobines_motor1 = (29, 31, 33, 35)
+        self.bobines_motor2 = (7, 11, 13, 15)
+        self.M = Point(7.5, 7)
+        self.points = [(22, 7), (16.2, 24.07), (4.3, 14.93)]
+        self.r_step = 0.0203
         self.theta_step = 0.0056
 
         if not error:
@@ -56,19 +56,15 @@ class InitMoveMotor:
             B = Point(x_b, y_b)
             r = B.r - self.M.r
             theta = B.theta - self.M.theta
-
+            print(r, theta)
             nb_steps1 = int(r / self.r_step + 0.5)
             nb_steps2 = int(theta / self.theta_step + 0.5)
-            if self.beta_version:
-                if len(self.points) % (10 * n) == 0 or n == len(self.points):
-                    print("left:", len(self.points) - 1)
-                if len(self.points) % n == 0:
-                    print("({}, {}), {} {} ".format(round(self.points[0][0], 1),
-                          round(self.points[0][1], 1), nb_steps1, nb_steps2))
-            if nb_steps1 > nb_steps2:
+            print(nb_steps1, nb_steps2)
+            if abs(nb_steps1) > abs(nb_steps2):
                 self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
             else:
                 self.motor2.speed, self.motor1.speed = self.setTime(nb_steps2, nb_steps1)
+            print(self.motor1.speed, self.motor2.speed)
             self.motor1.nb_steps = nb_steps1
             self.motor2.nb_steps = nb_steps2
             while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
@@ -78,7 +74,7 @@ class InitMoveMotor:
         self.sleep()
 
     def setTime(self, nb_step_a, nb_step_b):
-        speed_a = 20
+        speed_a = 10
         if nb_step_b != 0:
             speed_b = abs(nb_step_a * speed_a / nb_step_b)
         else:
@@ -122,6 +118,7 @@ class InitMoveMotor:
         print()
         self.motor1.stop()
         self.motor2.stop()
+        GPIO.cleanup()
 
 
 class Motor(threading.Thread):
@@ -137,7 +134,7 @@ class Motor(threading.Thread):
         self.nb_steps = nb_steps
         self.speed = speed
         self.power = True
-        self.motor_alim = [[1, 0, 1, 0], [0, 1, 1, 0], [0, 1, 0, 1], [1, 0, 0, 1]]
+        self.motor_alim = [[1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0]]
         Motor.nb += 1
 
     def run(self):
@@ -164,7 +161,7 @@ class Motor(threading.Thread):
         print("motor{}: sleep".format(self.number))
         if not error:
             for i in range(4):
-                GPIO.setmode(self.bobines[i], 0)
+                GPIO.output(self.bobines[i], 0)
 
     def stop(self):
         print("motor{}: stop".format(self.number))
@@ -194,7 +191,6 @@ class ManualMotor(Motor):
 
     def moveMotor(self):
         self.position += self.direction
-        print(self.position, self.speed)
 
 
 class Origin:

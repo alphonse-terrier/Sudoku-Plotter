@@ -68,7 +68,7 @@ class Main:
     def writeSudoku(self, sudoku, num=False):
         save.saveSudoku(sudoku)
         print("start")
-        # os.system("sudo python3 writing_main.py")
+        os.system("sudo python3 writing_main.py")
 
 
 
