@@ -1,9 +1,9 @@
 #!/usr/bin/env/python3
 # -*- coding: utf-8 -*-
 
-import threading
 import time
 import math
+import threading
 try:
     error = None
     import RPi.GPIO as GPIO
@@ -25,6 +25,8 @@ class InitMoveMotor:
         self.beta_version = True
         self.bobines_motor1 = (29, 31, 33, 35)
         self.bobines_motor2 = (7, 11, 13, 15)
+        self.turn_on_led = 19
+        self.working_led = 21
         self.M = Point(7.5, 7)
         self.points = [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.r_step = 0.0203
@@ -35,9 +37,13 @@ class InitMoveMotor:
 
         self.motor1 = Motor(self.bobines_motor1)
         self.motor2 = Motor(self.bobines_motor2)
+        self.turnOnLed = BlindingLed(self.turn_on_led)
+        self.workingLed = BlindingLed(self.working_led, True)
 
         self.motor1.start()
         self.motor2.start()
+        self.turnOnLed.start()
+        self.workingLed.start()
 
         self.initializePosition()
         if self.points: self.movingMotor()
@@ -50,6 +56,7 @@ class InitMoveMotor:
         pass
 
     def movingMotor(self):
+        self.sleep(False)
         n = max(1, len(self.points) // 1000)
         while self.points:
             x_b, y_b = self.points[0]
@@ -109,15 +116,21 @@ class InitMoveMotor:
     def getPoints(self):
         return self.points
 
-    def sleep(self):
-        print()
-        self.motor1.sleep()
-        self.motor2.sleep()
+    def sleep(self, sleep=True):
+        if sleep:
+            self.motor1.sleep()
+            self.motor2.sleep()
+            self.workingLed.sleep()
+            self.turnOnLed.sleep(False)
+        else:
+            self.workingLed.sleep(False)
+            self.turnOnLed.sleep()
 
     def stop(self):
-        print()
         self.motor1.stop()
         self.motor2.stop()
+        self.workingLed.stop()
+        self.turnOnLed.stop()
         GPIO.cleanup()
 
 
@@ -193,6 +206,32 @@ class ManualMotor(Motor):
         self.position += self.direction
 
 
+class BlindingLed(threading.Thread):
+    def __init__(self, led_pin, sleeping=False):
+        threading.Thread.__init__(self)
+        self.power = True
+        self.sleeping = sleeping
+        self.led_pin = led_pin
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(self.led_pin, GPIO.OUT)
+
+    def run(self):
+        while self.power:
+            if self.sleeping:
+                time.sleep(2)
+            else:
+                GPIO.output(self.led_pin, 1)
+                time.sleep(0.1)
+                GPIO.output(self.led_pin, 0)
+                time.sleep(1)
+
+    def stop(self):
+        self.power = False
+
+    def sleep(self, sleeping=True):
+        self.sleeping = sleeping
+
+
 class Origin:
     def __init__(self):
         self.x_0 = -6
@@ -226,4 +265,6 @@ class Point(Origin):
 
 
 if __name__ == "__main__":
-    InitMoveMotor()
+    init = InitMoveMotor()
+    time.sleep(5)
+    init.stop()
