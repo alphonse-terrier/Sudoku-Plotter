@@ -23,8 +23,8 @@ class InitMoveMotor:
     def __init__(self):
         self.tryError()
         self.beta_version = True
-        self.bobines_motor1 = (35, 37, 36, 38)
-        self.bobines_motor2 = (21, 23, 22, 24)
+        self.bobines_motor1 = (7, 11, 13, 15)
+        self.bobines_motor2 = (31, 33, 33, 35)
         self.M = Point(12, 3)
         self.points = []
         self.r_step = 0.024
