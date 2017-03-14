@@ -32,13 +32,12 @@ class InitMoveMotor:
         self.r_step = 0.0203
         self.theta_step = 0.0056
 
-        if not error:
-            self.pinInit()
+        self.pinInit()
 
         self.motor1 = Motor(self.bobines_motor1)
         self.motor2 = Motor(self.bobines_motor2)
-        self.turnOnLed = BlindingLed(self.turn_on_led)
-        self.workingLed = BlindingLed(self.working_led, True)
+        self.turnOnLed = BlinkingLed(self.turn_on_led)
+        self.workingLed = BlinkingLed(self.working_led, True)
 
         self.motor1.start()
         self.motor2.start()
@@ -91,17 +90,18 @@ class InitMoveMotor:
     def startMoving(self):
         power = True
 
-
     def pinInit(self):
         """
         Initialise les pins de la raspberry pour contrôler le moteur
         :return: None
         """
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
-        for i in range(4):
-            GPIO.setup(self.bobines_motor1[i], GPIO.OUT)
-            GPIO.setup(self.bobines_motor2[i], GPIO.OUT)
+        if not error:
+            GPIO.setmode(GPIO.BOARD)
+            GPIO.setwarnings(False)
+            for i in range(4):
+                GPIO.setup(self.bobines_motor1[i], GPIO.OUT)
+                GPIO.setup(self.bobines_motor2[i], GPIO.OUT)
+        else: print(error)
 
     def tryError(self):
         """
@@ -131,7 +131,7 @@ class InitMoveMotor:
         self.motor2.stop()
         self.workingLed.stop()
         self.turnOnLed.stop()
-        GPIO.cleanup()
+        if not error: GPIO.cleanup()
 
 
 class Motor(threading.Thread):
@@ -206,24 +206,28 @@ class ManualMotor(Motor):
         self.position += self.direction
 
 
-class BlindingLed(threading.Thread):
+class BlinkingLed(threading.Thread):
     def __init__(self, led_pin, sleeping=False):
         threading.Thread.__init__(self)
         self.power = True
         self.sleeping = sleeping
         self.led_pin = led_pin
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.led_pin, GPIO.OUT)
+        self.pinInit()
 
     def run(self):
         while self.power:
-            if self.sleeping:
+            if self.sleeping or error:
                 time.sleep(2)
             else:
                 GPIO.output(self.led_pin, 1)
                 time.sleep(0.1)
                 GPIO.output(self.led_pin, 0)
                 time.sleep(1)
+
+    def pinInit(self):
+        if not error:
+            GPIO.setmode(GPIO.BOARD)
+            GPIO.setup(self.led_pin, GPIO.OUT)
 
     def stop(self):
         self.power = False
