@@ -3,9 +3,11 @@
 \BOOKMARK [0][-]{chapter.2}{\311lectronique}{}% 3
 \BOOKMARK [0][-]{chapter.3}{M\351canique}{}% 4
 \BOOKMARK [0][-]{chapter.4}{Informatique}{}% 5
-\BOOKMARK [1][-]{section.4.1}{Reconnaissance du sudoku}{chapter.4}% 6
-\BOOKMARK [1][-]{section.4.2}{R\351solution du sudoku}{chapter.4}% 7
-\BOOKMARK [1][-]{section.4.3}{\311criture et contr\364le des moteurs}{chapter.4}% 8
-\BOOKMARK [0][-]{appendix.A}{Fichier principal}{}% 9
-\BOOKMARK [0][-]{appendix.B}{Script de r\351solution des sudokus}{}% 10
-\BOOKMARK [0][-]{appendix.C}{Script de gestion de la cam\351ra}{}% 11
+\BOOKMARK [1][-]{section.4.1}{Pr\351sentation globale}{chapter.4}% 6
+\BOOKMARK [1][-]{section.4.2}{Reconnaissance du sudoku}{chapter.4}% 7
+\BOOKMARK [1][-]{section.4.3}{R\351solution du sudoku}{chapter.4}% 8
+\BOOKMARK [1][-]{section.4.4}{Interface graphique}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.5}{Contr\364le des moteurs et \351criture}{chapter.4}% 10
+\BOOKMARK [0][-]{appendix.A}{Fichier principal}{}% 11
+\BOOKMARK [0][-]{appendix.B}{Script de r\351solution des sudokus}{}% 12
+\BOOKMARK [0][-]{appendix.C}{Script de gestion de la cam\351ra}{}% 13

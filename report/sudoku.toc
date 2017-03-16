@@ -12,14 +12,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Informatique}{6}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Reconnaissance du sudoku}{6}{section.4.1}
+\contentsline {section}{\numberline {4.1}Pr\IeC {\'e}sentation globale}{6}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution du sudoku}{9}{section.4.2}
+\contentsline {section}{\numberline {4.2}Reconnaissance du sudoku}{6}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}\IeC {\'E}criture et contr\IeC {\^o}le des moteurs}{9}{section.4.3}
+\contentsline {section}{\numberline {4.3}R\IeC {\'e}solution du sudoku}{9}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Fichier principal}{10}{appendix.A}
+\contentsline {paragraph}{Inclusion}{9}{section*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Exclusion}{9}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Paires}{9}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Backtracking}{9}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Interface graphique}{9}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Edition}{9}{section*.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{R\IeC {\'e}solution}{10}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{M\IeC {\'e}thode}{10}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Contr\IeC {\^o}le des moteurs et \IeC {\'e}criture}{10}{section.4.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Fichier principal}{11}{appendix.A}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{12}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{16}{appendix.C}
+\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{13}{appendix.C}

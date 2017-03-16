@@ -4,7 +4,7 @@
 \documentclass[12pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[francais]{babel}
+\usepackage[french]{babel}
 \usepackage{hyperref}
 \usepackage{lmodern}
 \usepackage{graphicx}
@@ -18,7 +18,7 @@
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
 \usepackage[left=4cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{fancyvrb}
-\frenchbsetup{StandardLists=true}
+%\frenchbsetup{StandardLists=true}
 \newtheorem{theo}{Définition}[section]
 \definecolor{lightgray}{gray}{.6}
 \usepackage[dvipsnames]{xcolor}
@@ -77,7 +77,12 @@
 	\chapter{Électronique}
 	\chapter{Mécanique}
 	\chapter{Informatique}
-	Tous les algorithmes sont implémentés en Python. Ils sont disponibles en annexe.
+	
+	\section{Présentation globale}
+	Tous les algorithmes développé dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développé en Python3, les autres se basant sur Python2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python2. 
+	
+	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, ce qui permet de tester chacun des scripts très facilement.
+	
 	\section{Reconnaissance du sudoku}
 	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
 	\begin{enumerate}
@@ -132,9 +137,40 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
 \newpage
 
 \section{Résolution du sudoku}
-	
-	\section{Écriture et contrôle des moteurs}
-	
+\label{Resolution}
+Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux principales méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Enfin, il existe une méthode, très difficilement utilisable par un joueur, appelée \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci possède plusieurs solutions.
+\paragraph{Inclusion}
+\paragraph{Exclusion}
+\paragraph{Paires} Cette méthode possède différentes variantes :
+\begin{itemize}
+\item 
+\item
+\end{itemize} 
+La méthode des triplets est une généralisation de cette méthode à trois cases et non seulement deux.
+\paragraph{Backtracking} Cette méthode consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres qu'on pourrait théoriquement placer et on liste de nouveau les possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à une autre case vierge. S'il n'y a plus aucune possibilités qui pourraient correspondre, on revient sur nos pas et on change le chiffre qu'on venait d'insérer en une autre possibilité. S'il n'y a plus de possibilités, on revient de nouveau sur nos pas autant de fois que nécessaire jusqu'à avoir compéter la totalité de la grille.
+
+\section{Interface graphique}
+Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
+
+\paragraph{Edition}Lors de l'édition de la grille, un carré rouge apparait, déplaçable avec les flèches directionnelles, il suffit alors pour modifier la case de rentrer un chiffre de 0 à 9, 0 correspondant à une case vierge. Il est également possible de sauvegarder une grille ou encore de récupérer une grille déjà enregistrée.
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_edition}
+ \caption{Interface graphique affichant le menu Edition}
+\end{figure}
+
+\paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
+
+\paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion }et le \emph{backtracking} \footnote{Cf \ref{Resolution} Méthode de Résolution} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
+
+\section{Contrôle des moteurs et écriture}
+\subsubsection*{Moteurs pas-à-pas}
+Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient les avantages suivants : 
+\begin{itemize}
+\item ils sont bien plus précis que des moteurs à courant continu;
+\item ils possèdent un couple bien plus important que celui de servomoteurs;
+\end{itemize} 
 
 \printbibliography
 \nocite{*}
