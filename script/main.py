@@ -62,14 +62,13 @@ class Main:
     def stopResolution(self):
         pass
 
-    def write(self, points):
-        pass
+    def setSudoku(self, sudoku):
+        self.sudoku = sudoku
 
-    def writeSudoku(self, sudoku, num=False):
+    def writeSudoku(self, sudoku):
+        self.sudoku = sudoku
         save.saveSudoku(sudoku)
-        print("start")
         os.system("sudo python3 writing_main.py")
-
 
 
 Main()

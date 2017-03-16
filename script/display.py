@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import save
 import numpy as np
 from tkinter import *
 from tkinter.messagebox import *
@@ -67,9 +68,14 @@ class Display(Tk):
         else:
             self.boss.Camera.takePhoto()
 
-    def beforeUsingOpenCv(self):
-        if "module_cv2" in self.boss.getError():
-            self.showError("module_cv2")
+    def backUp(self):
+        save.saveSudoku(self.sudoku)
+        showinfo("Sudoku", "La grille a été enregistrée avec succès !")
+
+    def openSudoku(self):
+        self.sudoku = save.readSudoku()
+        self.boss.setSudoku(self.sudoku)
+        self.updateSudoku()
 
     def startManualEdition(self, edition=None):
         if edition is not None:
@@ -109,29 +115,35 @@ class Display(Tk):
         if key == 'F5':
             self.startResolution()
 
-        if key == "x" or key == "X":
-            self.effacerSudoku()
-
-        if key == "b" or key == "B":
+        if key.lower() == "b":
             self.color = "black"
             print("black")
 
-        if key == "r" or key == "R":
+        if key.upper() == 'c':
+            self.boss.stopResolution()
+
+        if key.lower() == "m":
+            self.boss.writeSudoku(self.sudoku)
+
+        if key.lower() == "o":
+            self.openSudoku()
+
+        if key.lower() == "r":
             self.color = "red"
             print("red")
 
-        if key == "m" or key == "M":
-            self.boss.writeSudoku(self.sudoku)
+        if key.lower() == "s":
+            self.backUp()
 
-        if key == "n" or key == "N":
-            self.boss.writeSudoku(self.sudoku, True)
-
-        if key == "v" or key == "V":
+        if key == "v".lower():
             try:
                 sleep = float(input("sleep = "))
                 self.boss.setSpeed(sleep)
             except ValueError:
                 print("a doit etre un nombre")
+
+        if key.lower() == "x":
+            self.effacerSudoku()
 
         if key == 'Return':
             self.startManualEdition()
@@ -142,9 +154,6 @@ class Display(Tk):
                     if (x, y) in self.liste_position:
                         self.sudoku[x][y] = 0
             self.updateSudoku(self.sudoku, self.liste_position)
-
-        if key == 'c' or key == 'C':
-            self.boss.stopResolution()
 
         if self.edition:
             if key == 'Right':
@@ -178,7 +187,8 @@ class Display(Tk):
 
             self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
 
-    def updateSudoku(self, sudoku, liste_position=[]):
+    def updateSudoku(self, sudoku=None, liste_position=[]):
+        if sudoku is None: sudoku = self.boss.sudoku
         self.liste_position = liste_position
         self.startManualEdition(False)
         if "sudoku_insoluble" in self.boss.getError():
@@ -205,8 +215,6 @@ class Display(Tk):
             showerror("Caméra", "Désolé, le module picamera n'a pas été installé correctement !")
         elif error == "disponibilite_camera":
             showerror("Caméra", "Désolé, la caméra n'est pas disponible !")
-        elif error == "module_cv2":
-            showerror("OpenCV", "Désolé, le module cv2 n'a pas été installé correctement !")
         elif error == "camera_error":
             showerror("Caméra", "Une erreur inattendue avec la camera est survenue !\n"
                                 "Veuillez réessayer ou redémarrer votre raspberry pi")
@@ -264,8 +272,8 @@ class Display(Tk):
             self.add_cascade(label="Aide", menu=self.menu_aide)
 
             # Ajout des items du menu 'Edition'
-            self.menu_edition.add_command(label="Caméra", command=self.boss.beforeUsingCamera)
-            self.menu_edition.add_command(label="Automatique", command=self.boss.beforeUsingOpenCv)
+            self.menu_edition.add_command(label="Sauvegarder", command=self.boss.backUp)
+            self.menu_edition.add_command(label="Automatique", command=self.boss.openSudoku)
             self.menu_edition.add_command(label="Manuelle", command=self.boss.startManualEdition)
             self.menu_edition.add_command(label="Effacer", command=self.boss.effacerSudoku)
 

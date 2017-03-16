@@ -10,7 +10,7 @@ def saveSudoku(sudoku):
     :param sudoku:
     :return: None
     """
-    fichier = open("Sudoku.txt", "w")
+    fichier = open("../Sudoku/Sudoku.txt", "w")
     for i in range(9):
         for j in range(9):
             fichier.write(str(sudoku[i][j]))
@@ -24,18 +24,18 @@ def readSudoku():
     Lit la grille du fichier texte
     :return: sudoku: array
     """
+    sudoku = np.zeros((9, 9), int)
     try:
-        sudoku = np.zeros((9, 9), int)
-        fichier = open("Sudoku.txt", "r")
+        fichier = open("../Sudoku/Sudoku.txt", "r")
         for i in range(9):
             ligne = fichier.readline()
-            j = 0    
+            j = 0
             for s in ligne:
                 try:
                     sudoku[i][j] = int(s)
                     j += 1
                 except ValueError: pass
         fichier.close()
-        return sudoku
     except IOError:
-        return "Doesn't exist!"
+        pass
+    return sudoku
