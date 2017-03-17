@@ -75,15 +75,60 @@
 	\chapter{Présentation du sudoku}
 	
 	\chapter{Électronique}
+\section{Moteurs pas-à-pas}
+Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
+\begin{itemize}[label=--]
+\item une précision bien supérieure à celle de moteurs à courant continu;
+\item un couple bien plus important que celui de servomoteurs;
+\item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
+\end{itemize}
+Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
+
+\section{Schéma électrique}
+Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran lcd, ni le détail de l'alimentation (notamment du convertisseur de tension).
+
+Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.34]{../pictures/Sudoku_schema_electrique.png}
+ \caption{Schéma électrique réalisé avec \emph{Fritzing}}
+\end{figure}
+
+\section{Premiers montages}
+Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
+ \caption{Premier montage}
+\end{figure}
+
+\section{Circuit imprimé}
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_circuit_imprime.png}
+ \caption{Circuit imprimé réalisé avec \emph{Fritzing}}
+\end{figure}
+
+\section{\'{E}cran lcd}
+Pour rendre le bras mécanique autonome, nous avons intégré un écran lcd permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.3]{../pictures/ecran_lcd}
+ \caption{\'{E}cran lcd affichant le message de bienvenue}
+\end{figure}
+
 	\chapter{Mécanique}
-	\chapter{Informatique}
+			
 	
-	\section{Présentation globale}
+	\chapter{Informatique}
+\section{Présentation globale}
 	Tous les algorithmes développé dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développé en Python 3, les autres se basant sur Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
 	
 	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, ce qui permet de tester chacun des scripts très facilement.
 	
-	\section{Reconnaissance du sudoku}
+\section{Reconnaissance du sudoku}
 	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
 	\begin{enumerate}
 	\item Reconnaître les chiffres dans une grille du sudoku
@@ -163,15 +208,37 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 
 \paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_resolution}
+ \caption{Interface graphique affichant le menu Edition}
+\end{figure}
+
 \paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion }et le \emph{backtracking} \footnote{Cf \ref{Resolution} Méthode de Résolution} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
 
 \section{Contrôle des moteurs et écriture}
-\subsubsection*{Moteurs pas-à-pas}
-Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient les avantages suivants : 
-\begin{itemize}[label=--]
-\item ils sont bien plus précis que des moteurs à courant continu;
-\item ils possèdent un couple bien plus important que celui de servomoteurs;
-\end{itemize}
+\subsection{Moteurs pas-à-pas}
+
+\subsection{Coordonnées polaires}
+Par soucis de compacité de nouveau, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Changement_repere}
+ \caption{Changement de repères réalisé avec \emph{Geogebra}}
+\end{figure}
+
+\subsection{Écriture des digits}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_points}
+ \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
+\end{figure}
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_relies}
+ \caption{Grille de sudoku tracée avec \emph{MatplotLib}}
+\end{figure}
 
 \chapter*{Conclusion}
 
