@@ -18,7 +18,7 @@
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
 \usepackage[left=4cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{fancyvrb}
-%\frenchbsetup{StandardLists=true}
+\frenchbsetup{StandardLists=true}
 \newtheorem{theo}{Définition}[section]
 \definecolor{lightgray}{gray}{.6}
 \usepackage[dvipsnames]{xcolor}
@@ -79,7 +79,7 @@
 	\chapter{Informatique}
 	
 	\section{Présentation globale}
-	Tous les algorithmes développé dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développé en Python3, les autres se basant sur Python2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python2. 
+	Tous les algorithmes développé dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développé en Python 3, les autres se basant sur Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
 	
 	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, ce qui permet de tester chacun des scripts très facilement.
 	
@@ -89,13 +89,14 @@
 	\item Reconnaître les chiffres dans une grille du sudoku
 	\item Déterminer la position spatiale de la grille
 	\end{enumerate}
+	\newpage
 	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
 	\begin{figure}[!h]
  \center
  \includegraphics[scale=0.2]{../pictures/camera.jpg}
  \caption{Caméra Raspberry Pi V2}
 \end{figure}
-\newpage
+
 Voici la grille de sudoku qui nous servira d'exemple pour montrer toutes les actions du script :
 \begin{figure}[!h]
  \center
@@ -118,12 +119,12 @@ Par cette transformation, on peut ensuite déterminer des équations de droites 
  \includegraphics[scale=0.45]{../pictures/unperspectived.png}
  \caption{Exemple de grille découpée sans perspective}
 \end{figure}
-\newpage
+
 On découpe chaque petite case de la grille comme ci-dessous :
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.6]{../pictures/cutted.png}
+ \includegraphics[scale=0.5]{../pictures/cutted.png}
  \caption{Exemple de grille où chaque chiffre a été découpé}
 \end{figure}
 
@@ -131,7 +132,7 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.5]{../pictures/finished.png}
+ \includegraphics[scale=0.45]{../pictures/finished.png}
  \caption{Exemple de grille prête à être résolue}
 \end{figure}
 \newpage
@@ -142,7 +143,7 @@ Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de
 \paragraph{Inclusion}
 \paragraph{Exclusion}
 \paragraph{Paires} Cette méthode possède différentes variantes :
-\begin{itemize}
+\begin{itemize}[label=--]
 \item 
 \item
 \end{itemize} 
@@ -167,10 +168,16 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 \section{Contrôle des moteurs et écriture}
 \subsubsection*{Moteurs pas-à-pas}
 Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient les avantages suivants : 
-\begin{itemize}
+\begin{itemize}[label=--]
 \item ils sont bien plus précis que des moteurs à courant continu;
 \item ils possèdent un couple bien plus important que celui de servomoteurs;
-\end{itemize} 
+\end{itemize}
+
+\chapter*{Conclusion}
+
+\chapter*{Remerciements}
+
+Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
 \printbibliography
 \nocite{*}
@@ -185,7 +192,15 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient le
 \chapter{Script de gestion de la caméra}
 \label{camera}
 \inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/camera.py}
-
+\chapter{Script d'affichage du sudoku}
+\label{display}
+\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/display.py}
+\chapter{Script de gestion des moteurs pas-à-pas}
+\label{step_motor}
+\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/step_motor.py}
+\chapter{Script permettant l'écriture d'un sudoku}
+\label{write}
+\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/write.py}
 
 \end{changemargin}
 \end{document}
