@@ -7,18 +7,19 @@
 \BOOKMARK [1][-]{section.2.4}{Circuit imprim\351}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.5}{\311cran lcd}{chapter.2}% 8
 \BOOKMARK [0][-]{chapter.3}{M\351canique}{}% 9
-\BOOKMARK [0][-]{chapter.4}{Informatique}{}% 10
-\BOOKMARK [1][-]{section.4.1}{Pr\351sentation globale}{chapter.4}% 11
-\BOOKMARK [1][-]{section.4.2}{Reconnaissance du sudoku}{chapter.4}% 12
-\BOOKMARK [1][-]{section.4.3}{R\351solution du sudoku}{chapter.4}% 13
-\BOOKMARK [1][-]{section.4.4}{Interface graphique}{chapter.4}% 14
-\BOOKMARK [1][-]{section.4.5}{Contr\364le des moteurs et \351criture}{chapter.4}% 15
-\BOOKMARK [2][-]{subsection.4.5.1}{Moteurs pas-\340-pas}{section.4.5}% 16
-\BOOKMARK [2][-]{subsection.4.5.2}{Coordonn\351es polaires}{section.4.5}% 17
-\BOOKMARK [2][-]{subsection.4.5.3}{\311criture des digits}{section.4.5}% 18
-\BOOKMARK [0][-]{appendix.A}{Fichier principal}{}% 19
-\BOOKMARK [0][-]{appendix.B}{Script de r\351solution des sudokus}{}% 20
-\BOOKMARK [0][-]{appendix.C}{Script de gestion de la cam\351ra}{}% 21
-\BOOKMARK [0][-]{appendix.D}{Script d'affichage du sudoku}{}% 22
-\BOOKMARK [0][-]{appendix.E}{Script de gestion des moteurs pas-\340-pas}{}% 23
-\BOOKMARK [0][-]{appendix.F}{Script permettant l'\351criture d'un sudoku}{}% 24
+\BOOKMARK [1][-]{section.3.1}{Conception du chariot en 3D}{chapter.3}% 10
+\BOOKMARK [0][-]{chapter.4}{Informatique}{}% 11
+\BOOKMARK [1][-]{section.4.1}{Pr\351sentation globale}{chapter.4}% 12
+\BOOKMARK [1][-]{section.4.2}{Reconnaissance du sudoku}{chapter.4}% 13
+\BOOKMARK [1][-]{section.4.3}{R\351solution du sudoku}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.4}{Interface graphique}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.5}{Contr\364le des moteurs et \351criture}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.5.1}{Moteurs pas-\340-pas}{section.4.5}% 17
+\BOOKMARK [2][-]{subsection.4.5.2}{Coordonn\351es polaires}{section.4.5}% 18
+\BOOKMARK [2][-]{subsection.4.5.3}{\311criture des digits}{section.4.5}% 19
+\BOOKMARK [0][-]{appendix.A}{Fichier principal}{}% 20
+\BOOKMARK [0][-]{appendix.B}{Script de r\351solution des sudokus}{}% 21
+\BOOKMARK [0][-]{appendix.C}{Script de gestion de la cam\351ra}{}% 22
+\BOOKMARK [0][-]{appendix.D}{Script d'affichage du sudoku}{}% 23
+\BOOKMARK [0][-]{appendix.E}{Script de gestion des moteurs pas-\340-pas}{}% 24
+\BOOKMARK [0][-]{appendix.F}{Script permettant l'\351criture d'un sudoku}{}% 25

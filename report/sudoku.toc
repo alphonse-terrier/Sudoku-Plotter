@@ -20,6 +20,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}M\IeC {\'e}canique}{7}{chapter.3}
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Conception du chariot en 3D}{7}{section.3.1}
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Informatique}{8}{chapter.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Pr\IeC {\'e}sentation globale}{8}{section.4.1}
@@ -54,12 +56,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Fichier principal}{17}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{18}{appendix.B}
+\contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{19}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{19}{appendix.C}
+\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{23}{appendix.C}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {D}Script d'affichage du sudoku}{20}{appendix.D}
+\contentsline {chapter}{\numberline {D}Script d'affichage du sudoku}{24}{appendix.D}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {E}Script de gestion des moteurs pas-\IeC {\`a}-pas}{21}{appendix.E}
+\contentsline {chapter}{\numberline {E}Script de gestion des moteurs pas-\IeC {\`a}-pas}{29}{appendix.E}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {F}Script permettant l'\IeC {\'e}criture d'un sudoku}{22}{appendix.F}
+\contentsline {chapter}{\numberline {F}Script permettant l'\IeC {\'e}criture d'un sudoku}{34}{appendix.F}

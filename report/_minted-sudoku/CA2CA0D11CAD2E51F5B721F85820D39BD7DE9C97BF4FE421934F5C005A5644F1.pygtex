@@ -1,0 +1,76 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/usr/bin/env python3}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}*\PYGZhy{} coding: utf\PYGZhy{}8 \PYGZhy{}*\PYGZhy{}}
+
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+
+\PYG{k+kn}{import} \PYG{n+nn}{save}
+\PYG{k+kn}{import} \PYG{n+nn}{write} \PYG{k+kn}{as} \PYG{n+nn}{w}
+\PYG{k+kn}{import} \PYG{n+nn}{camera} \PYG{k+kn}{as} \PYG{n+nn}{cm}
+\PYG{k+kn}{import} \PYG{n+nn}{display} \PYG{k+kn}{as} \PYG{n+nn}{dp}
+\PYG{k+kn}{import} \PYG{n+nn}{resolution} \PYG{k+kn}{as} \PYG{n+nn}{rs}
+
+
+\PYG{k}{class} \PYG{n+nc}{Main}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Permet la gestion des sudoku à savoir :}
+\PYG{l+s+sd}{        \PYGZhy{} leur édition par l\PYGZsq{}utilisateur pour obtenir le sudoku à résoudre}
+\PYG{l+s+sd}{        \PYGZhy{} leur résolution à l\PYGZsq{}aide de différentes méthodes de résolution:}
+\PYG{l+s+sd}{            \PYGZhy{} inclusion}
+\PYG{l+s+sd}{            \PYGZhy{} exclusion}
+\PYG{l+s+sd}{            \PYGZhy{} backtracking}
+\PYG{l+s+sd}{            \PYGZhy{} ...}
+\PYG{l+s+sd}{        \PYGZhy{} leur affichage à l\PYGZsq{}aide du module tkinter}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{beta\PYGZus{}version} \PYG{o}{=} \PYG{n+nb+bp}{True}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error} \PYG{o}{=} \PYG{p}{[]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{taille}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{((}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{nb\PYGZus{}cases}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Globale\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{liste\PYGZus{}position} \PYG{o}{=} \PYG{p}{[]}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{W} \PYG{o}{=} \PYG{n}{w}\PYG{o}{.}\PYG{n}{Write}\PYG{p}{()}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Camera} \PYG{o}{=} \PYG{n}{cm}\PYG{o}{.}\PYG{n}{Camera}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Display} \PYG{o}{=} \PYG{n}{dp}\PYG{o}{.}\PYG{n}{Display}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Resolution} \PYG{o}{=} \PYG{n}{rs}\PYG{o}{.}\PYG{n}{Resolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Display}\PYG{o}{.}\PYG{n}{mainloop}\PYG{p}{()}
+
+
+    \PYG{k}{def} \PYG{n+nf}{setError}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{error}\PYG{p}{,} \PYG{n}{off}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{):}
+        \PYG{k}{if} \PYG{n}{off}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{error} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error}\PYG{p}{:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{error}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{error} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error}\PYG{p}{:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{error}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{getError}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{error}
+
+    \PYG{k}{def} \PYG{n+nf}{setMethodeResolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{methode}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution} \PYG{o}{=} \PYG{n}{methode}
+
+    \PYG{k}{def} \PYG{n+nf}{startResolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{sudoku}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{liste\PYGZus{}position} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Resolution}\PYG{o}{.}\PYG{n}{start}\PYG{p}{(}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{methode\PYGZus{}resolution}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{Display}\PYG{o}{.}\PYG{n}{updateSudoku}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{liste\PYGZus{}position}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{stopResolution}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{k}{pass}
+
+    \PYG{k}{def} \PYG{n+nf}{setSudoku}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{sudoku}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{sudoku}
+
+    \PYG{k}{def} \PYG{n+nf}{writeSudoku}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{sudoku}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sudoku} \PYG{o}{=} \PYG{n}{sudoku}
+        \PYG{n}{save}\PYG{o}{.}\PYG{n}{saveSudoku}\PYG{p}{(}\PYG{n}{sudoku}\PYG{p}{)}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{system}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}sudo python3 writing\PYGZus{}main.py\PYGZdq{}}\PYG{p}{)}
+
+
+\PYG{n}{Main}\PYG{p}{()}
+\end{Verbatim}
