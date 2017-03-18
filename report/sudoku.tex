@@ -206,7 +206,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
  \caption{Interface graphique affichant le menu Edition}
 \end{figure}
 
-\paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
+\paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution rapide ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
 
 \begin{figure}[!h]
  \center
@@ -220,7 +220,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 \subsection{Moteurs pas-à-pas}
 
 \subsection{Coordonnées polaires}
-Par soucis de compacité de nouveau, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens.
+Par soucis de compacité, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens. En effet, en coordonnées cartésien, pour rendre le système stable, il aurait fallu placer une tige de chaque côté de la feuille, sur lesquelles se déplacerait une plateforme pouvant déplacer le stylo selon la largeur de la feuille. De plus, l'utilisation des coordonnées polaires ne sont que très peu utilisés pour ce type de système, ce qui se révélait donc plus intéressant à développer.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Changement_repere}
@@ -228,11 +228,22 @@ Par soucis de compacité de nouveau, nous avons décidé de développer une stru
 \end{figure}
 
 \subsection{Écriture des digits}
+Nous souhaitions dès le début pouvoir écrire des grilles de différentes tailles, au lieu de ne pouvoir remplir que des grilles de tailles fixes. C'est pourquoi nous avons basé le script d'écriture sur du point par point, permettant de choisir la précision théorique des chiffres tracés. Cependant les moteurs pas-à-pas ne pouvant se déplacer que d'un pas fixé de 1.8\degre, une trop grande précision ne pourrait entraînerait que des déplacements nuls des moteurs, c'est pourquoi cette manière de programmation permet un compromis entre précision théorique et précision pratique.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.35]{../pictures/numbers}
+ \caption{Chiffres d'une précision théorique assez faible tracés avec \emph{MatplotLib}}
+\end{figure}
+
+En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure suivante.
+
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Sudoku_points}
  \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
 \end{figure}
+
+Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient pas reliés entre eux, comme le suggère la figure suivante.
 
 \begin{figure}[!h]
  \center
@@ -246,28 +257,5 @@ Par soucis de compacité de nouveau, nous avons décidé de développer une stru
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\printbibliography
-\nocite{*}
-\appendix
-\begin{changemargin}{-2cm}{-4cm}
-\chapter{Fichier principal}
-\label{main}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/main.py}
-\chapter{Script de résolution des sudokus}
-\label{resolution}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/resolution.py}
-\chapter{Script de gestion de la caméra}
-\label{camera}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/camera.py}
-\chapter{Script d'affichage du sudoku}
-\label{display}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/display.py}
-\chapter{Script de gestion des moteurs pas-à-pas}
-\label{step_motor}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/step_motor.py}
-\chapter{Script permettant l'écriture d'un sudoku}
-\label{write}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/write.py}
-
-\end{changemargin}
+\include{annexe}
 \end{document}

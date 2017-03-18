@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.29)  17 MAR 2017 21:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.29)  18 MAR 2017 19:17
 entering extended mode
 **./sudoku.tex
 (sudoku.tex
@@ -550,111 +550,6 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip51
 \backup@length=\skip52
 )
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\minted\minted.sty"
-Package: minted 2015/09/09 v2.1 Yet another Pygments shim for LaTeX
-
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.
-sty"
-Package: fancyvrb 2008/02/07
-
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)
-\FV@CodeLineNo=\count113
-\FV@InFile=\read1
-\FV@TabBox=\box29
-\c@FancyVerbLine=\count114
-\FV@StepNumber=\count115
-\FV@OutFile=\write3
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count116
-\float@exts=\toks21
-\float@box=\box30
-\@float@everytoks=\toks22
-\@floatcapt=\box31
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count117
-\calc@Bcount=\count118
-\calc@Adimen=\dimen119
-\calc@Bdimen=\dimen120
-\calc@Askip=\skip53
-\calc@Bskip=\skip54
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count119
-\calc@Cskip=\skip55
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ifplatform\ifplatf
-orm.sty"
-Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
-
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\catchfi
-le.sty"
-Package: catchfile 2011/03/01 v1.6 Catch the contents of a file (HO)
-))
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.
-sty"
-Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count120
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xstring\xstring.st
-y"
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\xstring\xstring.
-tex"
-\@xs@message=\write4
-\integerpart=\count121
-\decimalpart=\count122
-)
-Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
-)
-("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lineno\lineno.sty"
-Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count123
-\output=\toks23
-\linenoprevgraf=\count124
-\linenumbersep=\dimen121
-\linenumberwidth=\dimen122
-\c@linenumber=\count125
-\c@pagewiselinenumber=\count126
-\c@LN@truepage=\count127
-\c@internallinenumber=\count128
-\c@internallinenumbers=\count129
-\quotelinenumbersep=\dimen123
-\bframerule=\dimen124
-\bframesep=\dimen125
-\bframebox=\box32
-LaTeX Info: Redefining \\ on input line 3056.
-)
-\minted@appexistsfile=\read2
-\FV@BreakIndent=\dimen126
-\FV@BreakSymbolSepLeft=\dimen127
-\FV@BreakSymbolSepRight=\dimen128
-\FV@BreakSymbolIndentLeft=\dimen129
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 688.
-
- ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-\FV@BreakSymbolIndentRight=\dimen130
-\c@FancyVerbLineBreakLast=\count130
-\FV@LineBox=\box33
-\FV@LineIndentBox=\box34
-\minted@bgbox=\box35
-\minted@code=\write5
-\c@minted@FancyVerbLineTemp=\count131
-\@float@every@listing=\toks24
-\c@listing=\count132
-)
-runsystem(if not exist "_minted-sudoku" mkdir "_minted-sudoku")...executed.
-
-
-(_minted-sudoku/default.pygstyle)
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\color.sty
 "
 Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
@@ -664,6 +559,13 @@ Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
+) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count113
+\float@exts=\toks21
+\float@box=\box29
+\@float@everytoks=\toks22
+\@floatcapt=\box30
 )
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex.
 sty"
@@ -674,63 +576,71 @@ Package: biblatex 2015/12/22 v3.2 programmable bibliographies (PK/JW/AB)
 Package: biblatex2 2015/12/22 v3.2 programmable bibliographies (biber) (PK/JW/A
 B)
 
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.
+sty"
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count114
+)
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\logreq\logreq.sty"
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count133
+\lrq@indent=\count115
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\logreq\logreq.def"
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-))
-\c@tabx@nest=\count134
-\c@listtotal=\count135
-\c@listcount=\count136
-\c@liststart=\count137
-\c@liststop=\count138
-\c@citecount=\count139
-\c@citetotal=\count140
-\c@multicitecount=\count141
-\c@multicitetotal=\count142
-\c@instcount=\count143
-\c@maxnames=\count144
-\c@minnames=\count145
-\c@maxitems=\count146
-\c@minitems=\count147
-\c@citecounter=\count148
-\c@savedcitecounter=\count149
-\c@uniquelist=\count150
-\c@uniquename=\count151
-\c@refsection=\count152
-\c@refsegment=\count153
-\c@maxextratitle=\count154
-\c@maxextratitleyear=\count155
-\c@maxextrayear=\count156
-\c@maxextraalpha=\count157
-\c@abbrvpenalty=\count158
-\c@highnamepenalty=\count159
-\c@lownamepenalty=\count160
-\c@maxparens=\count161
-\c@parenlevel=\count162
-\blx@tempcnta=\count163
-\blx@tempcntb=\count164
-\blx@tempcntc=\count165
-\blx@maxsection=\count166
-\blx@maxsegment@0=\count167
-\blx@notetype=\count168
-\blx@parenlevel@text=\count169
-\blx@parenlevel@foot=\count170
-\blx@sectionciteorder@0=\count171
-\labelnumberwidth=\skip56
-\labelalphawidth=\skip57
-\biblabelsep=\skip58
-\bibitemsep=\skip59
-\bibnamesep=\skip60
-\bibinitsep=\skip61
-\bibparsep=\skip62
-\bibhang=\skip63
-\blx@bcfin=\read3
-\blx@bcfout=\write6
-\c@mincomprange=\count172
-\c@maxcomprange=\count173
-\c@mincompwidth=\count174
+)) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty
+"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count116
+\c@listtotal=\count117
+\c@listcount=\count118
+\c@liststart=\count119
+\c@liststop=\count120
+\c@citecount=\count121
+\c@citetotal=\count122
+\c@multicitecount=\count123
+\c@multicitetotal=\count124
+\c@instcount=\count125
+\c@maxnames=\count126
+\c@minnames=\count127
+\c@maxitems=\count128
+\c@minitems=\count129
+\c@citecounter=\count130
+\c@savedcitecounter=\count131
+\c@uniquelist=\count132
+\c@uniquename=\count133
+\c@refsection=\count134
+\c@refsegment=\count135
+\c@maxextratitle=\count136
+\c@maxextratitleyear=\count137
+\c@maxextrayear=\count138
+\c@maxextraalpha=\count139
+\c@abbrvpenalty=\count140
+\c@highnamepenalty=\count141
+\c@lownamepenalty=\count142
+\c@maxparens=\count143
+\c@parenlevel=\count144
+\blx@tempcnta=\count145
+\blx@tempcntb=\count146
+\blx@tempcntc=\count147
+\blx@maxsection=\count148
+\blx@maxsegment@0=\count149
+\blx@notetype=\count150
+\blx@parenlevel@text=\count151
+\blx@parenlevel@foot=\count152
+\blx@sectionciteorder@0=\count153
+\labelnumberwidth=\skip53
+\labelalphawidth=\skip54
+\biblabelsep=\skip55
+\bibitemsep=\skip56
+\bibnamesep=\skip57
+\bibinitsep=\skip58
+\bibparsep=\skip59
+\bibhang=\skip60
+\blx@bcfin=\read1
+\blx@bcfout=\write3
+\c@mincomprange=\count154
+\c@maxcomprange=\count155
+\c@mincompwidth=\count156
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -740,78 +650,78 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'science.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count175
-\c@savedafterword=\count176
-\c@annotator=\count177
-\c@savedannotator=\count178
-\c@author=\count179
-\c@savedauthor=\count180
-\c@bookauthor=\count181
-\c@savedbookauthor=\count182
-\c@commentator=\count183
-\c@savedcommentator=\count184
-\c@editor=\count185
-\c@savededitor=\count186
-\c@editora=\count187
-\c@savededitora=\count188
-\c@editorb=\count189
-\c@savededitorb=\count190
-\c@editorc=\count191
-\c@savededitorc=\count192
-\c@foreword=\count193
-\c@savedforeword=\count194
-\c@holder=\count195
-\c@savedholder=\count196
-\c@introduction=\count197
-\c@savedintroduction=\count198
-\c@namea=\count199
-\c@savednamea=\count266
-\c@nameb=\count267
-\c@savednameb=\count268
-\c@namec=\count269
-\c@savednamec=\count270
-\c@translator=\count271
-\c@savedtranslator=\count272
-\c@shortauthor=\count273
-\c@savedshortauthor=\count274
-\c@shorteditor=\count275
-\c@savedshorteditor=\count276
-\c@labelname=\count277
-\c@savedlabelname=\count278
-\c@institution=\count279
-\c@savedinstitution=\count280
-\c@lista=\count281
-\c@savedlista=\count282
-\c@listb=\count283
-\c@savedlistb=\count284
-\c@listc=\count285
-\c@savedlistc=\count286
-\c@listd=\count287
-\c@savedlistd=\count288
-\c@liste=\count289
-\c@savedliste=\count290
-\c@listf=\count291
-\c@savedlistf=\count292
-\c@location=\count293
-\c@savedlocation=\count294
-\c@organization=\count295
-\c@savedorganization=\count296
-\c@origlocation=\count297
-\c@savedoriglocation=\count298
-\c@origpublisher=\count299
-\c@savedorigpublisher=\count300
-\c@publisher=\count301
-\c@savedpublisher=\count302
-\c@language=\count303
-\c@savedlanguage=\count304
-\c@pageref=\count305
-\c@savedpageref=\count306
-\shorthandwidth=\skip64
-\shortjournalwidth=\skip65
-\shortserieswidth=\skip66
-\shorttitlewidth=\skip67
-\shortauthorwidth=\skip68
-\shorteditorwidth=\skip69
+\c@afterword=\count157
+\c@savedafterword=\count158
+\c@annotator=\count159
+\c@savedannotator=\count160
+\c@author=\count161
+\c@savedauthor=\count162
+\c@bookauthor=\count163
+\c@savedbookauthor=\count164
+\c@commentator=\count165
+\c@savedcommentator=\count166
+\c@editor=\count167
+\c@savededitor=\count168
+\c@editora=\count169
+\c@savededitora=\count170
+\c@editorb=\count171
+\c@savededitorb=\count172
+\c@editorc=\count173
+\c@savededitorc=\count174
+\c@foreword=\count175
+\c@savedforeword=\count176
+\c@holder=\count177
+\c@savedholder=\count178
+\c@introduction=\count179
+\c@savedintroduction=\count180
+\c@namea=\count181
+\c@savednamea=\count182
+\c@nameb=\count183
+\c@savednameb=\count184
+\c@namec=\count185
+\c@savednamec=\count186
+\c@translator=\count187
+\c@savedtranslator=\count188
+\c@shortauthor=\count189
+\c@savedshortauthor=\count190
+\c@shorteditor=\count191
+\c@savedshorteditor=\count192
+\c@labelname=\count193
+\c@savedlabelname=\count194
+\c@institution=\count195
+\c@savedinstitution=\count196
+\c@lista=\count197
+\c@savedlista=\count198
+\c@listb=\count199
+\c@savedlistb=\count266
+\c@listc=\count267
+\c@savedlistc=\count268
+\c@listd=\count269
+\c@savedlistd=\count270
+\c@liste=\count271
+\c@savedliste=\count272
+\c@listf=\count273
+\c@savedlistf=\count274
+\c@location=\count275
+\c@savedlocation=\count276
+\c@organization=\count277
+\c@savedorganization=\count278
+\c@origlocation=\count279
+\c@savedoriglocation=\count280
+\c@origpublisher=\count281
+\c@savedorigpublisher=\count282
+\c@publisher=\count283
+\c@savedpublisher=\count284
+\c@language=\count285
+\c@savedlanguage=\count286
+\c@pageref=\count287
+\c@savedpageref=\count288
+\shorthandwidth=\skip61
+\shortjournalwidth=\skip62
+\shortserieswidth=\skip63
+\shorttitlewidth=\skip64
+\shortauthorwidth=\skip65
+\shorteditorwidth=\skip66
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -825,13 +735,13 @@ Package biblatex Info: ... file 'biblatex.def' found.
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex.
 def"
 File: biblatex.def 
-\c@textcitecount=\count307
-\c@textcitetotal=\count308
-\c@textcitemaxnames=\count309
-\c@biburlnumpenalty=\count310
-\c@biburlucpenalty=\count311
-\c@biburllcpenalty=\count312
-\c@smartand=\count313
+\c@textcitecount=\count289
+\c@textcitetotal=\count290
+\c@textcitemaxnames=\count291
+\c@biburlnumpenalty=\count292
+\c@biburlucpenalty=\count293
+\c@biburllcpenalty=\count294
+\c@smartand=\count295
 )
 Package biblatex Info: Trying to load bibliography style 'science'...
 Package biblatex Info: ... file 'science.bbx' found.
@@ -857,8 +767,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\bbx\stand
 ard.bbx"
 File: standard.bbx 2015/12/22 v3.2 biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count314
-\c@bbx:relatedtotal=\count315
+\c@bbx:relatedcount=\count296
+\c@bbx:relatedtotal=\count297
 ))))
 Package biblatex Info: Trying to load citation style 'science'...
 Package biblatex Info: ... file 'science.cbx' found.
@@ -872,8 +782,8 @@ Package biblatex Info: ... file 'numeric-comp.cbx' found.
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\cbx\numer
 ic-comp.cbx"
 File: numeric-comp.cbx 2015/12/22 v3.2 biblatex citation style (PK/JW/AB)
-\c@cbx@tempcnta=\count316
-\c@cbx@tempcntb=\count317
+\c@cbx@tempcnta=\count298
+\c@cbx@tempcntb=\count299
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -896,22 +806,35 @@ File: biblatex.cfg
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
 sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count318
-\Gm@cntv=\count319
-\c@Gm@tempcnt=\count320
-\Gm@bindingoffset=\dimen131
-\Gm@wd@mp=\dimen132
-\Gm@odd@mp=\dimen133
-\Gm@even@mp=\dimen134
-\Gm@layoutwidth=\dimen135
-\Gm@layoutheight=\dimen136
-\Gm@layouthoffset=\dimen137
-\Gm@layoutvoffset=\dimen138
-\Gm@dimlist=\toks25
+\Gm@cnth=\count300
+\Gm@cntv=\count301
+\c@Gm@tempcnt=\count302
+\Gm@bindingoffset=\dimen119
+\Gm@wd@mp=\dimen120
+\Gm@odd@mp=\dimen121
+\Gm@even@mp=\dimen122
+\Gm@layoutwidth=\dimen123
+\Gm@layoutheight=\dimen124
+\Gm@layouthoffset=\dimen125
+\Gm@layoutvoffset=\dimen126
+\Gm@dimlist=\toks23
 
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
 cfg"))
-\c@theo=\count321
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.
+sty"
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count303
+\FV@InFile=\read2
+\FV@TabBox=\box31
+\c@FancyVerbLine=\count304
+\FV@StepNumber=\count305
+\FV@OutFile=\write4
+)
+\c@theo=\count306
 
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
@@ -939,25 +862,6 @@ File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
 sty"
 Package: placeins 2005/04/18  v 2.2
 )
-runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set >"su
-doku.aex" <nul: /p x=^%~$PATH:i>>"sudoku.aex")...executed.
-
-runsystem(del "sudoku.aex")...executed.
-
-
-
-! Package minted Error: You must have `pygmentize' installed to use this packag
-e.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.44 \begin{document}
-                     
-Refer to the installation instructions in the minted documentation for more inf
-ormation.
-
 Package biblatex Info: Trying to load language 'french'...
 Package biblatex Info: ... file 'french.lbx' found.
 
@@ -969,9 +873,9 @@ File: french.lbx 2015/12/22 v3.2 biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count322
-\@quotereset=\count323
-(sudoku.aux)
+\@quotelevel=\count307
+\@quotereset=\count308
+(sudoku.aux (annexe.aux))
 \openout1 = `sudoku.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -996,7 +900,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Info: Redefining \degres on input line 44.
 LaTeX Info: Redefining \dots on input line 44.
 LaTeX Info: Redefining \up on input line 44.
-\AtBeginShipoutBox=\box36
+\AtBeginShipoutBox=\box32
 Package hyperref Info: Link coloring OFF on input line 44.
 
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.s
@@ -1007,37 +911,36 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 estring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count324
+\c@section@level=\count309
 )
 LaTeX Info: Redefining \ref on input line 44.
 LaTeX Info: Redefining \pageref on input line 44.
 LaTeX Info: Redefining \nameref on input line 44.
  (sudoku.out) (sudoku.out)
-\@outlinefile=\write7
-\openout7 = `sudoku.out'.
+\@outlinefile=\write5
+\openout5 = `sudoku.out'.
 
 
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
 ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count325
-\scratchdimen=\dimen139
-\scratchbox=\box37
-\nofMPsegments=\count326
-\nofMParguments=\count327
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count328
-\MPscratchDim=\dimen140
-\MPnumerator=\count329
-\makeMPintoPDFobject=\count330
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count310
+\scratchdimen=\dimen127
+\scratchbox=\box33
+\nofMPsegments=\count311
+\nofMParguments=\count312
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count313
+\MPscratchDim=\dimen128
+\MPnumerator=\count314
+\makeMPintoPDFobject=\count315
+\everyMPtoPDFconversion=\toks25
 )
-\c@lstlisting=\count331
- (_minted-sudoku/default-pyg-prefix.pygstyle)
+\c@lstlisting=\count316
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout6 = `sudoku.bcf'.
+\openout3 = `sudoku.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'sudoku.bbl' not found.
@@ -1121,8 +1024,8 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 11.
 
 ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd
 "))
-\tf@toc=\write8
-\openout8 = `sudoku.toc'.
+\tf@toc=\write6
+\openout6 = `sudoku.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -1352,210 +1255,99 @@ Package pdftex.def Info: ../pictures/Changement_repere.png used on input line 2
 26.
 (pdftex.def)             Requested size: 344.03447pt x 295.85458pt.
 
-<../pictures/Sudoku_points.png, id=231, 559.33969pt x 558.58687pt>
+<../pictures/numbers.png, id=231, 1055.44313pt x 200.24812pt>
+File: ../pictures/numbers.png Graphic file (type png)
+
+<use ../pictures/numbers.png>
+Package pdftex.def Info: ../pictures/numbers.png used on input line 234.
+(pdftex.def)             Requested size: 369.41063pt x 70.08789pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.237 
+       <../pictures/Changement_repere.png>]
+<../pictures/Sudoku_points.png, id=241, 558.58687pt x 558.58687pt>
 File: ../pictures/Sudoku_points.png Graphic file (type png)
 
 <use ../pictures/Sudoku_points.png>
-Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 233.
-(pdftex.def)             Requested size: 279.66916pt x 279.29276pt.
+Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 242.
+(pdftex.def)             Requested size: 279.29276pt x 279.29276pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../pictures/Sudoku_relies.png, id=232, 544.28343pt x 545.03625pt>
+<../pictures/Sudoku_relies.png, id=242, 544.28343pt x 545.03625pt>
 File: ../pictures/Sudoku_relies.png Graphic file (type png)
 
 <use ../pictures/Sudoku_relies.png>
-Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 239.
+Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 250.
 (pdftex.def)             Requested size: 272.14105pt x 272.51746pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.4.9
-}) has been already used, duplicate ignored
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
+0}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.243 \chapter
-              *{Conclusion} <../pictures/Changement_repere.png>] [14pdfTeX warn
-ing (ext4): destination with the same identifier (name{figure.4.10}) has been a
-lready used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.243 \chapter
+l.254 \chapter
               *{Conclusion}pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.4.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.243 \chapter
-              *{Conclusion} <../pictures/Sudoku_points.png> <../pictures/Sudoku
-_relies.png>] [15
+l.254 \chapter
+              *{Conclusion} <../pictures/numbers.png> <../pictures/Sudoku_point
+s.png>] [15pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.4.12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.254 \chapter
+              *{Conclusion} <../pictures/Sudoku_relies.png>] [16
+
+] [17
 
 ]
-
-LaTeX Warning: Empty bibliography on input line 249.
-
-[16
-
-]
-Annexe A.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/CA2CA0D11CAD2E51F5B721F85820D39BD7DE9C97BF4FE421934F5C005A5644F1
-.pygtex" "../script/main.py" )...executed.
+\openout2 = `annexe.aux'.
 
 
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
+(annexe.tex
 
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.255 ... linenos=true]{Python}{../script/main.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
-
-[17
-
-]
-Annexe B.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/1C5EED15290D5110E15CE4053DBC51B7635B98C00D0C0FD9BC23EA258C6A1431
-.pygtex" "../script/resolution.py" )...executed.
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.258 ...os=true]{Python}{../script/resolution.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
+LaTeX Warning: Empty bibliography on input line 1.
 
 [18
 
 ]
-Annexe C.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/921506618A6C97AB38973EC13E78687394C416FC4DF5D4CF9DE138DB82D2A79A
-.pygtex" "../script/camera.py" )...executed.
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.261 ...inenos=true]{Python}{../script/camera.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
-
+Annexe A.
 [19
 
 ]
-Annexe D.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/913ADF64617C85B2ED2304259393085551960E22C224BC9EC5D20FD3FB5F87A3
-.pygtex" "../script/display.py" )...executed.
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.264 ...nenos=true]{Python}{../script/display.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
-
+Annexe B.
 [20
 
 ]
-Annexe E.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/2A891B13DDBF4F99345446F644873E62C41B28936CDEC22045EF68204CB03FAE
-.pygtex" "../script/step_motor.py" )...executed.
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.267 ...os=true]{Python}{../script/step_motor.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
-
+Annexe C.
 [21
 
 ]
-Annexe F.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/C9E7A2FC5737EDFC508DFAF748705D9A3B48D892A43E3D9F2906EED487217E37
-.pygtex" "../script/write.py" )...executed.
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using the kpsewhich option without having PowerShell installed.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.270 ...linenos=true]{Python}{../script/write.py}
-                                                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, or by using the 
-kpsewhich option without PowerShell.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 273.
+Annexe D.
 [22
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 273.
- (sudoku.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 273.
+Annexe E.
+[23
+
+]
+Annexe F.
+) [24
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
+ (sudoku.aux (annexe.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
 Package rerunfilecheck Info: File `sudoku.out' has not changed.
 (rerunfilecheck)             Checksum: 8BD51D7B2754626632AB0F92DBD5E0D6;1606.
 
@@ -1570,16 +1362,16 @@ Package biblatex Warning: Please (re)run Biber on the file:
 Package logreq Info: Writing requests to 'sudoku.run.xml'.
 \openout1 = `sudoku.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 273.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 261.
  ) 
 Here is how much of TeX's memory you used:
- 16954 strings out of 493634
- 279678 string characters out of 3135239
- 765927 words of memory out of 3000000
- 20009 multiletter control sequences out of 15000+200000
- 68334 words of font info for 47 fonts, out of 3000000 for 9000
+ 15229 strings out of 493634
+ 242133 string characters out of 3135239
+ 699260 words of memory out of 3000000
+ 18320 multiletter control sequences out of 15000+200000
+ 68016 words of font info for 46 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 40i,8n,35p,932b,1638s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,8n,35p,978b,1636s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
 c}<C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmbx1
 2.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/l
@@ -1589,9 +1381,9 @@ lic/lm/lmr12.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/lm/lmr17.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmr8.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmri12.pfb>
-Output written on sudoku.pdf (23 pages, 1743750 bytes).
+Output written on sudoku.pdf (25 pages, 1773932 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 75 named destinations out of 1000 (max. 500000)
- 273 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 340 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
+ 278 words of extra memory for PDF output out of 10000 (max. 10000000)
 
