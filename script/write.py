@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 class Write:
     def __init__(self):
         self.x, self.y = [], []
-        self.step = 0.17
+        self.step = 0.0017
         self.coordinate = [(5, 20), (20, 5)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
@@ -18,6 +18,11 @@ class Write:
         self.x0 = self.a + self.nx / 2
         self.y0 = self.d + self.ny / 2
         self.L = 2 / 3 * min(self.nx, self.ny)
+
+    def append(self, liste_x, liste_y, x0, y0):
+        for i in range(len(liste_x)):
+            self.x.append(liste_x[i] + x0)
+            self.y.append(liste_y[i] + y0)
 
     def writeOne(self, x0, y0):
         x = - self.L / 12
@@ -34,16 +39,18 @@ class Write:
             y -= self.step
         x = - self.L / 12
         y = - self.L / 2
-        while x <= self.L / 4:
+        while x < self.L / 4:
             self.x.append(x + x0)
             self.y.append(y + y0)
             x += self.step
+        self.x.append(self.L / 4 + x0)
+        self.y.append(y + y0)
 
     def writeTwo(self, x0, y0):
         liste_x, liste_y = [], []
         y = self.L / 8
         x = -10
-        while x < -self.L / 4:
+        while y < 3 * self.L / 7:
             try:
                 x = - math.sqrt((self.L / 4) ** 2 - (y - self.L / 4) ** 2)
             except ValueError:
@@ -75,13 +82,13 @@ class Write:
             x -= self.step
         x = - self.L / 4
         y = - self.L / 2
-        while x <= self.L / 4:
+        while x < self.L / 4:
             liste_x.append(x)
             liste_y.append(y)
             x += self.step
-        for i in range(len(liste_x)):
-            self.x.append(liste_x[i] + x0)
-            self.y.append(liste_y[i] + y0)
+        liste_x.append(self.L / 4)
+        liste_y.append(y)
+        self.append(liste_x, liste_y, x0, y0)
 
     def writeThree(self, x0, y0):
         liste_x, liste_y = [], []
@@ -125,7 +132,7 @@ class Write:
     def writeFour(self, x0, y0):
         liste_x, liste_y = [], []
         x, y = self.L / 12, self.L / 2
-        while x <= self.L / 4:
+        while x < self.L / 4:
             liste_x.append(x)
             liste_y.append(y)
             if y > - self.L / 6:
@@ -133,14 +140,16 @@ class Write:
                 x = y / 2 - self.L / 6
             else:
                 x += self.step
+        liste_x.append(self.L / 4)
+        liste_y.append(y)
         x, y = self.L / 12, 0
-        while y >= - self.L / 2:
+        while y > - self.L / 2:
             liste_x.append(x)
             liste_y.append(y)
             y -= self.step
-        for i in range(len(liste_x)):
-            self.x.append(liste_x[i] + x0)
-            self.y.append(liste_y[i] + y0)
+        liste_x.append(x)
+        liste_y.append(-self.L / 2)
+        self.append(liste_x, liste_y, x0, y0)
 
     def writeFive(self, x0, y0):
         x, y = self.L / 4, self.L / 2
@@ -213,9 +222,7 @@ class Write:
             liste_x.append(liste_x[i])
             liste_y.append(- self.L / 2 - liste_y[i])
         l = len(liste_x)
-        for i in range(l):
-            self.x.append(liste_x[i] + x0)
-            self.y.append(liste_y[i] + y0)
+        self.append(liste_x, liste_y, x0, y0)
 
     def writeSeven(self, x0, y0):
         x = - self.L / 4
@@ -311,9 +318,7 @@ class Write:
             liste_x.append(liste_x[i])
             liste_y.append(self.L / 2 - liste_y[i])
         l = len(liste_x)
-        for i in range(l):
-            self.x.append(liste_x[i] + x0)
-            self.y.append(liste_y[i] + y0)
+        self.append(liste_x, liste_y, x0, y0)
 
     def writeNumbers(self, n, x0, y0):
         if n == 1: self.writeOne(x0, y0)
@@ -376,8 +381,13 @@ class Write:
             points.append((self.x[i], self.y[i]))
         return points
 
-    def write(self):
-        plt.plot(self.x, self.y, 'r')
+    def writeAllNumbers(self):
+        for i in range(10):
+            self.writeNumbers(i, 4 / 5 * i, 0)
+
+    def write(self, linked=False):
+        if linked: plt.plot(self.x, self.y, 'r', linewidth=2)
+        else: plt.scatter(self.x, self.y, c='red', s=8)
         plt.grid(True)
         plt.axis('equal')
         plt.axis('off')
@@ -396,4 +406,4 @@ if __name__ == "__main__":
                        [9, 0, 0, 0, 4, 0, 5, 0, 0],
                        [4, 7, 0, 0, 0, 6, 0, 0, 0]])
     print(w.writeSudoku(sudoku))
-    w.write()
+    w.write(True)
