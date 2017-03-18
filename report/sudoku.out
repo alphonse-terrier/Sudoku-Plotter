@@ -1,11 +1,11 @@
 \BOOKMARK [0][-]{chapter*.1}{Introduction}{}% 1
-\BOOKMARK [0][-]{chapter.1}{Pr\351sentation du sudoku}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Pr\351sentation et faits sur le sudoku}{}% 2
 \BOOKMARK [0][-]{chapter.2}{\311lectronique}{}% 3
 \BOOKMARK [1][-]{section.2.1}{Moteurs pas-\340-pas}{chapter.2}% 4
 \BOOKMARK [1][-]{section.2.2}{Sch\351ma \351lectrique}{chapter.2}% 5
 \BOOKMARK [1][-]{section.2.3}{Premiers montages}{chapter.2}% 6
 \BOOKMARK [1][-]{section.2.4}{Circuit imprim\351}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.5}{\311cran lcd}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.5}{\311cran LCD}{chapter.2}% 8
 \BOOKMARK [0][-]{chapter.3}{M\351canique}{}% 9
 \BOOKMARK [1][-]{section.3.1}{Conception du chariot en 3D}{chapter.3}% 10
 \BOOKMARK [0][-]{chapter.4}{Informatique}{}% 11
@@ -23,3 +23,4 @@
 \BOOKMARK [0][-]{appendix.D}{Script d'affichage du sudoku}{}% 23
 \BOOKMARK [0][-]{appendix.E}{Script de gestion des moteurs pas-\340-pas}{}% 24
 \BOOKMARK [0][-]{appendix.F}{Script permettant l'\351criture d'un sudoku}{}% 25
+\BOOKMARK [0][-]{appendix.F}{Mises en plan des pi\350ces con\347ues en 3D}{}% 26

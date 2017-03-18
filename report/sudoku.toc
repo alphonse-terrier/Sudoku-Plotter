@@ -4,7 +4,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Introduction}{1}{chapter*.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation du sudoku}{3}{chapter.1}
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation et faits sur le sudoku}{3}{chapter.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}\IeC {\'E}lectronique}{4}{chapter.2}
 \defcounter {refsection}{0}\relax 
@@ -16,7 +16,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.4}Circuit imprim\IeC {\'e}}{4}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}\'{E}cran lcd}{5}{section.2.5}
+\contentsline {section}{\numberline {2.5}\'{E}cran LCD}{5}{section.2.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}M\IeC {\'e}canique}{7}{chapter.3}
 \defcounter {refsection}{0}\relax 
@@ -40,7 +40,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.4}Interface graphique}{11}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Edition}{11}{section*.7}
+\contentsline {paragraph}{\IeC {\'E}dition}{11}{section*.7}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{R\IeC {\'e}solution}{12}{section*.8}
 \defcounter {refsection}{0}\relax 
@@ -65,3 +65,5 @@
 \contentsline {chapter}{\numberline {E}Script de gestion des moteurs pas-\IeC {\`a}-pas}{29}{appendix.E}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {F}Script permettant l'\IeC {\'e}criture d'un sudoku}{34}{appendix.F}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Mises en plan des pi\IeC {\`e}ces con\IeC {\c c}ues en 3D}{39}{appendix.F}

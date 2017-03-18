@@ -69,11 +69,24 @@
 
 \tableofcontents
 \addcontentsline{toc}{chapter}{Introduction}
-\chapter*{Introduction}
+	\chapter*{Introduction}
 	
 
-	\chapter{Présentation du sudoku}
+	\chapter{Présentation et faits sur le sudoku}
 	
+	Le sudoku est un jeu sous forme de grille inspiré du carré latin et défini en 1979 par Howard Garns.
+	
+	Cette grille est carrée et est divisée en $n^2$ régions de $n^2$ cases. Elle possède ainsi $n^2$ colonnes, $n^2$ lignes et $n^4$ cases. Dans la version la plus commune : $n=3$.
+
+Une grille de sudoku est préremplie, le but du jeu étant de la compléter selon la règle suivante :
+\begin{itemize}[label=--]
+\item Chaque ligne, chaque colonne et chaque région doit contenir au moins une fois tous les de $1$ à $n^2$.
+\end{itemize} 
+
+Une grille est considérée comme sudoku seulement si sa solution est unique.
+
+Le minimum de cases remplies au préalable pour espérer que la dite solution soit bien unique est de 17, cela a été prouvé par une équipe islandais en 2012.
+
 	\chapter{Électronique}
 \section{Moteurs pas-à-pas}
 Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
@@ -85,7 +98,7 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
 \section{Schéma électrique}
-Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran lcd, ni le détail de l'alimentation (notamment du convertisseur de tension).
+Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
 
 Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
 \begin{figure}[!h]
@@ -111,12 +124,12 @@ Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de
  \caption{Circuit imprimé réalisé avec \emph{Fritzing}}
 \end{figure}
 
-\section{\'{E}cran lcd}
-Pour rendre le bras mécanique autonome, nous avons intégré un écran lcd permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
+\section{\'{E}cran LCD}
+Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.3]{../pictures/ecran_lcd}
- \caption{\'{E}cran lcd affichant le message de bienvenue}
+ \caption{\'{E}cran LCD affichant le message de bienvenue}
 \end{figure}
 
 	\chapter{Mécanique}
@@ -202,7 +215,7 @@ La méthode des triplets est une généralisation de cette méthode à trois cas
 \section{Interface graphique}
 Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
 
-\paragraph{Edition}Lors de l'édition de la grille, un carré rouge apparait, déplaçable avec les flèches directionnelles, il suffit alors pour modifier la case de rentrer un chiffre de 0 à 9, 0 correspondant à une case vierge. Il est également possible de sauvegarder une grille ou encore de récupérer une grille déjà enregistrée.
+\paragraph{Édition} Lors de l'édition de la grille, un carré rouge apparait, déplaçable avec les flèches directionnelles, il suffit alors pour modifier la case de rentrer un chiffre de 0 à 9, 0 correspondant à une case vierge. Il est également possible de sauvegarder une grille ou encore de récupérer une grille déjà enregistrée.
 
 \begin{figure}[!h]
  \center
@@ -215,7 +228,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Sudoku_resolution}
- \caption{Interface graphique affichant le menu Edition}
+ \caption{Interface graphique affichant le menu Édition}
 \end{figure}
 
 \paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion }et le \emph{backtracking} \footnote{Cf \ref{Resolution} Méthode de Résolution} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
@@ -272,6 +285,26 @@ Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour le
 \chapter{Script permettant l'écriture d'un sudoku}
 \label{write}
 \inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/write.py}
-
+\addcontentsline{toc}{chapter}{Mises en plan des pièces conçues en 3D}
+\chapter*{Mise en plan du chariot}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=1]{../3DModels/chariot.png}
+\end{figure}
+\chapter*{Mise en plan du support du stylo}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=1]{../3DModels/supportstylo.png}
+\end{figure}
+\chapter*{Mise en plan du lien chariot/caméra}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.95]{../3DModels/camerachariot.png}
+\end{figure}
+\chapter*{Mise en plan du support de la caméra}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.95]{../3DModels/camera.png}
+\end{figure}
 \end{changemargin}
 \end{document}
