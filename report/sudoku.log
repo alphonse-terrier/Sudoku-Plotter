@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.5.14)  18 MAR 2017 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.5.14)  18 MAR 2017 20:50
 entering extended mode
 **./sudoku.tex
 (sudoku.tex
@@ -942,30 +942,30 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (sudoku.aux)
 \openout1 = `sudoku.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 45.
 
 ("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 44.
-LaTeX Info: Redefining \dots on input line 44.
-LaTeX Info: Redefining \up on input line 44.
+LaTeX Info: Redefining \degres on input line 45.
+LaTeX Info: Redefining \dots on input line 45.
+LaTeX Info: Redefining \up on input line 45.
 \AtBeginShipoutBox=\box36
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 45.
 
 ("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\namere
 f.sty"
@@ -977,9 +977,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count324
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
  (sudoku.out) (sudoku.out)
 \@outlinefile=\write7
 \openout7 = `sudoku.out'.
@@ -1010,8 +1010,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'sudoku.bbl' not found.
 
 No file sudoku.bbl.
-Package biblatex Info: Reference section=0 on input line 44.
-Package biblatex Info: Reference segment=0 on input line 44.
+Package biblatex Info: Reference section=0 on input line 45.
+Package biblatex Info: Reference segment=0 on input line 45.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1050,7 +1050,7 @@ Package biblatex Info: Reference segment=0 on input line 44.
 File: ../pictures/pagedegarde.png Graphic file (type png)
 
 <use ../pictures/pagedegarde.png>
-Package pdftex.def Info: ../pictures/pagedegarde.png used on input line 57.
+Package pdftex.def Info: ../pictures/pagedegarde.png used on input line 58.
 (pdftex.def)             Requested size: 278.83578pt x 278.85059pt.
  [1
 
@@ -1092,7 +1092,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.72 	\chapter
+l.73 	\chapter
               *{Introduction} [1
 
 ] [2
@@ -1109,10 +1109,10 @@ File: ../pictures/Sudoku_schema_electrique.png Graphic file (type png)
 
 <use ../pictures/Sudoku_schema_electrique.png>
 Package pdftex.def Info: ../pictures/Sudoku_schema_electrique.png used on input
- line 106.
+ line 107.
 (pdftex.def)             Requested size: 412.34007pt x 173.53604pt.
 
-Overfull \hbox (14.00148pt too wide) in paragraph at lines 106--107
+Overfull \hbox (14.00148pt too wide) in paragraph at lines 107--108
  [] 
  []
 
@@ -1123,10 +1123,10 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../pictures/Sudoku_schema.png Graphic file (type png)
 
 <use ../pictures/Sudoku_schema.png>
-Package pdftex.def Info: ../pictures/Sudoku_schema.png used on input line 114.
+Package pdftex.def Info: ../pictures/Sudoku_schema.png used on input line 115.
 (pdftex.def)             Requested size: 398.92671pt x 198.3793pt.
 
-Overfull \hbox (0.58812pt too wide) in paragraph at lines 114--115
+Overfull \hbox (0.58812pt too wide) in paragraph at lines 115--116
  [] 
  []
 
@@ -1141,7 +1141,7 @@ File: ../pictures/Sudoku_circuit_imprime.png Graphic file (type png)
 
 <use ../pictures/Sudoku_circuit_imprime.png>
 Package pdftex.def Info: ../pictures/Sudoku_circuit_imprime.png used on input l
-ine 123.
+ine 124.
 (pdftex.def)             Requested size: 283.43321pt x 178.79253pt.
 
 
@@ -1151,7 +1151,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: ../pictures/ecran_lcd.png Graphic file (type png)
 
 <use ../pictures/ecran_lcd.png>
-Package pdftex.def Info: ../pictures/ecran_lcd.png used on input line 131.
+Package pdftex.def Info: ../pictures/ecran_lcd.png used on input line 132.
 (pdftex.def)             Requested size: 377.16197pt x 171.19089pt.
 
 
@@ -1162,26 +1162,26 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.135 	\chapter
+l.136 	\chapter
                {MÃ©canique}pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.135 	\chapter
+l.136 	\chapter
                {MÃ©canique} <../pictures/Sudoku_schema_electrique.png> <../pict
 ures/Sudoku_schema.png>] [6pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.2.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.135 	\chapter
+l.136 	\chapter
                {MÃ©canique}pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.2.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.135 	\chapter
+l.136 	\chapter
                {MÃ©canique} <../pictures/Sudoku_circuit_imprime.png> <../pictur
 es/ecran_lcd.png>]
 Chapitre 3.
@@ -1191,32 +1191,32 @@ Chapitre 3.
 Chapitre 4.
 [8
 
-] <../pictures/camera.jpg, id=195, 803.0pt x 803.0pt>
+] <../pictures/camera.jpg, id=196, 803.0pt x 803.0pt>
 File: ../pictures/camera.jpg Graphic file (type jpg)
 
 <use ../pictures/camera.jpg>
-Package pdftex.def Info: ../pictures/camera.jpg used on input line 158.
+Package pdftex.def Info: ../pictures/camera.jpg used on input line 159.
 (pdftex.def)             Requested size: 160.59715pt x 160.59715pt.
 
-<../pictures/example.jpg, id=196, 850.67813pt x 639.13782pt>
+<../pictures/example.jpg, id=197, 850.67813pt x 639.13782pt>
 File: ../pictures/example.jpg Graphic file (type jpg)
 
 <use ../pictures/example.jpg>
-Package pdftex.def Info: ../pictures/example.jpg used on input line 165.
+Package pdftex.def Info: ../pictures/example.jpg used on input line 166.
 (pdftex.def)             Requested size: 170.13261pt x 127.82529pt.
 
-<../pictures/threshold.jpg, id=197, 850.67813pt x 639.13782pt>
+<../pictures/threshold.jpg, id=198, 850.67813pt x 639.13782pt>
 File: ../pictures/threshold.jpg Graphic file (type jpg)
 
 <use ../pictures/threshold.jpg>
-Package pdftex.def Info: ../pictures/threshold.jpg used on input line 173.
+Package pdftex.def Info: ../pictures/threshold.jpg used on input line 174.
 (pdftex.def)             Requested size: 170.13261pt x 127.82529pt.
 
-<../pictures/unperspectived.png, id=198, 340.27126pt x 341.02406pt>
+<../pictures/unperspectived.png, id=199, 340.27126pt x 341.02406pt>
 File: ../pictures/unperspectived.png Graphic file (type png)
 
 <use ../pictures/unperspectived.png>
-Package pdftex.def Info: ../pictures/unperspectived.png used on input line 181.
+Package pdftex.def Info: ../pictures/unperspectived.png used on input line 182.
 
 (pdftex.def)             Requested size: 153.12064pt x 153.4594pt.
  [9pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
@@ -1224,113 +1224,113 @@ Package pdftex.def Info: ../pictures/unperspectived.png used on input line 181.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.183 \end{figure}
+l.184 \end{figure}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.4.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.183 \end{figure}
+l.184 \end{figure}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.4.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.183 \end{figure}
+l.184 \end{figure}
                    <../pictures/camera.jpg> <../pictures/example.jpg> <../pictu
 res/threshold.jpg>]
-<../pictures/cutted.png, id=206, 284.56313pt x 284.56313pt>
+<../pictures/cutted.png, id=207, 284.56313pt x 284.56313pt>
 File: ../pictures/cutted.png Graphic file (type png)
 
 <use ../pictures/cutted.png>
-Package pdftex.def Info: ../pictures/cutted.png used on input line 189.
+Package pdftex.def Info: ../pictures/cutted.png used on input line 190.
 (pdftex.def)             Requested size: 142.2812pt x 142.2812pt.
 
-<../pictures/finished.png, id=207, 340.27126pt x 341.02406pt>
+<../pictures/finished.png, id=208, 340.27126pt x 341.02406pt>
 File: ../pictures/finished.png Graphic file (type png)
 
 <use ../pictures/finished.png>
-Package pdftex.def Info: ../pictures/finished.png used on input line 197.
+Package pdftex.def Info: ../pictures/finished.png used on input line 198.
 (pdftex.def)             Requested size: 153.12064pt x 153.4594pt.
  [10pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.200 \newpage
+l.201 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.4.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.200 \newpage
+l.201 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.4.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.200 \newpage
+l.201 \newpage
                <../pictures/unperspectived.png> <../pictures/cutted.png> <../pi
 ctures/finished.png>]
-Overfull \hbox (0.41077pt too wide) in paragraph at lines 216--217
+Overfull \hbox (0.41077pt too wide) in paragraph at lines 217--218
 []\T1/lmr/m/n/12 Pour rendre la ré-so-lu-tion plus simple d'uti-li-sa-tion, nou
 s avons dé-cidé d'ajou-
  []
 
-<../pictures/Sudoku_edition.png, id=218, 453.94594pt x 501.37312pt>
+<../pictures/Sudoku_edition.png, id=219, 453.94594pt x 501.37312pt>
 File: ../pictures/Sudoku_edition.png Graphic file (type png)
 
 <use ../pictures/Sudoku_edition.png>
-Package pdftex.def Info: ../pictures/Sudoku_edition.png used on input line 222.
+Package pdftex.def Info: ../pictures/Sudoku_edition.png used on input line 223.
 
 (pdftex.def)             Requested size: 226.97241pt x 250.68594pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11] <../pictures/Sudoku_resolution.png, id=228, 453.94594pt x 501.37312pt>
+[11] <../pictures/Sudoku_resolution.png, id=229, 453.94594pt x 501.37312pt>
 File: ../pictures/Sudoku_resolution.png Graphic file (type png)
 
 <use ../pictures/Sudoku_resolution.png>
 Package pdftex.def Info: ../pictures/Sudoku_resolution.png used on input line 2
-30.
+31.
 (pdftex.def)             Requested size: 226.97241pt x 250.68594pt.
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.235 
+l.236 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 4.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.235 
+l.236 
        <../pictures/Sudoku_edition.png> <../pictures/Sudoku_resolution.png>]
-<../pictures/Changement_repere.png, id=242, 688.07062pt x 591.71063pt>
+<../pictures/Changement_repere.png, id=243, 688.07062pt x 591.71063pt>
 File: ../pictures/Changement_repere.png Graphic file (type png)
 
 <use ../pictures/Changement_repere.png>
 Package pdftex.def Info: ../pictures/Changement_repere.png used on input line 2
-43.
+44.
 (pdftex.def)             Requested size: 344.03447pt x 295.85458pt.
 
-<../pictures/Sudoku_points.png, id=243, 559.33969pt x 558.58687pt>
+<../pictures/Sudoku_points.png, id=244, 559.33969pt x 558.58687pt>
 File: ../pictures/Sudoku_points.png Graphic file (type png)
 
 <use ../pictures/Sudoku_points.png>
-Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 250.
+Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 251.
 (pdftex.def)             Requested size: 279.66916pt x 279.29276pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../pictures/Sudoku_relies.png, id=244, 544.28343pt x 545.03625pt>
+<../pictures/Sudoku_relies.png, id=245, 544.28343pt x 545.03625pt>
 File: ../pictures/Sudoku_relies.png Graphic file (type png)
 
 <use ../pictures/Sudoku_relies.png>
-Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 256.
+Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 257.
 (pdftex.def)             Requested size: 272.14105pt x 272.51746pt.
 
 
@@ -1341,26 +1341,33 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.260 \chapter
+l.261 \chapter
               *{Conclusion} <../pictures/Changement_repere.png>] [14pdfTeX warn
 ing (ext4): destination with the same identifier (name{figure.4.10}) has been a
 lready used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.260 \chapter
+l.261 \chapter
               *{Conclusion}pdfTeX warning (ext4): destination with the same ide
 ntifier (name{figure.4.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.260 \chapter
+l.261 \chapter
               *{Conclusion} <../pictures/Sudoku_points.png> <../pictures/Sudoku
-_relies.png>] [15
+_relies.png>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 262.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 262.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 262.
+ [15
 
 ]
 
-LaTeX Warning: Empty bibliography on input line 266.
+LaTeX Warning: Empty bibliography on input line 268.
 
 [16
 
@@ -1404,60 +1411,63 @@ Annexe F.
 7.pygtex [34
 
 ] [35] [36] [37] [38]) [39]
-<../3DModels/chariot.png, id=372, 403.5075pt x 494.59781pt>
+<../3DModels/chariot.png, id=377, 403.5075pt x 494.59781pt>
 File: ../3DModels/chariot.png Graphic file (type png)
 
 <use ../3DModels/chariot.png>
-Package pdftex.def Info: ../3DModels/chariot.png used on input line 292.
+Package pdftex.def Info: ../3DModels/chariot.png used on input line 294.
 (pdftex.def)             Requested size: 403.50652pt x 494.59659pt.
 
-Overfull \hbox (5.16792pt too wide) in paragraph at lines 292--293
+Overfull \hbox (5.16792pt too wide) in paragraph at lines 294--295
  [] 
  []
 
 [40
 
  <../3DModels/chariot.png>]
-<../3DModels/supportstylo.png, id=379, 389.95688pt x 473.51906pt>
+<../3DModels/supportstylo.png, id=384, 389.95688pt x 473.51906pt>
 File: ../3DModels/supportstylo.png Graphic file (type png)
 
 <use ../3DModels/supportstylo.png>
-Package pdftex.def Info: ../3DModels/supportstylo.png used on input line 297.
+Package pdftex.def Info: ../3DModels/supportstylo.png used on input line 299.
 (pdftex.def)             Requested size: 389.95592pt x 473.51788pt.
  [41
 
  <../3DModels/supportstylo.png>]
-<../3DModels/camerachariot.png, id=386, 419.31656pt x 504.38437pt>
+<../3DModels/camerachariot.png, id=391, 419.31656pt x 504.38437pt>
 File: ../3DModels/camerachariot.png Graphic file (type png)
 
 <use ../3DModels/camerachariot.png>
-Package pdftex.def Info: ../3DModels/camerachariot.png used on input line 302.
+Package pdftex.def Info: ../3DModels/camerachariot.png used on input line 304.
 (pdftex.def)             Requested size: 398.34846pt x 479.16243pt.
  [42
 
  <../3DModels/camerachariot.png>]
-<../3DModels/camera.png, id=394, 414.04688pt x 496.85625pt>
+<../3DModels/camera.png, id=399, 414.04688pt x 496.85625pt>
 File: ../3DModels/camera.png Graphic file (type png)
 
 <use ../3DModels/camera.png>
-Package pdftex.def Info: ../3DModels/camera.png used on input line 307.
+Package pdftex.def Info: ../3DModels/camera.png used on input line 309.
 (pdftex.def)             Requested size: 393.34229pt x 472.01076pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 310.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 312.
  [43
 
  <../3DModels/camera.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 310.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 312.
  (sudoku.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 310.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 310.
-Package rerunfilecheck Info: File `sudoku.out' has not changed.
-(rerunfilecheck)             Checksum: CCD887BCEF780550B4A9F576E057BB73;1776.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 312.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 312.
 
+
+Package rerunfilecheck Warning: File `sudoku.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `sudoku.out':
+(rerunfilecheck)             Before: CCD887BCEF780550B4A9F576E057BB73;1776
+(rerunfilecheck)             After:  85E11516897047D9B6E65AAE80839624;1880.
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
 Package biblatex Warning: Please (re)run Biber on the file:
@@ -1467,14 +1477,14 @@ Package biblatex Warning: Please (re)run Biber on the file:
 Package logreq Info: Writing requests to 'sudoku.run.xml'.
 \openout1 = `sudoku.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 310.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 312.
  ) 
 Here is how much of TeX's memory you used:
- 17338 strings out of 493634
- 287764 string characters out of 3134015
+ 17367 strings out of 493634
+ 288080 string characters out of 3134015
  768948 words of memory out of 3000000
- 20346 multiletter control sequences out of 15000+200000
- 72280 words of font info for 51 fonts, out of 3000000 for 9000
+ 20362 multiletter control sequences out of 15000+200000
+ 83997 words of font info for 64 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  33i,8n,35p,932b,1638s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec
@@ -1492,11 +1502,12 @@ AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Alph
 onse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Use
 rs/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtk10.pfb>
 <C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt
-8.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
-m/lmtti10.pfb>
-Output written on sudoku.pdf (44 pages, 1946981 bytes).
+10.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+lm/lmtt8.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/lm/lmtti10.pfb>
+Output written on sudoku.pdf (44 pages, 1971764 bytes).
 PDF statistics:
- 469 PDF objects out of 1000 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
  309 words of extra memory for PDF output out of 10000 (max. 10000000)
 
