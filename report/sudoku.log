@@ -1,14 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.5.14)  19 MAR 2017 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.29)  19 MAR 2017 15:46
 entering extended mode
 **./sudoku.tex
 (sudoku.tex
 LaTeX2e <2015/10/01> patch level 2
 Babel <3.9n> and hyphenation patterns for 69 languages loaded.
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\report.cls
-"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size12.clo
-"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size12.clo"
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,21 +21,19 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.s
-ty"
+) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.st
+y"
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\utf8.def"
+ ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\utf8.def"
 File: utf8.def 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
 File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -197,8 +193,7 @@ File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ot1enc.dfu
-"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
 File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -239,8 +234,7 @@ File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omsenc.dfu
-"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
 File: omsenc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -263,16 +257,13 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-))
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.st
+)) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.st
 y"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.def"
+ ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-))
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.s
+)) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.s
 ty"
 Package: babel 2016/01/08 3.9n The Babel package
 
@@ -280,16 +271,15 @@ Package: babel 2016/01/08 3.9n The Babel package
 * Local config file bblopts.cfg used
 *
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\bblopt
-s.cfg"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\bblopts.c
+fg"
 File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-french\fr
-enchb.ldf"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-french\frenc
+hb.ldf"
 Language: frenchb 2016/01/01 v3.1k French support from the babel system
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.d
-ef"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2016/01/08 3.9n Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
@@ -314,24 +304,24 @@ Package babel Info: Making ? an active character on input line 375.
 \leftmarginFB=\skip48
 \parindentFFN=\dimen105
 ))
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\carlisle\scalef
-nt.sty")
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval
-.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\carlisle\scalefnt.
+sty")
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.st
+y"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hyperr
-ef.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hyperref.
+sty"
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobs
-ub-hyperref.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+hyperref.sty"
 Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
 
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobs
-ub-generic.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+generic.sty"
 Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
@@ -372,32 +362,32 @@ Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxet
-ex.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
+sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\auxhoo
-k.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\auxhook.s
+ty"
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvopti
-ons.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
+.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen106
 \Hy@linkcounter=\count93
 \Hy@pagecounter=\count94
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\pd1enc
-.def"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\pd1enc.de
+f"
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
 \Hy@SavedSpaceFactor=\count95
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\hyperr
-ef.cfg"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\hyperref.
+cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Hyper figures OFF on input line 4443.
@@ -408,7 +398,7 @@ Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count96
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+ ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -434,21 +424,21 @@ LaTeX Info: Redefining \pageref on input line 6369.
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hpdfte
-x.def"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hpdftex.d
+ef"
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count101
 \c@bookmark@seq@number=\count102
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\rerunf
-ilecheck.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\rerunfile
+check.sty"
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip49
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -483,32 +473,33 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphi
-cx.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx.
+sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphi
-cs.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics.
+sty"
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.s
-ty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\graphi
-cs.cfg"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\graphics.
+cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pdftex-def\pdft
-ex.def"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.
+def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 \Gread@gobject=\count103
 ))
 \Gin@req@height=\dimen110
 \Gin@req@width=\dimen111
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
+)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.
+sty"
 \lst@mode=\count104
 \lst@gtempboxa=\box26
 \lst@token=\toks18
@@ -521,18 +512,22 @@ File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 \lst@newlines=\count108
 \lst@lineno=\count109
 \lst@maxwidth=\dimen115
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstmisc.s
+ty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count110
 \lst@skipnumbers=\count111
 \lst@framebox=\box27
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.
+cfg"
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\enumitem\enumitem.
+sty"
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip50
 \enit@outerparindent=\dimen116
@@ -540,330 +535,255 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box28
 \enitdp@description=\count112
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\stmaryrd\stmaryrd.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\stmaryrd\stmaryrd.
+sty"
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 \symstmry=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty
-"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen117
 \extrarowheight=\dimen118
 \NC@list=\toks20
 \extratabsurround=\skip51
 \backup@length=\skip52
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\minted\minted.sty"
-Package: minted 2015/09/09 v2.1 Yet another Pygments shim for LaTeX
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.sty"
-Package: fancyvrb 2008/02/07
-
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)
-\FV@CodeLineNo=\count113
-\FV@InFile=\read1
-\FV@TabBox=\box29
-\c@FancyVerbLine=\count114
-\FV@StepNumber=\count115
-\FV@OutFile=\write3
 )
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\color.sty
 "
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count116
-\float@exts=\toks21
-\float@box=\box30
-\@float@everytoks=\toks22
-\@floatcapt=\box31
-)
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty
-"
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count117
-\calc@Bcount=\count118
-\calc@Adimen=\dimen119
-\calc@Bdimen=\dimen120
-\calc@Askip=\skip53
-\calc@Bskip=\skip54
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count119
-\calc@Cskip=\skip55
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ifplatform\ifplatform.sty"
-Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\catc
-hfile.sty"
-Package: catchfile 2011/03/01 v1.6 Catch the contents of a file (HO)
-)) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
-Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count120
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xstring\xstring.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xstring\xstring.tex"
-\@xs@message=\write4
-\integerpart=\count121
-\decimalpart=\count122
-)
-Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lineno\lineno.sty"
-Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count123
-\output=\toks23
-\linenoprevgraf=\count124
-\linenumbersep=\dimen121
-\linenumberwidth=\dimen122
-\c@linenumber=\count125
-\c@pagewiselinenumber=\count126
-\c@LN@truepage=\count127
-\c@internallinenumber=\count128
-\c@internallinenumbers=\count129
-\quotelinenumbersep=\dimen123
-\bframerule=\dimen124
-\bframesep=\dimen125
-\bframebox=\box32
-LaTeX Info: Redefining \\ on input line 3056.
-)
-\minted@appexistsfile=\read2
-\FV@BreakIndent=\dimen126
-\FV@BreakSymbolSepLeft=\dimen127
-\FV@BreakSymbolSepRight=\dimen128
-\FV@BreakSymbolIndentLeft=\dimen129
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 688.
-
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-\FV@BreakSymbolIndentRight=\dimen130
-\c@FancyVerbLineBreakLast=\count130
-\FV@LineBox=\box33
-\FV@LineIndentBox=\box34
-\minted@bgbox=\box35
-\minted@code=\write5
-\c@minted@FancyVerbLineTemp=\count131
-\@float@every@listing=\toks24
-\c@listing=\count132
-)
-runsystem(if not exist "_minted-sudoku" mkdir "_minted-sudoku")...executed.
-
-runsystem(pygmentize -S default -f latex -P commandprefix=PYGdefault > "_minted
--sudoku\default.pygstyle")...executed.
-
-(_minted-sudoku/default.pygstyle)
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\color.
-sty"
 Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\color.
-cfg"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\color.cfg
+"
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\biblatex.sty"
-Package: biblatex 2016/05/14 v3.4 programmable bibliographies (PK/JW/AB)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\iftex\iftex.sty"
-Package: iftex 2013/04/04 v0.2 Provides if(tex) conditional for PDFTeX, XeTeX, 
-and LuaTeX
+) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count113
+\float@exts=\toks21
+\float@box=\box29
+\@float@everytoks=\toks22
+\@floatcapt=\box30
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\logreq\logreq.sty"
-Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count133
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex.
+sty"
+Package: biblatex 2015/12/22 v3.2 programmable bibliographies (PK/JW/AB)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\logreq\logreq.def"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex2
+.sty"
+Package: biblatex2 2015/12/22 v3.2 programmable bibliographies (biber) (PK/JW/A
+B)
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.
+sty"
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count114
+)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\logreq\logreq.sty"
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count115
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\logreq\logreq.def"
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-))
-\c@tabx@nest=\count134
-\c@listtotal=\count135
-\c@listcount=\count136
-\c@liststart=\count137
-\c@liststop=\count138
-\c@citecount=\count139
-\c@citetotal=\count140
-\c@multicitecount=\count141
-\c@multicitetotal=\count142
-\c@instcount=\count143
-\c@maxnames=\count144
-\c@minnames=\count145
-\c@maxitems=\count146
-\c@minitems=\count147
-\c@citecounter=\count148
-\c@savedcitecounter=\count149
-\c@uniquelist=\count150
-\c@uniquename=\count151
-\c@refsection=\count152
-\c@refsegment=\count153
-\c@maxextratitle=\count154
-\c@maxextratitleyear=\count155
-\c@maxextrayear=\count156
-\c@maxextraalpha=\count157
-\c@abbrvpenalty=\count158
-\c@highnamepenalty=\count159
-\c@lownamepenalty=\count160
-\c@maxparens=\count161
-\c@parenlevel=\count162
-\blx@tempcnta=\count163
-\blx@tempcntb=\count164
-\blx@tempcntc=\count165
-\blx@maxsection=\count166
-\blx@maxsegment@0=\count167
-\blx@notetype=\count168
-\blx@parenlevel@text=\count169
-\blx@parenlevel@foot=\count170
-\blx@sectionciteorder@0=\count171
-\labelnumberwidth=\skip56
-\labelalphawidth=\skip57
-\biblabelsep=\skip58
-\bibitemsep=\skip59
-\bibnamesep=\skip60
-\bibinitsep=\skip61
-\bibparsep=\skip62
-\bibhang=\skip63
-\blx@bcfin=\read3
-\blx@bcfout=\write6
-\c@mincomprange=\count172
-\c@maxcomprange=\count173
-\c@mincompwidth=\count174
+)) ("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty
+"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count116
+\c@listtotal=\count117
+\c@listcount=\count118
+\c@liststart=\count119
+\c@liststop=\count120
+\c@citecount=\count121
+\c@citetotal=\count122
+\c@multicitecount=\count123
+\c@multicitetotal=\count124
+\c@instcount=\count125
+\c@maxnames=\count126
+\c@minnames=\count127
+\c@maxitems=\count128
+\c@minitems=\count129
+\c@citecounter=\count130
+\c@savedcitecounter=\count131
+\c@uniquelist=\count132
+\c@uniquename=\count133
+\c@refsection=\count134
+\c@refsegment=\count135
+\c@maxextratitle=\count136
+\c@maxextratitleyear=\count137
+\c@maxextrayear=\count138
+\c@maxextraalpha=\count139
+\c@abbrvpenalty=\count140
+\c@highnamepenalty=\count141
+\c@lownamepenalty=\count142
+\c@maxparens=\count143
+\c@parenlevel=\count144
+\blx@tempcnta=\count145
+\blx@tempcntb=\count146
+\blx@tempcntc=\count147
+\blx@maxsection=\count148
+\blx@maxsegment@0=\count149
+\blx@notetype=\count150
+\blx@parenlevel@text=\count151
+\blx@parenlevel@foot=\count152
+\blx@sectionciteorder@0=\count153
+\labelnumberwidth=\skip53
+\labelalphawidth=\skip54
+\biblabelsep=\skip55
+\bibitemsep=\skip56
+\bibnamesep=\skip57
+\bibinitsep=\skip58
+\bibparsep=\skip59
+\bibhang=\skip60
+\blx@bcfin=\read1
+\blx@bcfout=\write3
+\c@mincomprange=\count154
+\c@maxcomprange=\count155
+\c@mincompwidth=\count156
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\blx-dm.def")
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\blx-dm.de
+f")
 Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'science.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count175
-\c@savedafterword=\count176
-\c@annotator=\count177
-\c@savedannotator=\count178
-\c@author=\count179
-\c@savedauthor=\count180
-\c@bookauthor=\count181
-\c@savedbookauthor=\count182
-\c@commentator=\count183
-\c@savedcommentator=\count184
-\c@editor=\count185
-\c@savededitor=\count186
-\c@editora=\count187
-\c@savededitora=\count188
-\c@editorb=\count189
-\c@savededitorb=\count190
-\c@editorc=\count191
-\c@savededitorc=\count192
-\c@foreword=\count193
-\c@savedforeword=\count194
-\c@holder=\count195
-\c@savedholder=\count196
-\c@introduction=\count197
-\c@savedintroduction=\count198
-\c@namea=\count199
-\c@savednamea=\count266
-\c@nameb=\count267
-\c@savednameb=\count268
-\c@namec=\count269
-\c@savednamec=\count270
-\c@translator=\count271
-\c@savedtranslator=\count272
-\c@shortauthor=\count273
-\c@savedshortauthor=\count274
-\c@shorteditor=\count275
-\c@savedshorteditor=\count276
-\c@labelname=\count277
-\c@savedlabelname=\count278
-\c@institution=\count279
-\c@savedinstitution=\count280
-\c@lista=\count281
-\c@savedlista=\count282
-\c@listb=\count283
-\c@savedlistb=\count284
-\c@listc=\count285
-\c@savedlistc=\count286
-\c@listd=\count287
-\c@savedlistd=\count288
-\c@liste=\count289
-\c@savedliste=\count290
-\c@listf=\count291
-\c@savedlistf=\count292
-\c@location=\count293
-\c@savedlocation=\count294
-\c@organization=\count295
-\c@savedorganization=\count296
-\c@origlocation=\count297
-\c@savedoriglocation=\count298
-\c@origpublisher=\count299
-\c@savedorigpublisher=\count300
-\c@publisher=\count301
-\c@savedpublisher=\count302
-\c@language=\count303
-\c@savedlanguage=\count304
-\c@pageref=\count305
-\c@savedpageref=\count306
-\shorthandwidth=\skip64
-\shortjournalwidth=\skip65
-\shortserieswidth=\skip66
-\shorttitlewidth=\skip67
-\shortauthorwidth=\skip68
-\shorteditorwidth=\skip69
+\c@afterword=\count157
+\c@savedafterword=\count158
+\c@annotator=\count159
+\c@savedannotator=\count160
+\c@author=\count161
+\c@savedauthor=\count162
+\c@bookauthor=\count163
+\c@savedbookauthor=\count164
+\c@commentator=\count165
+\c@savedcommentator=\count166
+\c@editor=\count167
+\c@savededitor=\count168
+\c@editora=\count169
+\c@savededitora=\count170
+\c@editorb=\count171
+\c@savededitorb=\count172
+\c@editorc=\count173
+\c@savededitorc=\count174
+\c@foreword=\count175
+\c@savedforeword=\count176
+\c@holder=\count177
+\c@savedholder=\count178
+\c@introduction=\count179
+\c@savedintroduction=\count180
+\c@namea=\count181
+\c@savednamea=\count182
+\c@nameb=\count183
+\c@savednameb=\count184
+\c@namec=\count185
+\c@savednamec=\count186
+\c@translator=\count187
+\c@savedtranslator=\count188
+\c@shortauthor=\count189
+\c@savedshortauthor=\count190
+\c@shorteditor=\count191
+\c@savedshorteditor=\count192
+\c@labelname=\count193
+\c@savedlabelname=\count194
+\c@institution=\count195
+\c@savedinstitution=\count196
+\c@lista=\count197
+\c@savedlista=\count198
+\c@listb=\count199
+\c@savedlistb=\count266
+\c@listc=\count267
+\c@savedlistc=\count268
+\c@listd=\count269
+\c@savedlistd=\count270
+\c@liste=\count271
+\c@savedliste=\count272
+\c@listf=\count273
+\c@savedlistf=\count274
+\c@location=\count275
+\c@savedlocation=\count276
+\c@organization=\count277
+\c@savedorganization=\count278
+\c@origlocation=\count279
+\c@savedoriglocation=\count280
+\c@origpublisher=\count281
+\c@savedorigpublisher=\count282
+\c@publisher=\count283
+\c@savedpublisher=\count284
+\c@language=\count285
+\c@savedlanguage=\count286
+\c@pageref=\count287
+\c@savedpageref=\count288
+\shorthandwidth=\skip61
+\shortjournalwidth=\skip62
+\shortserieswidth=\skip63
+\shorttitlewidth=\skip64
+\shortauthorwidth=\skip65
+\shorteditorwidth=\skip66
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\blx-compat.def"
-File: blx-compat.def 2016/05/14 v3.4 biblatex compatibility (PK/JW/AB)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\blx-compa
+t.def"
+File: blx-compat.def 2015/12/22 v3.2 biblatex compatibility (PK/JW/AB)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\biblatex.def"
-File: biblatex.def 2016/05/14 v3.4 biblatex compatibility (PK/JW/AB)
-\c@textcitecount=\count307
-\c@textcitetotal=\count308
-\c@textcitemaxnames=\count309
-\c@biburlnumpenalty=\count310
-\c@biburlucpenalty=\count311
-\c@biburllcpenalty=\count312
-\c@smartand=\count313
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex.
+def"
+File: biblatex.def 
+\c@textcitecount=\count289
+\c@textcitetotal=\count290
+\c@textcitemaxnames=\count291
+\c@biburlnumpenalty=\count292
+\c@biburlucpenalty=\count293
+\c@biburllcpenalty=\count294
+\c@smartand=\count295
 )
 Package biblatex Info: Trying to load bibliography style 'science'...
 Package biblatex Info: ... file 'science.bbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex-science\science.bbx"
-File: science.bbx 2016/03/13 v1.1f biblatex bibliography style
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex-science\s
+cience.bbx"
+File: science.bbx 2013/01/27 v1.1d biblatex bibliography style
 Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
 Package biblatex Info: ... file 'numeric-comp.bbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\bbx\numeric-comp.bbx"
-File: numeric-comp.bbx 2016/05/14 v3.4 biblatex bibliography style (PK/JW/AB)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\bbx\numer
+ic-comp.bbx"
+File: numeric-comp.bbx 2015/12/22 v3.2 biblatex bibliography style (PK/JW/AB)
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\bbx\numeric.bbx"
-File: numeric.bbx 2016/05/14 v3.4 biblatex bibliography style (PK/JW/AB)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\bbx\numer
+ic.bbx"
+File: numeric.bbx 2015/12/22 v3.2 biblatex bibliography style (PK/JW/AB)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\bbx\standard.bbx"
-File: standard.bbx 2016/05/14 v3.4 biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count314
-\c@bbx:relatedtotal=\count315
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\bbx\stand
+ard.bbx"
+File: standard.bbx 2015/12/22 v3.2 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count296
+\c@bbx:relatedtotal=\count297
 ))))
 Package biblatex Info: Trying to load citation style 'science'...
 Package biblatex Info: ... file 'science.cbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex-science\science.cbx"
-File: science.cbx 2016/03/13 v1.1f biblatex citation style
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex-science\s
+cience.cbx"
+File: science.cbx 2013/01/27 v1.1d biblatex citation style
 Package biblatex Info: Trying to load citation style 'numeric-comp'...
 Package biblatex Info: ... file 'numeric-comp.cbx' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\cbx\numeric-comp.cbx"
-File: numeric-comp.cbx 2016/05/14 v3.4 biblatex citation style (PK/JW/AB)
-\c@cbx@tempcnta=\count316
-\c@cbx@tempcntb=\count317
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\cbx\numer
+ic-comp.cbx"
+File: numeric-comp.cbx 2015/12/22 v3.2 biblatex citation style (PK/JW/AB)
+\c@cbx@tempcnta=\count298
+\c@cbx@tempcntb=\count299
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -879,70 +799,83 @@ Package biblatex Info: Redefining '\smartcites'.
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\biblatex.cfg"
-File: biblatex.cfg 
-))
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geomet
-ry.sty"
-Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count318
-\Gm@cntv=\count319
-\c@Gm@tempcnt=\count320
-\Gm@bindingoffset=\dimen131
-\Gm@wd@mp=\dimen132
-\Gm@odd@mp=\dimen133
-\Gm@even@mp=\dimen134
-\Gm@layoutwidth=\dimen135
-\Gm@layoutheight=\dimen136
-\Gm@layouthoffset=\dimen137
-\Gm@layoutvoffset=\dimen138
-\Gm@dimlist=\toks25
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geomet
-ry.cfg"))
-\c@theo=\count321
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\color.
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\biblatex.
 cfg"
+File: biblatex.cfg 
+)))
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count300
+\Gm@cntv=\count301
+\c@Gm@tempcnt=\count302
+\Gm@bindingoffset=\dimen119
+\Gm@wd@mp=\dimen120
+\Gm@odd@mp=\dimen121
+\Gm@even@mp=\dimen122
+\Gm@layoutwidth=\dimen123
+\Gm@layoutheight=\dimen124
+\Gm@layouthoffset=\dimen125
+\Gm@layoutvoffset=\dimen126
+\Gm@dimlist=\toks23
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+cfg"))
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.
+sty"
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count303
+\FV@InFile=\read2
+\FV@TabBox=\box31
+\c@FancyVerbLine=\count304
+\FV@StepNumber=\count305
+\FV@OutFile=\write4
+)
+\c@theo=\count306
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\color.cfg
+"
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
-LaTeX Info: Redefining \color on input line 709.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
-Package xcolor Info: Model `RGB' extended on input line 1364.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\dvipsn
-am.def"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\dvipsnam.
+def"
 File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
-)) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\placeins\placeins.sty"
+))
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\placeins\placeins.
+sty"
 Package: placeins 2005/04/18  v 2.2
 )
-runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set >"su
-doku.aex" <nul: /p x=^%~$PATH:i>>"sudoku.aex")...executed.
-
-runsystem(del "sudoku.aex")...executed.
-
 Package biblatex Info: Trying to load language 'french'...
 Package biblatex Info: ... file 'french.lbx' found.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\biblatex\lbx\french.lbx"
-File: french.lbx 2016/05/14 v3.4 biblatex localization (PK/JW/AB)
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\biblatex\lbx\frenc
+h.lbx"
+File: french.lbx 2015/12/22 v3.2 biblatex localization (PK/JW/AB)
 )
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count322
-\@quotereset=\count323
-No file sudoku.aux.
+\@quotelevel=\count307
+\@quotereset=\count308
+(sudoku.aux (annexe.aux))
 \openout1 = `sudoku.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -960,55 +893,54 @@ LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 44.
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Info: Redefining \degres on input line 44.
 LaTeX Info: Redefining \dots on input line 44.
 LaTeX Info: Redefining \up on input line 44.
-\AtBeginShipoutBox=\box36
+\AtBeginShipoutBox=\box32
 Package hyperref Info: Link coloring OFF on input line 44.
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\namere
-f.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.s
+ty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gett
-itlestring.sty"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gettitl
+estring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count324
+\c@section@level=\count309
 )
 LaTeX Info: Redefining \ref on input line 44.
 LaTeX Info: Redefining \pageref on input line 44.
 LaTeX Info: Redefining \nameref on input line 44.
-\@outlinefile=\write7
-\openout7 = `sudoku.out'.
+ (sudoku.out) (sudoku.out)
+\@outlinefile=\write5
+\openout5 = `sudoku.out'.
 
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
+ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count325
-\scratchdimen=\dimen139
-\scratchbox=\box37
-\nofMPsegments=\count326
-\nofMParguments=\count327
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count328
-\MPscratchDim=\dimen140
-\MPnumerator=\count329
-\makeMPintoPDFobject=\count330
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count310
+\scratchdimen=\dimen127
+\scratchbox=\box33
+\nofMPsegments=\count311
+\nofMParguments=\count312
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count313
+\MPscratchDim=\dimen128
+\MPnumerator=\count314
+\makeMPintoPDFobject=\count315
+\everyMPtoPDFconversion=\toks25
 )
-\c@lstlisting=\count331
-runsystem(pygmentize -S default -f latex -P commandprefix=PYG > "_minted-sudoku
-\default-pyg-prefix.pygstyle")...executed.
-
- (_minted-sudoku/default-pyg-prefix.pygstyle)
+\c@lstlisting=\count316
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout6 = `sudoku.bcf'.
+\openout3 = `sudoku.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'sudoku.bbl' not found.
@@ -1050,7 +982,7 @@ Package biblatex Info: Reference segment=0 on input line 44.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<../pictures/pagedegarde.png, id=3, 341.02406pt x 341.02406pt>
+<../pictures/pagedegarde.png, id=79, 341.02406pt x 341.02406pt>
 File: ../pictures/pagedegarde.png Graphic file (type png)
 
 <use ../pictures/pagedegarde.png>
@@ -1058,10 +990,42 @@ Package pdftex.def Info: ../pictures/pagedegarde.png used on input line 57.
 (pdftex.def)             Requested size: 278.83578pt x 278.85059pt.
  [1
 
-{C:/Users/Alphonse/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../pictu
-res/pagedegarde.png>]
-\tf@toc=\write8
-\openout8 = `sudoku.toc'.
+{C:/Users/laure/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../pictures
+/pagedegarde.png>] (sudoku.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 11.
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 11.
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 11.
+
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 11.
+
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 11.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 11.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 11.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 11.
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd
+"))
+\tf@toc=\write6
+\openout6 = `sudoku.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -1074,38 +1038,12 @@ l.71 	\chapter
 
 ]
 Chapitre 1.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 78.
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 78.
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 78.
-
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 78.
-
-("C:\Users\Alphonse\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 78.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 78.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 78.
-LaTeX Font Info:    Try loading font information for U+stmry on input line 78.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd") [3
+[3
 
 ]
 Chapitre 2.
-<../pictures/Sudoku_schema_electrique.png, id=32, 1212.78094pt x 510.40688pt>
+
+<../pictures/Sudoku_schema_electrique.png, id=125, 1212.78094pt x 510.40688pt>
 File: ../pictures/Sudoku_schema_electrique.png Graphic file (type png)
 
 <use ../pictures/Sudoku_schema_electrique.png>
@@ -1120,7 +1058,7 @@ Overfull \hbox (14.00148pt too wide) in paragraph at lines 105--106
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../pictures/Sudoku_schema.png, id=33, 886.512pt x 440.847pt>
+<../pictures/Sudoku_schema.png, id=126, 886.512pt x 440.847pt>
 File: ../pictures/Sudoku_schema.png Graphic file (type png)
 
 <use ../pictures/Sudoku_schema.png>
@@ -1136,7 +1074,8 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4
 
-] <../pictures/Sudoku_circuit_imprime.png, id=44, 566.86781pt x 357.58594pt>
+]
+<../pictures/Sudoku_circuit_imprime.png, id=132, 566.86781pt x 357.58594pt>
 File: ../pictures/Sudoku_circuit_imprime.png Graphic file (type png)
 
 <use ../pictures/Sudoku_circuit_imprime.png>
@@ -1147,7 +1086,7 @@ ine 122.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../pictures/ecran_lcd.png, id=45, 1257.19687pt x 570.63188pt>
+<../pictures/ecran_lcd.png, id=133, 1257.19687pt x 570.63188pt>
 File: ../pictures/ecran_lcd.png Graphic file (type png)
 
 <use ../pictures/ecran_lcd.png>
@@ -1191,329 +1130,282 @@ Chapitre 3.
 Chapitre 4.
 [8
 
-] <../pictures/camera.jpg, id=80, 803.0pt x 803.0pt>
+] [9] <../pictures/camera.jpg, id=175, 803.0pt x 803.0pt>
 File: ../pictures/camera.jpg Graphic file (type jpg)
 
 <use ../pictures/camera.jpg>
-Package pdftex.def Info: ../pictures/camera.jpg used on input line 157.
+Package pdftex.def Info: ../pictures/camera.jpg used on input line 173.
 (pdftex.def)             Requested size: 160.59715pt x 160.59715pt.
 
-<../pictures/example.jpg, id=81, 850.67813pt x 639.13782pt>
+<../pictures/example.jpg, id=176, 850.67813pt x 639.13782pt>
 File: ../pictures/example.jpg Graphic file (type jpg)
 
 <use ../pictures/example.jpg>
-Package pdftex.def Info: ../pictures/example.jpg used on input line 164.
+Package pdftex.def Info: ../pictures/example.jpg used on input line 180.
 (pdftex.def)             Requested size: 170.13261pt x 127.82529pt.
 
-<../pictures/threshold.jpg, id=82, 850.67813pt x 639.13782pt>
+<../pictures/threshold.jpg, id=177, 850.67813pt x 639.13782pt>
 File: ../pictures/threshold.jpg Graphic file (type jpg)
 
 <use ../pictures/threshold.jpg>
-Package pdftex.def Info: ../pictures/threshold.jpg used on input line 172.
+Package pdftex.def Info: ../pictures/threshold.jpg used on input line 188.
 (pdftex.def)             Requested size: 170.13261pt x 127.82529pt.
 
-<../pictures/unperspectived.png, id=83, 340.27126pt x 341.02406pt>
+<../pictures/unperspectived.png, id=178, 340.27126pt x 341.02406pt>
 File: ../pictures/unperspectived.png Graphic file (type png)
 
 <use ../pictures/unperspectived.png>
-Package pdftex.def Info: ../pictures/unperspectived.png used on input line 180.
+Package pdftex.def Info: ../pictures/unperspectived.png used on input line 196.
 
 (pdftex.def)             Requested size: 153.12064pt x 153.4594pt.
- [9pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
-}) has been already used, duplicate ignored
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{figure}
+l.198 \end{figure}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.4.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{figure}
+l.198 \end{figure}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.4.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{figure}
+l.198 \end{figure}
                    <../pictures/camera.jpg> <../pictures/example.jpg> <../pictu
-res/threshold.jpg>] <../pictures/cutted.png, id=91, 284.56313pt x 284.56313pt>
+res/threshold.jpg>]
+<../pictures/cutted.png, id=186, 284.56313pt x 284.56313pt>
 File: ../pictures/cutted.png Graphic file (type png)
 
 <use ../pictures/cutted.png>
-Package pdftex.def Info: ../pictures/cutted.png used on input line 188.
+Package pdftex.def Info: ../pictures/cutted.png used on input line 204.
 (pdftex.def)             Requested size: 142.2812pt x 142.2812pt.
 
-<../pictures/finished.png, id=92, 340.27126pt x 341.02406pt>
+<../pictures/finished.png, id=187, 340.27126pt x 341.02406pt>
 File: ../pictures/finished.png Graphic file (type png)
 
 <use ../pictures/finished.png>
-Package pdftex.def Info: ../pictures/finished.png used on input line 196.
+Package pdftex.def Info: ../pictures/finished.png used on input line 212.
 (pdftex.def)             Requested size: 153.12064pt x 153.4594pt.
- [10pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.199 \newpage
+l.215 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.4.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.199 \newpage
+l.215 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.4.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.199 \newpage
+l.215 \newpage
                <../pictures/unperspectived.png> <../pictures/cutted.png> <../pi
 ctures/finished.png>]
-Overfull \hbox (0.41077pt too wide) in paragraph at lines 215--216
+Overfull \hbox (0.41077pt too wide) in paragraph at lines 218--219
 []\T1/lmr/m/n/12 Pour rendre la ré-so-lu-tion plus simple d'uti-li-sa-tion, nou
 s avons dé-cidé d'ajou-
  []
 
-<../pictures/Sudoku_edition.png, id=103, 453.94594pt x 501.37312pt>
+<../pictures/Sudoku_edition.png, id=198, 453.94594pt x 501.37312pt>
 File: ../pictures/Sudoku_edition.png Graphic file (type png)
 
 <use ../pictures/Sudoku_edition.png>
-Package pdftex.def Info: ../pictures/Sudoku_edition.png used on input line 221.
+Package pdftex.def Info: ../pictures/Sudoku_edition.png used on input line 224.
 
 (pdftex.def)             Requested size: 226.97241pt x 250.68594pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[11] <../pictures/Sudoku_resolution.png, id=115, 453.94594pt x 501.37312pt>
+<../pictures/Sudoku_resolution.png, id=199, 453.94594pt x 501.37312pt>
 File: ../pictures/Sudoku_resolution.png Graphic file (type png)
 
 <use ../pictures/Sudoku_resolution.png>
 Package pdftex.def Info: ../pictures/Sudoku_resolution.png used on input line 2
-29.
+32.
 (pdftex.def)             Requested size: 226.97241pt x 250.68594pt.
-
-
-LaTeX Warning: Reference `Resolution' on page 12 undefined on input line 233.
-
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.4.7
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.234 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-4.8}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.234 
-       <../pictures/Sudoku_edition.png> <../pictures/Sudoku_resolution.png>]
-<../pictures/Changement_repere.png, id=128, 688.07062pt x 591.71063pt>
-File: ../pictures/Changement_repere.png Graphic file (type png)
-
-<use ../pictures/Changement_repere.png>
-Package pdftex.def Info: ../pictures/Changement_repere.png used on input line 2
-42.
-(pdftex.def)             Requested size: 344.03447pt x 295.85458pt.
-
-<../pictures/numbers.png, id=129, 1055.44313pt x 200.24812pt>
-File: ../pictures/numbers.png Graphic file (type png)
-
-<use ../pictures/numbers.png>
-Package pdftex.def Info: ../pictures/numbers.png used on input line 250.
-(pdftex.def)             Requested size: 369.41063pt x 70.08789pt.
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
-9}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.253 
-       <../pictures/Changement_repere.png>]
-<../pictures/Sudoku_points.png, id=144, 558.58687pt x 558.58687pt>
-File: ../pictures/Sudoku_points.png Graphic file (type png)
-
-<use ../pictures/Sudoku_points.png>
-Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 258.
-(pdftex.def)             Requested size: 279.29276pt x 279.29276pt.
-
-<../pictures/Sudoku_relies.png, id=145, 544.28343pt x 545.03625pt>
-File: ../pictures/Sudoku_relies.png Graphic file (type png)
-
-<use ../pictures/Sudoku_relies.png>
-Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 266.
-(pdftex.def)             Requested size: 272.14105pt x 272.51746pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
-0}) has been already used, duplicate ignored
+<../pictures/Changement_repere.png, id=202, 688.07062pt x 591.71063pt>
+File: ../pictures/Changement_repere.png Graphic file (type png)
+
+<use ../pictures/Changement_repere.png>
+Package pdftex.def Info: ../pictures/Changement_repere.png used on input line 2
+45.
+(pdftex.def)             Requested size: 344.03447pt x 295.85458pt.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.270 \chapter
+l.248 
+       <../pictures/Sudoku_edition.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../pictures/numbers.png, id=214, 1055.44313pt x 200.24812pt>
+File: ../pictures/numbers.png Graphic file (type png)
+
+<use ../pictures/numbers.png>
+Package pdftex.def Info: ../pictures/numbers.png used on input line 253.
+(pdftex.def)             Requested size: 369.41063pt x 70.08789pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../pictures/Sudoku_points.png, id=215, 558.58687pt x 558.58687pt>
+File: ../pictures/Sudoku_points.png Graphic file (type png)
+
+<use ../pictures/Sudoku_points.png>
+Package pdftex.def Info: ../pictures/Sudoku_points.png used on input line 261.
+(pdftex.def)             Requested size: 279.29276pt x 279.29276pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../pictures/Sudoku_relies.png, id=216, 544.28343pt x 545.03625pt>
+File: ../pictures/Sudoku_relies.png Graphic file (type png)
+
+<use ../pictures/Sudoku_relies.png>
+Package pdftex.def Info: ../pictures/Sudoku_relies.png used on input line 269.
+(pdftex.def)             Requested size: 272.14105pt x 272.51746pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.271 \end{figure}
+                   <../pictures/Sudoku_resolution.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.4.9
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.273 \chapter
               *{Conclusion}pdfTeX warning (ext4): destination with the same ide
-ntifier (name{figure.4.11}) has been already used, duplicate ignored
+ntifier (name{figure.4.10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.270 \chapter
-              *{Conclusion} <../pictures/numbers.png> <../pictures/Sudoku_point
-s.png>] [15pdfTeX warning (ext4): destination with the same identifier (name{fi
-gure.4.12}) has been already used, duplicate ignored
+l.273 \chapter
+              *{Conclusion} <../pictures/Changement_repere.png> <../pictures/nu
+mbers.png>] [15pdfTeX warning (ext4): destination with the same identifier (nam
+e{figure.4.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.270 \chapter
-              *{Conclusion} <../pictures/Sudoku_relies.png>]
+l.273 \chapter
+              *{Conclusion}pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.4.12}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.273 \chapter
+              *{Conclusion} <../pictures/Sudoku_points.png> <../pictures/Sudoku
+_relies.png>]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 274.
+
+
+("C:\Users\laure\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 271.
+(Font)              <10> on input line 274.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 271.
+(Font)              <7> on input line 274.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 271.
- [16
+(Font)              <5> on input line 274.
+
+[16
 
 ] [17
 
 ]
 \openout2 = `annexe.aux'.
 
-
-(annexe.tex
+ (annexe.tex
 
 LaTeX Warning: Empty bibliography on input line 1.
 
 [18
 
-]
-Annexe A.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/CA2CA0D11CAD2E51F5B721F85820D39BD7DE9C97BF4FE421934F5C005A5644F1
-.pygtex" "../script/main.py" )...executed.
+] [19
 
+] [20
 
-(_minted-sudoku/CA2CA0D11CAD2E51F5B721F85820D39BD7DE9C97BF4FE421934F5C005A5644F
-1.pygtex
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 5.
- [19
+] [21
 
-]) [20]
-Annexe B.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/1C5EED15290D5110E15CE4053DBC51B7635B98C00D0C0FD9BC23EA258C6A1431
-.pygtex" "../script/resolution.py" )...executed.
+] [22
 
+] [23
 
-(_minted-sudoku/1C5EED15290D5110E15CE4053DBC51B7635B98C00D0C0FD9BC23EA258C6A143
-1.pygtex [21
-
-] [22] [23]) [24]
-Annexe C.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/921506618A6C97AB38973EC13E78687394C416FC4DF5D4CF9DE138DB82D2A79A
-.pygtex" "../script/camera.py" )...executed.
-
-
-(_minted-sudoku/921506618A6C97AB38973EC13E78687394C416FC4DF5D4CF9DE138DB82D2A79
-A.pygtex) [25
+] [24
 
 ]
-Annexe D.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/913ADF64617C85B2ED2304259393085551960E22C224BC9EC5D20FD3FB5F87A3
-.pygtex" "../script/display.py" )...executed.
-
-
-(_minted-sudoku/913ADF64617C85B2ED2304259393085551960E22C224BC9EC5D20FD3FB5F87A
-3.pygtex [26
-
-] [27] [28] [29]) [30]
-Annexe E.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/2A891B13DDBF4F99345446F644873E62C41B28936CDEC22045EF68204CB03FAE
-.pygtex" "../script/step_motor.py" )...executed.
-
-
-(_minted-sudoku/2A891B13DDBF4F99345446F644873E62C41B28936CDEC22045EF68204CB03FA
-E.pygtex [31
-
-] [32] [33] [34]) [35]
-Annexe F.
-runsystem(pygmentize -l Python -f latex -P commandprefix=PYG -F tokenmerge -o "
-_minted-sudoku/9FCF418F12367EA45FD4F63BFD69CE263B48D892A43E3D9F2906EED487217E37
-.pygtex" "../script/write.py" )...executed.
-
-
-(_minted-sudoku/9FCF418F12367EA45FD4F63BFD69CE263B48D892A43E3D9F2906EED487217E3
-7.pygtex [36
-
-] [37] [38] [39] [40]) [41]
-<../3Dmodels/chariot.png, id=284, 403.5075pt x 494.59781pt>
+<../3Dmodels/chariot.png, id=290, 403.5075pt x 494.59781pt>
 File: ../3Dmodels/chariot.png Graphic file (type png)
 
 <use ../3Dmodels/chariot.png>
-Package pdftex.def Info: ../3Dmodels/chariot.png used on input line 35.
+Package pdftex.def Info: ../3Dmodels/chariot.png used on input line 37.
 (pdftex.def)             Requested size: 403.50652pt x 494.59659pt.
 
-Overfull \hbox (5.16792pt too wide) in paragraph at lines 35--36
+Overfull \hbox (5.16792pt too wide) in paragraph at lines 37--38
  [] 
  []
 
-[42
+[25
 
  <../3Dmodels/chariot.png>]
-<../3Dmodels/supportstylo.png, id=292, 389.95688pt x 473.51906pt>
+<../3Dmodels/supportstylo.png, id=297, 389.95688pt x 473.51906pt>
 File: ../3Dmodels/supportstylo.png Graphic file (type png)
 
 <use ../3Dmodels/supportstylo.png>
-Package pdftex.def Info: ../3Dmodels/supportstylo.png used on input line 41.
+Package pdftex.def Info: ../3Dmodels/supportstylo.png used on input line 43.
 (pdftex.def)             Requested size: 389.95592pt x 473.51788pt.
- [43
+ [26
 
  <../3Dmodels/supportstylo.png>]
-<../3Dmodels/camerachariot.png, id=299, 419.31656pt x 504.38437pt>
+<../3Dmodels/camerachariot.png, id=304, 419.31656pt x 504.38437pt>
 File: ../3Dmodels/camerachariot.png Graphic file (type png)
 
 <use ../3Dmodels/camerachariot.png>
-Package pdftex.def Info: ../3Dmodels/camerachariot.png used on input line 47.
+Package pdftex.def Info: ../3Dmodels/camerachariot.png used on input line 49.
 (pdftex.def)             Requested size: 398.34846pt x 479.16243pt.
- [44
+ [27
 
  <../3Dmodels/camerachariot.png>]
-<../3Dmodels/camera.png, id=306, 414.04688pt x 496.85625pt>
+<../3Dmodels/camera.png, id=311, 414.04688pt x 496.85625pt>
 File: ../3Dmodels/camera.png Graphic file (type png)
 
 <use ../3Dmodels/camera.png>
-Package pdftex.def Info: ../3Dmodels/camera.png used on input line 53.
+Package pdftex.def Info: ../3Dmodels/camera.png used on input line 55.
 (pdftex.def)             Requested size: 393.34229pt x 472.01076pt.
-) [45
+) [28
 
  <../3Dmodels/camera.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 282.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 282.
  (sudoku.aux
 (annexe.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 279.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 282.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 282.
+Package rerunfilecheck Info: File `sudoku.out' has not changed.
+(rerunfilecheck)             Checksum: CD30888A7636F4AA9E9B476C68823D37;1279.
 
-
-Package rerunfilecheck Warning: File `sudoku.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `sudoku.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  B241B50398C68E00438035C10AE38F1F;1650.
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
 Package biblatex Warning: Please (re)run Biber on the file:
@@ -1523,38 +1415,32 @@ Package biblatex Warning: Please (re)run Biber on the file:
 Package logreq Info: Writing requests to 'sudoku.run.xml'.
 \openout1 = `sudoku.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 282.
  ) 
 Here is how much of TeX's memory you used:
- 17342 strings out of 493634
- 287789 string characters out of 3134015
- 767657 words of memory out of 3000000
- 20334 multiletter control sequences out of 15000+200000
- 86992 words of font info for 65 fonts, out of 3000000 for 9000
+ 15324 strings out of 493634
+ 243700 string characters out of 3135239
+ 699323 words of memory out of 3000000
+ 18384 multiletter control sequences out of 15000+200000
+ 79733 words of font info for 59 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 33i,8n,35p,932b,1570s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec
-.enc}{C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm
--rm.enc}{C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm
-/lm-mathit.enc}<C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/lm/lmbx10.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/lm/lmbx12.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/Alphonse/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Alphonse/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Users/Alphonse/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Alphonse/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Users/Alphons
-e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Users/Al
-phonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Use
-rs/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb>
-<C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtk
-10.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-lm/lmtt10.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/lm/lmtt8.pfb><C:/Users/Alphonse/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/lm/lmtti10.pfb>
-Output written on sudoku.pdf (46 pages, 2009273 bytes).
+ 40i,8n,35p,978b,1636s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
+c}{C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.en
+c}{C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathi
+t.enc}<C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/l
+mbx12.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+lm/lmcsc10.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmmi12.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/lm/lmr10.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmr12.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/lm/lmr17.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/lm/lmr8.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/lm/lmri12.pfb><C:/Users/laure/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on sudoku.pdf (29 pages, 1846738 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
- 106 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 

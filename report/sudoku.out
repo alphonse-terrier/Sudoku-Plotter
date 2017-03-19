@@ -11,14 +11,9 @@
 \BOOKMARK [1][-]{section.3.2}{Conception du chariot en 3D}{chapter.3}% 11
 \BOOKMARK [0][-]{chapter.4}{Informatique}{}% 12
 \BOOKMARK [1][-]{section.4.1}{Pr\351sentation globale}{chapter.4}% 13
-\BOOKMARK [1][-]{section.4.2}{Reconnaissance du sudoku}{chapter.4}% 14
-\BOOKMARK [1][-]{section.4.3}{R\351solution du sudoku}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{R\351solution du sudoku}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.3}{Reconnaissance du sudoku}{chapter.4}% 15
 \BOOKMARK [1][-]{section.4.4}{Interface graphique}{chapter.4}% 16
 \BOOKMARK [1][-]{section.4.5}{Contr\364le des moteurs et \351criture}{chapter.4}% 17
-\BOOKMARK [0][-]{appendix.A}{Fichier principal}{}% 18
-\BOOKMARK [0][-]{appendix.B}{Script de r\351solution des sudokus}{}% 19
-\BOOKMARK [0][-]{appendix.C}{Script de gestion de la cam\351ra}{}% 20
-\BOOKMARK [0][-]{appendix.D}{Script d'affichage du sudoku}{}% 21
-\BOOKMARK [0][-]{appendix.E}{Script de gestion des moteurs pas-\340-pas}{}% 22
-\BOOKMARK [0][-]{appendix.F}{Script permettant l'\351criture d'un sudoku}{}% 23
-\BOOKMARK [0][-]{appendix.F}{Mises en plan des pi\350ces con\347ues en 3D}{}% 24
+\BOOKMARK [0][-]{chapter*.15}{Scripts Python}{}% 18
+\BOOKMARK [0][-]{appendix*.21}{Mises en plan des pi\350ces con\347ues en 3D}{}% 19

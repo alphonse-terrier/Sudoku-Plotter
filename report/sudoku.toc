@@ -28,38 +28,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Pr\IeC {\'e}sentation globale}{8}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Reconnaissance du sudoku}{8}{section.4.2}
+\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution du sudoku}{8}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}R\IeC {\'e}solution du sudoku}{11}{section.4.3}
+\contentsline {paragraph}{Inclusion}{8}{section*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Inclusion}{11}{section*.3}
+\contentsline {paragraph}{Exclusion}{9}{section*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Exclusion}{11}{section*.4}
+\contentsline {paragraph}{Paires}{9}{section*.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Paires}{11}{section*.5}
+\contentsline {paragraph}{Backtracking}{9}{section*.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Backtracking}{11}{section*.6}
+\contentsline {paragraph}{}{9}{section*.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Interface graphique}{11}{section.4.4}
+\contentsline {section}{\numberline {4.3}Reconnaissance du sudoku}{9}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\IeC {\'E}dition}{11}{section*.7}
+\contentsline {section}{\numberline {4.4}Interface graphique}{12}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{R\IeC {\'e}solution}{12}{section*.8}
+\contentsline {paragraph}{\IeC {\'E}dition}{12}{section*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{M\IeC {\'e}thode}{12}{section*.9}
+\contentsline {paragraph}{R\IeC {\'e}solution}{12}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{M\IeC {\'e}thode}{12}{section*.10}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.5}Contr\IeC {\^o}le des moteurs et \IeC {\'e}criture}{13}{section.4.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Fichier principal}{19}{appendix.A}
+\contentsline {chapter}{Scripts Python}{18}{chapter*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Script de r\IeC {\'e}solution des sudokus}{21}{appendix.B}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Script de gestion de la cam\IeC {\'e}ra}{25}{appendix.C}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {D}Script d'affichage du sudoku}{26}{appendix.D}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {E}Script de gestion des moteurs pas-\IeC {\`a}-pas}{31}{appendix.E}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {F}Script permettant l'\IeC {\'e}criture d'un sudoku}{36}{appendix.F}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Mises en plan des pi\IeC {\`e}ces con\IeC {\c c}ues en 3D}{41}{appendix.F}
+\contentsline {chapter}{Mises en plan des pi\IeC {\`e}ces con\IeC {\c c}ues en 3D}{24}{appendix*.21}
