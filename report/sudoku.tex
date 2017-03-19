@@ -13,7 +13,7 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-\usepackage{minted}
+%\usepackage{minted}
 \usepackage{color}
 \usepackage{float}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
@@ -24,6 +24,7 @@
 \definecolor{lightgray}{gray}{.6}
 \usepackage[dvipsnames]{xcolor}
 \definecolor{yellow}{RGB}{225,220,0}
+\hypersetup{pdfborder={0 0 0}}
 
 \newenvironment{changemargin}[2]{\begin{list}{}{%
 \setlength{\topsep}{0pt}%
@@ -37,8 +38,6 @@
 }\item }{\end{list}}
 
 \usepackage{placeins}
-
-
 
 %\addbibresource{bibli.bib}
 
@@ -62,7 +61,6 @@
 	\large \bfseries M. Patrick COUVEZ
 
 	\vfill
-
 
 	{\large 2016-2017}
 \end{changemargin}
@@ -224,7 +222,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
  \caption{Interface graphique affichant le menu Edition}
 \end{figure}
 
-\paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
+\paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution rapide ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
 
 \begin{figure}[!h]
  \center
@@ -235,22 +233,33 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 \paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion }et le \emph{backtracking} \footnote{Cf \ref{Resolution} Méthode de Résolution} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
 
 \section{Contrôle des moteurs et écriture}
-\subsection{Moteurs pas-à-pas}
+\subsection*{Moteurs pas-à-pas}
 
-\subsection{Coordonnées polaires}
-Par soucis de compacité de nouveau, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens.
+\subsection*{Coordonnées polaires}
+Par soucis de compacité, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens. En effet, en coordonnées cartésien, pour rendre le système stable, il aurait fallu placer une tige de chaque côté de la feuille, sur lesquelles se déplacerait une plateforme pouvant déplacer le stylo selon la largeur de la feuille. De plus, l'utilisation des coordonnées polaires ne sont que très peu utilisés pour ce type de système, ce qui se révélait donc plus intéressant à développer.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Changement_repere}
  \caption{Changement de repères réalisé avec \emph{Geogebra}}
 \end{figure}
 
-\subsection{Écriture des digits}
+\subsection*{Écriture des digits}
+Nous souhaitions dès le début pouvoir écrire des grilles de différentes tailles, et non des grilles de tailles fixes. C'est pourquoi nous avons basé le script d'écriture sur du point par point, permettant de choisir la précision théorique des chiffres tracés. Cependant les moteurs pas-à-pas ne pouvant se déplacer que d'un pas fixé de 1.8\degre, une trop grande précision ne pourrait entraînerait que des déplacements nuls des moteurs, c'est pourquoi cette manière de programmation permet un compromis entre précision théorique et précision pratique.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.35]{../pictures/numbers}
+ \caption{Chiffres d'une précision théorique assez faible}
+\end{figure}
+
+En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure suivante.
+
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Sudoku_points}
  \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
 \end{figure}
+
+Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure suivante.
 
 \begin{figure}[!h]
  \center
@@ -265,48 +274,6 @@ Tous les scipts et ce dossier sont disponibles sur GitHub\footnote{\url{www.gith
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\printbibliography
-\nocite{*}
-\appendix
-\begin{changemargin}{-2cm}{-4cm}
-\chapter{Fichier principal}
-\label{main}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/main.py}
-\chapter{Script de résolution des sudokus}
-\label{resolution}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/resolution.py}
-\chapter{Script de gestion de la caméra}
-\label{camera}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/camera.py}
-\chapter{Script d'affichage du sudoku}
-\label{display}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/display.py}
-\chapter{Script de gestion des moteurs pas-à-pas}
-\label{step_motor}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/step_motor.py}
-\chapter{Script permettant l'écriture d'un sudoku}
-\label{write}
-\inputminted[fontsize=\scriptsize, linenos=true]{Python}{../script/write.py}
-\addcontentsline{toc}{chapter}{Mises en plan des pièces conçues en 3D}
-\chapter*{Mise en plan du chariot}
-\begin{figure}[!h]
- \center
- \includegraphics[scale=1]{../3DModels/chariot.png}
-\end{figure}
-\chapter*{Mise en plan du support du stylo}
-\begin{figure}[!h]
- \center
- \includegraphics[scale=1]{../3DModels/supportstylo.png}
-\end{figure}
-\chapter*{Mise en plan du lien chariot/caméra}
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.95]{../3DModels/camerachariot.png}
-\end{figure}
-\chapter*{Mise en plan du support de la caméra}
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.95]{../3DModels/camera.png}
-\end{figure}
-\end{changemargin}
+\include{annexe}
+
 \end{document}
