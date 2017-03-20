@@ -86,54 +86,6 @@ Une grille est considérée comme sudoku seulement si sa solution est unique.
 
 Le minimum de cases remplies au préalable pour espérer que la dite solution soit bien unique est de 17, cela a été prouvé par une équipe islandais en 2012.
 
-	\chapter{Électronique}
-\section{Moteurs pas-à-pas}
-\label{Elec_stepper}
-Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
-\begin{itemize}[label=--]
-\item une précision bien supérieure à celle de moteurs à courant continu;
-\item un couple bien plus important que celui de servomoteurs;
-\item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
-\end{itemize}
-Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
-
-\section{Schéma électrique}
-Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
-
-Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.34]{../pictures/Sudoku_schema_electrique.png}
- \caption{Schéma électrique réalisé avec \emph{Fritzing}}
-\end{figure}
-
-\section{Premiers montages}
-Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing}
-
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
- \caption{Premier montage}
-\end{figure}
-
-\section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_circuit_imprime.png}
- \caption{Circuit imprimé réalisé avec \emph{Fritzing}}
-\end{figure}
-
-\section{Écran LCD}
-Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.3]{../pictures/ecran_lcd}
- \caption{\'{E}cran LCD affichant le message de bienvenue}
-\end{figure}
-
 	\chapter{Mécanique}
 	\section{Choix concernant la structure du bras}
 	La premier défi qui s'est imposé à nous a été le choix d'une structure adéquate : solide et pratique. Notre choix s'est alors porté sur les Makerbeam. MakerBeam est un système de construction Open-Source basé sur des profilés ALU en T.
@@ -205,6 +157,56 @@ L'ensemble chariot/support du stylo imprimé en 3D est alors montrée ci-dessous
 
 Le chariot permet, de façon modulaire, d'accueillir un support caméra se divisant en deux pièces présentées en page \pageref{chariotcamera} et en page \pageref{supportcamera}.
 	
+
+	\chapter{Électronique}
+\section{Moteurs pas-à-pas}
+\label{Elec_stepper}
+Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
+\begin{itemize}[label=--]
+\item une précision bien supérieure à celle de moteurs à courant continu;
+\item un couple bien plus important que celui de servomoteurs;
+\item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
+\end{itemize}
+Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
+
+\section{Schéma électrique}
+Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
+
+Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.23]{../pictures/Sudoku_schema_electrique.png}
+ \caption{Schéma électrique réalisé avec \emph{Fritzing}}
+\end{figure}
+\newpage
+\section{Premiers montages}
+Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing} :
+
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
+ \caption{Premier montage}
+\end{figure}
+
+\section{Circuit imprimé}
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/Sudoku_circuit_imprime.png}
+ \caption{Circuit imprimé réalisé avec \emph{Fritzing}}
+\end{figure}
+
+\section{Écran LCD}
+Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.3]{../pictures/ecran_lcd}
+ \caption{\'{E}cran LCD affichant le message de bienvenue}
+\end{figure}
+
+
 	\chapter{Informatique}
 \section{Présentation globale}
 	Tous les algorithmes développés dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développés sous Python 3, les autres sous Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
@@ -212,6 +214,60 @@ Le chariot permet, de façon modulaire, d'accueillir un support caméra se divis
 	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des autres scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, permettant ainsi de tester chacun des scripts très facilement.
 	
 	Il nous apparaissait de plus nécessaire de développer une programmation permettant l'exécution simultanée de plusieurs instructions, notamment pour les moteurs. En effet, les moteurs doivent absolument fonctionner de manière synchrone afin des déplacements les plus précis possibles. C'est pour cela que nous nous sommes basés sur ce qui pourrait être qualifiée de "programmation parallèle" qui permet l'exécution de plusieurs processus simultanément. Cela est rendu possible en Python par l'utilisation de la bibliothèque \emph{threading} depuis laquelle nous utilisons \emph{Thread} (signifiant \emph{processus} en français).
+	
+\newpage
+\section{Reconnaissance du sudoku}
+	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
+	\begin{itemize}[label=--]
+	\item Reconnaître les chiffres dans une grille du sudoku
+	\item Déterminer la position spatiale de la grille
+	\end{itemize}
+	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.2]{../pictures/camera.jpg}
+ \caption{Caméra Raspberry Pi V2}
+\end{figure}
+
+Voici la grille de sudoku qui nous servira d'exemple pour montrer toutes les actions du script :
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.25]{../pictures/example.jpg}
+ \caption{Exemple de grille de sudoku}
+\end{figure}
+\newpage
+On applique sur cette photographie un filtre de type seuil (en anglais "threshold") qui va ensuite nous permettre de détecter les contours de la grille :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.25]{../pictures/threshold.jpg}
+ \caption{Exemple de grille "seuillée"}
+ \end{figure}
+ 
+Par cette transformation, on peut ensuite déterminer des équations de droites des contours extérieurs de la grille. Les coordonnées des intersections des droites seront celle des coins de la grille. \smallbreak On découpe alors la grille de la photographie initiale en supprimant les éventuels effets de perspective. 
+ 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.55]{../pictures/unperspectived.png}
+ \caption{Exemple de grille découpée sans perspective}
+\end{figure}
+\newpage
+On découpe chaque petite case de la grille comme ci-dessous :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.6]{../pictures/cutted.png}
+ \caption{Exemple de grille où chaque chiffre a été découpé}
+\end{figure}
+
+On utilise ensuite un module de reconnaissance de digits pour détecter les chiffres et on obtient la grille suivante, prête à être résolue :
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.55]{../pictures/finished.png}
+ \caption{Exemple de grille prête à être résolue}
+\end{figure}
+
 
 \section{Résolution du sudoku}
 \label{Resolution}
@@ -254,58 +310,8 @@ Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure o�
 
 \paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous avons changé ce système, de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs.
 
-\section{Reconnaissance du sudoku}
-	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
-	\begin{itemize}[label=--]
-	\item Reconnaître les chiffres dans une grille du sudoku
-	\item Déterminer la position spatiale de la grille
-	\end{itemize}
-	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.2]{../pictures/camera.jpg}
- \caption{Caméra Raspberry Pi V2}
-\end{figure}
 
-Voici la grille de sudoku qui nous servira d'exemple pour montrer toutes les actions du script :
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.2]{../pictures/example.jpg}
- \caption{Exemple de grille de sudoku}
-\end{figure}
-
-On applique sur cette photographie un filtre de type seuil (en anglais "threshold") qui va ensuite nous permettre de détecter les contours de la grille :
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.2]{../pictures/threshold.jpg}
- \caption{Exemple de grille "seuillée"}
- \end{figure}
- 
-Par cette transformation, on peut ensuite déterminer des équations de droites des contours extérieurs de la grille. Les coordonnées des intersections des droites seront celle des coins de la grille. \smallbreak On découpe alors la grille de la photographie initiale en supprimant les éventuels effets de perspective. 
- 
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.45]{../pictures/unperspectived.png}
- \caption{Exemple de grille découpée sans perspective}
-\end{figure}
-
-On découpe chaque petite case de la grille comme ci-dessous :
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.5]{../pictures/cutted.png}
- \caption{Exemple de grille où chaque chiffre a été découpé}
-\end{figure}
-
-On utilise ensuite un module de reconnaissance de digits pour détecter les chiffres et on obtient la grille suivante, prête à être résolue :
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.45]{../pictures/finished.png}
- \caption{Exemple de grille prête à être résolue}
-\end{figure}
-
+\newpage
 \section{Interface graphique}
 Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
 
@@ -313,15 +319,15 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_edition}
+ \includegraphics[scale=0.55]{../pictures/Sudoku_edition}
  \caption{Interface graphique affichant le menu Edition}
 \end{figure}
-
+\newpage
 \paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution rapide ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_resolution}
+ \includegraphics[scale=0.55]{../pictures/Sudoku_resolution}
  \caption{Interface graphique affichant le menu Édition}
 \end{figure}
 
@@ -329,7 +335,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 
 \section{Contrôle des moteurs et écriture}
 \subsection*{Moteurs pas-à-pas}
-Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{Cf \ref{Elec_stepper} Moteur pas-à-pas}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences.
+Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{cf section \ref{Elec_stepper} à la page \pageref{Elec_stepper}}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences.
 
 \subsection*{Coordonnées polaires}
 Par soucis de compacité et ainsi s'inscrire dans l'optimalité du programme, nous avons décidé de développer une structure se basant sur les coordonnées polaires, permettant des dimensions maximum de 40 par 10 cm. L'utilisation de telles coordonnées nécessitait une plus grande précision et relevait donc d'un plus grand défi technique. Les coordonnées polaires ne sont de plus, que très peu utilisés pour ce type de système, ce qui nous à incité à développer une structure se basant sur ces coordonnées.
@@ -346,20 +352,20 @@ Nous souhaitions dès le début pouvoir écrire des grilles de différentes tail
  \includegraphics[scale=0.35]{../pictures/numbers}
  \caption{Chiffres d'une précision théorique assez faible}
 \end{figure}
-
-En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure suivante.
+\newpage
+En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure suivante :
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_points}
+ \includegraphics[scale=0.45]{../pictures/Sudoku_points}
  \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
 \end{figure}
 
-Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure suivante.
+Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure suivante :
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_relies}
+ \includegraphics[scale=0.45]{../pictures/Sudoku_relies}
  \caption{Grille de sudoku tracée avec \emph{MatplotLib}}
 \end{figure}
 
