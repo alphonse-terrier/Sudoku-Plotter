@@ -115,7 +115,7 @@ Nous avons réalisés nos premiers montages avec une breadboard facilitant les t
 \end{figure}
 
 \section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
 
 \begin{figure}[!h]
  \center
@@ -132,7 +132,7 @@ Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD perm
 \end{figure}
 
 	\chapter{Mécanique}
-	
+	\section{Choix concernant la structure du bras}
 	La premier défi qui s'est imposé à nous a été le choix d'une structure adéquate : solide et pratique. Notre choix s'est alors porté sur les Makerbeam. MakerBeam est un système de construction Open-Source basé sur des profilés ALU en T.
 	
 	L'écriture se fera en coordonnées polaires et non pas en coordonnées cartésiennes pour les raisons suivantes :
@@ -172,7 +172,7 @@ Malheureusement, ce roulement tournait très mal et saccadait. De plus, du jeu �
 	
 	\section{Conception du chariot en 3D}
 	
-	Nous avons pris la décision de concevoir certaines pièces de notre projet en 3D, celle-ci nécessitant de la précision. Le logiciel professionnel de modélisation SolidWorks a été utilisé pour développer ces pièces.
+	Nous avons pris la décision de concevoir certaines pièces de notre projet en 3D, celle-ci nécessitant de la précision. Le logiciel professionnel de modélisation SolidWorks, développé par DassaultSystèmes, a été utilisé pour développer ces pièces.
 	
 	Les mises en plan des pièces composant le chariot sont disponibles en annexe \ref{chariot} à partir de la page \pageref{chariot}.
 	
@@ -348,9 +348,19 @@ Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servo
 \end{figure}
 
 \chapter*{Conclusion}
-Tous les scipts et ce dossier sont disponibles sur GitHub\footnote{\url{www.github.com/alphter/Sudoku-Plotter/}}
+Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
 
 \chapter*{Remerciements}
+
+Ce TIPE a été très bénéfique et nous a tout d'abord permis d'améliorer les compétences acquises l'an dernier en Python.
+
+De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
+
+\begin{itemize}[label=--]
+\item le contrôle de moteurs à l'aide d'une Raspberry Pi
+\item la conception de pièces en 3D
+
+\end{itemize}
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
