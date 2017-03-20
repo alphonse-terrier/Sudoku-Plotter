@@ -69,17 +69,17 @@
 \tableofcontents
 \addcontentsline{toc}{chapter}{Introduction}
 	\chapter*{Introduction}
+\footnote{Sauf mention contraire, les images et figures ont été réalisées par nos soins.}
 	
-
 	\chapter{Présentation et faits sur le sudoku}
 	
 	Le sudoku est un jeu sous forme de grille inspiré du carré latin et défini en 1979 par Howard Garns.
 	
-	Cette grille est carrée et est divisée en $n^2$ régions de $n^2$ cases. Elle possède ainsi $n^2$ colonnes, $n^2$ lignes et $n^4$ cases. Dans la version la plus commune : $n=3$.
+	Cette grille est carrée et est divisée en $n^2$ régions de $n^2$ cases. Elle possède ainsi $n^2$ colonnes, $n^2$ lignes et $n^4$ cases. Dans la version la plus commune : $n=3$. On appelle section, une ligne, une colonne ou une région
 
 Une grille de sudoku est préremplie, le but du jeu étant de la compléter selon la règle suivante :
 \begin{itemize}[label=--]
-\item Chaque ligne, chaque colonne et chaque région doit contenir au moins une fois tous les de $1$ à $n^2$.
+\item Chaque section doit contenir au moins une fois tous les de $1$ à $n^2$.
 \end{itemize} 
 
 Une grille est considérée comme sudoku seulement si sa solution est unique.
@@ -88,6 +88,7 @@ Le minimum de cases remplies au préalable pour espérer que la dite solution so
 
 	\chapter{Électronique}
 \section{Moteurs pas-à-pas}
+\label{Elec_stepper}
 Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
 \begin{itemize}[label=--]
 \item une précision bien supérieure à celle de moteurs à courant continu;
@@ -140,25 +141,52 @@ Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD perm
 	
 	\chapter{Informatique}
 \section{Présentation globale}
-	Tous les algorithmes développés dans le cadre de ce projet sont disponibles en annexe\footnote{Cf \ref{Scripts}}. Ils ont été, pour la plupart, développés sous Python 3, les autres sous Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
+	Tous les algorithmes développés dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développés sous Python 3, les autres sous Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
 	
 	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des autres scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, permettant ainsi de tester chacun des scripts très facilement.
 	
+	Il nous apparaissait de plus nécessaire de développer une programmation permettant l'exécution simultanée de plusieurs instructions, notamment pour les moteurs. En effet, les moteurs doivent absolument fonctionner de manière synchrone afin des déplacements les plus précis possibles. C'est pour cela que nous nous sommes basés sur ce qui pourrait être qualifiée de "programmation parallèle" qui permet l'exécution de plusieurs processus simultanément. Cela est rendu possible en Python par l'utilisation de la bibliothèque \emph{threading} depuis laquelle nous utilisons \emph{Thread} (signifiant \emph{processus} en français).
+	
 \section{Résolution du sudoku}
 \label{Resolution}
-Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux principales méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Les grilles les plus difficiles peuvent imposer au joueur de faire un choix entre plusieurs possibilités pour espérer mener à son terme la résolution. C'est sur ce constat que ce base la méthode dite de \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci n'est pas valide et possède plusieurs solutions.
-\paragraph{Inclusion}
-\paragraph{Exclusion}
-\paragraph{Paires} Cette méthode possède différentes variantes :
-\begin{itemize}[label=--]
-\item 
-\item
-\end{itemize} 
-La méthode des triplets est une généralisation de cette méthode à trois cases et non seulement deux.
-\paragraph{Backtracking} Cette méthode consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille.
-Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable.
+Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Les grilles les plus difficiles peuvent imposer au joueur de faire un choix entre plusieurs possibilités pour espérer mener à son terme la résolution. C'est sur ce constat que ce base la méthode dite de \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci n'est pas valide et possède plusieurs solutions. Bien sûr cette liste n'est pas exhaustive et il existe d'autres méthodes de résolution, même si ces méthodes ne sont pas forcément très employés faciles d'emploi.
 
-\paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous avons changé ce système, de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence de temps de calculs.
+\paragraph{Inclusion: un seul candidat pour une case}
+On dénombre pour chaque case vierge les chiffres pouvant être positionnés dans celle-ci. S'il n'y a qu'une seule possibilité alors elle est solution et est donc placée dans la case.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.8]{../pictures/inclusion}
+ \caption{Méthode d'inclusion pour une région}
+\end{figure}
+
+\paragraph{Exclusion: candidat unique pour une section}
+Si pour un chiffre donné, on ne peut le placer dans une section que dans une seule case possible, alors ce chiffre est placé dans cette case
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.8]{../pictures/exclusion}
+ \caption{Méthode d'exclusion pour une région}
+\end{figure}
+
+\paragraph{Paires} Si dans une section donnée, deux cases ne contiennent que deux \emph{candidats identiques}, alors ils ne peuvent être placés que dans ces deux cases, ce qui permet de les éliminer des autres possibilité pour la section
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.8]{../pictures/paire}
+ \caption{Méthode des paires pour une ligne}
+\end{figure}
+
+La méthode des triplets est une généralisation de cette méthode à trois cases et non seulement deux.
+
+\paragraph{Jumeaux} Si dans une section, un chiffre ne peut être placé que sur une ligne (resp. colonne), alors ce chiffre peut être supprimé des possibilités pour le reste de la ligne (resp.colonne). Cette méthode ne permet pas toujours de placer immédiatement celui-ci, mais permet de réduire les possibilités pour placer les autres.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.8]{../pictures/jumeaux}
+ \caption{Méthode d'exclusion pour une région}
+\end{figure}
+
+\paragraph{Backtracking} Cette méthode consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille.
+Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable\footnote{Une animation montrant le fonctionnement de cette méthode est disponible \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}}.
+
+\paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous avons changé ce système, de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs.
 	
 \section{Reconnaissance du sudoku}
 	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
@@ -166,9 +194,8 @@ Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure o�
 	\item Reconnaître les chiffres dans une grille du sudoku
 	\item Déterminer la position spatiale de la grille
 	\end{enumerate}
-	\newpage
 	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
-	\begin{figure}[!h]
+\begin{figure}[!h]
  \center
  \includegraphics[scale=0.2]{../pictures/camera.jpg}
  \caption{Caméra Raspberry Pi V2}
@@ -237,9 +264,10 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 
 \section{Contrôle des moteurs et écriture}
 \subsection*{Moteurs pas-à-pas}
+Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{Cf \ref{Elec_stepper} Moteur pas-à-pas}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences.
 
 \subsection*{Coordonnées polaires}
-Par soucis de compacité, nous avons décidé de développer une structure se basant sur les coordonnées cylindriques, permettant des dimensions maximum de 40 par 10 cm au lieu de 40 par 40 en coordonnées cartésiens. En effet, en coordonnées cartésien, pour rendre le système stable, il aurait fallu placer une tige de chaque côté de la feuille, sur lesquelles se déplacerait une plateforme pouvant déplacer le stylo selon la largeur de la feuille. De plus, l'utilisation des coordonnées polaires ne sont que très peu utilisés pour ce type de système, ce qui se révélait donc plus intéressant à développer.
+Par soucis de compacité et ainsi s'inscrire dans l'optimalité du programme, nous avons décidé de développer une structure se basant sur les coordonnées polaires, permettant des dimensions maximum de 40 par 10 cm. L'utilisation de telles coordonnées nécessitait une plus grande précision et relevait donc d'un plus grand défi technique. Les coordonnées polaires ne sont de plus, que très peu utilisés pour ce type de système, ce qui nous à incité à développer une structure se basant sur ces coordonnées.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Changement_repere}
@@ -277,6 +305,6 @@ Tous les scipts et ce dossier sont disponibles sur GitHub\footnote{\url{www.gith
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\include{annexe}
+%\include{annexe}
 
 \end{document}
