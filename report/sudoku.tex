@@ -116,7 +116,7 @@ Nous avons réalisés nos premiers montages avec une breadboard facilitant les t
 \end{figure}
 
 \section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
 
 \begin{figure}[!h]
  \center
@@ -133,11 +133,75 @@ Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD perm
 \end{figure}
 
 	\chapter{Mécanique}
-	
+	\section{Choix concernant la structure du bras}
 	La premier défi qui s'est imposé à nous a été le choix d'une structure adéquate : solide et pratique. Notre choix s'est alors porté sur les Makerbeam. MakerBeam est un système de construction Open-Source basé sur des profilés ALU en T.
-	\section{Difficultés rencontrés et solutions mises en place}
-	\section{Conception du chariot en 3D}
+	
+	L'écriture se fera en coordonnées polaires et non pas en coordonnées cartésiennes pour les raisons suivantes :
+	\begin{itemize}[label=--]
+	\item un système en coordonnées cartésiennes aurait été trop encombrant et un moins "portable" (dans un contexte notamment d'optimalité, comme exigé par le programme)
+	\item c'est un défi technique de fabriquer un bras de ce type en coordonnées polaires
+	\end{itemize}
+	
+Ainsi, un moteur pas-à-pas assurera la rotation $\theta$ du bras. Ce moteur s'auto-entrainera autour d'une roue dentée de 128 dents comme celle-ci et un roulement permettra la rotation de l'entièreté du bras :
 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/rouedentee2.jpg}
+ \caption{Schéma de la roue dentée}
+\end{figure}
+
+
+De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas et un système courroie/poulie. Cette translation s'est faite le long de deux axes de $272$ mm et de $8$ mm de diamètre.
+	\section{Difficultés rencontrées et solutions mises en place}
+	Nous avons notamment rencontré des difficultés concernant le roulement utilisé. En effet, nous avions au préalable utilisé un roulement à billes comme celui-ci :
+	
+	\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.5]{../pictures/roulementmerdique}
+ \caption{Roulement défectueux}
+\end{figure}
+
+Malheureusement, ce roulement tournait très mal et saccadait. De plus, du jeu était présent. Après quelques heures de recherche, nous avons donc choisi le roulement à billes suivant, qui tourne très bien mais qui tout de même possède lui aussi un peu de jeu :
+
+	\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.15]{../pictures/swivelhub}
+ \caption{Roulement finalement choisi}
+\end{figure}
+
+	
+	
+	\section{Conception du chariot en 3D}
+	
+	Nous avons pris la décision de concevoir certaines pièces de notre projet en 3D, celle-ci nécessitant de la précision. Le logiciel professionnel de modélisation SolidWorks, développé par DassaultSystèmes, a été utilisé pour développer ces pièces.
+	
+	Les mises en plan des pièces composant le chariot sont disponibles en annexe \ref{chariot} à partir de la page \pageref{chariot}.
+	
+	La partie principale du chariot devait pouvoir accueillir un servomoteur, permettant l'abaissement et le soulèvement du stylo :
+	
+	%\begin{figure}[!h]
+ %\center
+ %\includegraphics[scale=0.15]{../pictures/chariot}
+ %\caption{Impression 3D de la pièce principale du chariot}
+	%\end{figure}
+	
+	Ce stylo sera fixé sur la pièce présentée en page\pageref{supportstylo} dont l'impression 3D est montrée ci-dessous :
+	
+	%\begin{figure}[!h]
+ %\center
+ %\includegraphics[scale=0.15]{../pictures/supportstylo}
+ %\caption{Impression 3D de la pièce supportant le stylo}
+	%\end{figure}
+	
+L'ensemble chariot/support du stylo imprimé en 3D est alors montrée ci-dessous :
+
+	%\begin{figure}[!h]
+ %\center
+ %\includegraphics[scale=0.15]{../pictures/supportchariot}
+ %\caption{Impression 3D du chariot et du support du stylo}
+	%\end{figure}
+
+Le chariot permet, de façon modulaire, d'accueillir un support caméra se divisant en deux pièces présentées en page \pageref{chariotcamera} et en page \pageref{supportcamera}.
 	
 	\chapter{Informatique}
 \section{Présentation globale}
@@ -190,10 +254,11 @@ Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure o�
 	
 \section{Reconnaissance du sudoku}
 	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
-	\begin{enumerate}
+	\begin{itemize}[label=--]
 	\item Reconnaître les chiffres dans une grille du sudoku
 	\item Déterminer la position spatiale de la grille
-	\end{enumerate}
+	\end{itemize}
+	\newpage
 	On photographie la grille avec une caméra Raspberry Pi (V2) comme celle-ci :
 \begin{figure}[!h]
  \center
@@ -241,6 +306,19 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
 \end{figure}
 \newpage
 
+\section{Résolution du sudoku}
+\label{Resolution}
+Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux principales méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Enfin, il existe une méthode, très difficilement utilisable par un joueur, appelée \emph{backtracking} (en français : \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci possède plusieurs solutions.
+\paragraph{Inclusion}
+\paragraph{Exclusion}
+\paragraph{Paires} Cette méthode possède différentes variantes :
+\begin{itemize}[label=--]
+\item 
+\item
+\end{itemize} 
+La méthode des triplets est une généralisation de cette méthode à trois cases et non seulement deux.
+\paragraph{Backtracking} Cette méthode consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres qu'on pourrait théoriquement placer et on liste de nouveau les possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à une autre case vierge. S'il n'y a plus aucune possibilités qui pourraient correspondre, on revient sur nos pas et on change le chiffre qu'on venait d'insérer en une autre possibilité. S'il n'y a plus de possibilités, on revient de nouveau sur nos pas autant de fois que nécessaire jusqu'à avoir compéter la totalité de la grille.
+
 \section{Interface graphique}
 Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
 
@@ -260,7 +338,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
  \caption{Interface graphique affichant le menu Édition}
 \end{figure}
 
-\paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion }et le \emph{backtracking} \footnote{Cf \ref{Resolution} Méthode de Résolution} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
+\paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion} et le \emph{backtracking} \footnote{cf section~\ref{Resolution} à la page \pageref{Resolution}} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
 
 \section{Contrôle des moteurs et écriture}
 \subsection*{Moteurs pas-à-pas}
@@ -299,9 +377,19 @@ Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servo
 \end{figure}
 
 \chapter*{Conclusion}
-Tous les scipts et ce dossier sont disponibles sur GitHub\footnote{\url{www.github.com/alphter/Sudoku-Plotter/}}
+Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
 
 \chapter*{Remerciements}
+
+Ce TIPE a été très bénéfique et nous a tout d'abord permis d'améliorer les compétences acquises l'an dernier en Python.
+
+De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
+
+\begin{itemize}[label=--]
+\item le contrôle de moteurs à l'aide d'une Raspberry Pi
+\item la conception de pièces en 3D
+
+\end{itemize}
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
