@@ -13,7 +13,7 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{color}
 \usepackage{float}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
@@ -86,58 +86,6 @@ Une grille est considérée comme sudoku seulement si sa solution est unique.
 
 Le minimum de cases remplies au préalable pour espérer que la dite solution soit bien unique est de 17, cela a été prouvé par une équipe islandais en 2012.
 
-<<<<<<< HEAD
-=======
-	\chapter{Électronique}
-\section{Moteurs pas-à-pas}
-\label{Elec_stepper}
-Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
-\begin{itemize}[label=--]
-\item une précision bien supérieure à celle de moteurs à courant continu;
-\item un couple bien plus important que celui de servomoteurs;
-\item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
-\end{itemize}
-Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
-
-\section{Drivers l293d}
-Pour piloter les moteurs, nous utilisons des drivers l293d, qui intègrent un pont en H permettant le contrôle des moteurs dans les deux sens de rotation.
-
-\section{Schéma électrique}
-Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
-
-Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.34]{../pictures/Sudoku_schema_electrique.png}
- \caption{Schéma électrique réalisé avec \emph{Fritzing}}
-\end{figure}
-
-\section{Premiers montages}
-Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing}
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
- \caption{Premier montage}
-\end{figure}
-
-\section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
-
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.5]{../pictures/Sudoku_circuit_imprime.png}
- \caption{Circuit imprimé réalisé avec \emph{Fritzing}}
-\end{figure}
-
-\section{Écran LCD}
-Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
-\begin{figure}[!h]
- \center
- \includegraphics[scale=0.3]{../pictures/ecran_lcd}
- \caption{\'{E}cran LCD affichant le message de bienvenue}
-\end{figure}
-
->>>>>>> 3b87e9b8230a697181641d6a9608f3ec8cf00d04
 	\chapter{Mécanique}
 	\section{Choix concernant la structure du bras}
 	La premier défi qui s'est imposé à nous a été le choix d'une structure adéquate : solide et pratique. Notre choix s'est alors porté sur les Makerbeam. MakerBeam est un système de construction Open-Source basé sur des profilés ALU en T.
@@ -155,6 +103,7 @@ Ainsi, un moteur pas-à-pas assurera la rotation $\theta$ du bras. Ce moteur s'a
  \includegraphics[scale=0.5]{../pictures/rouedentee2.jpg}
  \caption{Schéma de la roue dentée}
 \end{figure}
+
 
 De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas et un système courroie/poulie. Cette translation s'est faite le long de deux axes de $272$ mm et de $8$ mm de diamètre.
 	\section{Difficultés rencontrées et solutions mises en place}
@@ -190,7 +139,7 @@ Malheureusement, ce roulement tournait très mal et saccadait. De plus, du jeu �
  %\caption{Impression 3D de la pièce principale du chariot}
 	%\end{figure}
 	
-	Ce stylo sera fixé sur la pièce présentée en page\pageref{supportstylo} dont l'impression 3D est montrée ci-dessous :
+	Ce stylo sera fixé sur la pièce présentée en page \pageref{supportstylo} dont l'impression 3D est montrée ci-dessous :
 	
 	%\begin{figure}[!h]
  %\center
@@ -424,14 +373,7 @@ Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servo
 \end{figure}
 
 \chapter*{Conclusion}
-<<<<<<< HEAD
 \addcontentsline{toc}{chapter}{Conclusion}
-=======
-Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
-
-\chapter*{Remerciements}
-
->>>>>>> 3b87e9b8230a697181641d6a9608f3ec8cf00d04
 Ce TIPE a été très bénéfique et nous a tout d'abord permis d'améliorer les compétences acquises l'an dernier en Python.
 
 De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
@@ -448,6 +390,6 @@ Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plott
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-%\include{annexe}
+\include{annexe}
 
 \end{document}
