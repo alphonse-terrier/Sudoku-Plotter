@@ -169,6 +169,9 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 \end{itemize}
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
+\section{Drivers l293d}
+Pour piloter les moteurs, nous utilisons des drivers l293d, qui intègrent un pont en H permettant le contrôle des moteurs dans les deux sens de rotation.
+
 \section{Schéma électrique}
 Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
 
@@ -371,10 +374,6 @@ Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servo
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
-Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
-
-\chapter*{Remerciements}
-\addcontentsline{toc}{chapter}{Remerciements}
 Ce TIPE a été très bénéfique et nous a tout d'abord permis d'améliorer les compétences acquises l'an dernier en Python.
 
 De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
@@ -384,6 +383,10 @@ De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
 \item la conception de pièces en 3D
 
 \end{itemize}
+Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
+
+\chapter*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
