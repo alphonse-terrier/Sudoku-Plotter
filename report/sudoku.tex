@@ -13,7 +13,7 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-\usepackage{minted}
+%\usepackage{minted}
 \usepackage{color}
 \usepackage{float}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
@@ -169,8 +169,14 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 \end{itemize}
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
-\section{Drivers l293d}
-Pour piloter les moteurs, nous utilisons des drivers l293d, qui intègrent un pont en H permettant le contrôle des moteurs dans les deux sens de rotation.
+\section{Drivers L293D}
+Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présent les avantages suivants :
+\begin{itemize}[label=--]
+\item ils permettent l'utilisation d'une source de tension externe, la Raspberry ne pouvant fournir que du 5V;
+\item ils intègrent un pont en H permettant de contrôler les moteurs dans les deux sens de rotation;
+\item ils permettent d'éviter la création de courants induits dans la Raspberry, du faits des bobines, pouvant pouvant l'endommager ou la détruire.
+\end{itemize}
+
 
 \section{Schéma électrique}
 Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
@@ -178,10 +184,10 @@ Le schéma ci-joint représente les principales connections au sein de notre mon
 Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.23]{../pictures/Sudoku_schema_electrique.png}
+ \includegraphics[scale=0.33]{../pictures/Sudoku_schema_electrique.png}
  \caption{Schéma électrique réalisé avec \emph{Fritzing}}
 \end{figure}
-\newpage
+
 \section{Premiers montages}
 Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing} :
 
@@ -193,7 +199,7 @@ Nous avons réalisés nos premiers montages avec une breadboard facilitant les t
 \end{figure}
 
 \section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile.
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile et aurait sans doute coûté plus cher.
 
 \begin{figure}[!h]
  \center
@@ -202,7 +208,7 @@ Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de
 \end{figure}
 
 \section{Écran LCD}
-Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité.
+Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité, ce qui permettait de rendre le bras plus autonome et plus facile d'utilisation. L'écran utilisé est un écran LCD 2x16.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.3]{../pictures/ecran_lcd}
@@ -308,13 +314,16 @@ La méthode des triplets est une généralisation de cette méthode à trois cas
  \caption{Méthode d'exclusion pour une région}
 \end{figure}
 
-\paragraph{Backtracking} Cette méthode consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille.
-Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable\footnote{Une animation montrant le fonctionnement de cette méthode est disponible \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}}.
+\paragraph{Backtracking} Cette méthode\footnote{Une animation montrant le fonctionnement de cette méthode est disponible sur : \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}} consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille. 
 
-\paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous avons changé ce système, de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs.
+Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable.
+Pour une ordinateur également, cette méthode peut se révéler fastidieuse dans le cas où la solution n'apparait que très tardivement, et après beaucoup d'itérations. Elle est surtout efficace dans le cas général, mais peut être mise en défaut.
+
+\paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous l'avons changé de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs. 
+
+\paragraph{Temps de calculs} Au niveau informatique, ces méthodes ne se valent pas dans la mesure où elles sont plus ou moins fiables, efficaces et rapides. L'\emph{inclusion} et l'\emph{exclusion} sont comparables : elles sont rapides et efficaces mais ne permettent pas la résolution complète dans un certain nombre de cas. L'utilisation du \emph{backtracking} se révèle alors efficace en complément des deux précédentes, puisque cette méthode permet toujours de conclure. Les temps de calculs sont comparables pour toutes ces méthodes et sont de l'ordre du centième de secondes\footnote{Les résultats peuvent varier d'un machine à l'autre comme nous avons pu le constater, il est donc surtout intéressant de noter les différences d'ordres de grandeurs entre les différents résultats.}. La résolution peut parfois prendre plus d'une seconde mais cette situation ne s'est présentée que très rarement. Cependant, il peut arriver que pour des grilles très particulières, conçues pour tester la rapidité du \emph{backtracking}, la résolution du sudoku prenne bien plus de temps, jusqu'à 30 secondes. En utilisant les trois méthodes de manière couplée, le temps de calculs diminue pour arriver à seulement 20 secondes. Une utilisation couplée des méthodes est bien plus efficace car permet d'éliminer immédiatement toutes les possibilités évidentes, indétectables en \emph{backtracking}, pour ensuite l'utiliser éventuellement si la grille n'est pas résolue.
 
 
-\newpage
 \section{Interface graphique}
 Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
 
@@ -390,6 +399,6 @@ Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plott
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\include{annexe}
+%\include{annexe}
 
 \end{document}
