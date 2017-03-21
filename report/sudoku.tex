@@ -13,7 +13,7 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-\usepackage{minted}
+%\usepackage{minted}
 \usepackage{color}
 \usepackage{float}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
@@ -97,6 +97,9 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 \end{itemize}
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
+\section{Drivers l293d}
+Pour piloter les moteurs, nous utilisons des drivers l293d, qui intègrent un pont en H permettant le contrôle des moteurs dans les deux sens de rotation.
+
 \section{Schéma électrique}
 Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
 
@@ -109,8 +112,6 @@ Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deu
 
 \section{Premiers montages}
 Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing}
-
-
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
@@ -152,7 +153,6 @@ Ainsi, un moteur pas-à-pas assurera la rotation $\theta$ du bras. Ce moteur s'a
  \caption{Schéma de la roue dentée}
 \end{figure}
 
-
 De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas et un système courroie/poulie. Cette translation s'est faite le long de deux axes de $272$ mm et de $8$ mm de diamètre.
 	\section{Difficultés rencontrées et solutions mises en place}
 	Nous avons notamment rencontré des difficultés concernant le roulement utilisé. En effet, nous avions au préalable utilisé un roulement à billes comme celui-ci :
@@ -187,7 +187,7 @@ Malheureusement, ce roulement tournait très mal et saccadait. De plus, du jeu �
  %\caption{Impression 3D de la pièce principale du chariot}
 	%\end{figure}
 	
-	Ce stylo sera fixé sur la pièce présentée en page \pageref{supportstylo} dont l'impression 3D est montrée ci-dessous :
+	Ce stylo sera fixé sur la pièce présentée en page\pageref{supportstylo} dont l'impression 3D est montrée ci-dessous :
 	
 	%\begin{figure}[!h]
  %\center
@@ -364,11 +364,10 @@ Il faut prévoir dans le script la possibilité d'envoyé une impulsion au servo
 \end{figure}
 
 \chapter*{Conclusion}
-\addcontentsline{toc}{chapter}{Conclusion}
 Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plotter - \url{www.github.com/alphter/Sudoku-Plotter/}}
 
 \chapter*{Remerciements}
-\addcontentsline{toc}{chapter}{Remerciements}
+
 Ce TIPE a été très bénéfique et nous a tout d'abord permis d'améliorer les compétences acquises l'an dernier en Python.
 
 De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
@@ -381,6 +380,6 @@ De plus, de nombreuses nouvelles compétences ont du être mises en œuvre :
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\include{annexe}
+%\include{annexe}
 
 \end{document}
