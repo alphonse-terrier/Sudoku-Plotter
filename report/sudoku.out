@@ -1,0 +1,21 @@
+\BOOKMARK [0][-]{chapter*.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Pr\351sentation et faits sur le sudoku}{}% 2
+\BOOKMARK [0][-]{chapter.2}{M\351canique}{}% 3
+\BOOKMARK [1][-]{section.2.1}{Choix concernant la structure du bras}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.2}{Difficult\351s rencontr\351es et solutions mises en place}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.3}{Conception du chariot en 3D}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{\311lectronique}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Moteurs pas-\340-pas}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.2}{Drivers L293D}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.3}{Sch\351ma \351lectrique}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.4}{Premiers montages}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.5}{Circuit imprim\351}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.6}{\311cran LCD}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Informatique}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Pr\351sentation globale}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{Reconnaissance du sudoku}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.3}{R\351solution du sudoku}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.4}{Interface graphique}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.5}{Contr\364le des moteurs et \351criture}{chapter.4}% 19
+\BOOKMARK [0][-]{chapter*.41}{Conclusion}{}% 20
+\BOOKMARK [0][-]{chapter*.42}{Remerciements}{}% 21

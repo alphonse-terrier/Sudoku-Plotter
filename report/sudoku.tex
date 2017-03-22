@@ -16,6 +16,7 @@
 %\usepackage{minted}
 \usepackage{color}
 \usepackage{float}
+\usepackage{caption}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
 \usepackage[left=4cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{fancyvrb}
@@ -167,7 +168,53 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 \item un couple bien plus important que celui de servomoteurs;
 \item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
 \end{itemize}
+
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
+
+Les moteurs que nous avons utilisés sont constitués de deux bobines, soit quatre fils. On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir un couple et une vitesse constants lors de la rotation des moteurs. \`{A} chaque séquence, une seule bobine suffirait à mettre en mouvement le moteur, l'autre est tout de même alimentée afin d'obtenir un couple maximal. 
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
+\hline
+1 & 1 & 0 & - & - \\
+\hline
+2 & - & - & 0 & 1 \\
+\hline
+3 & 0 & 1 & - & - \\
+\hline
+4 & - & - & 1 & 0 \\
+\hline
+5 & 1 & 0 & - & - \\
+\hline
+\end{tabular}
+\caption{Séquences d'alimentation des bobines avec un couple minimal}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
+\hline
+1 & 1 & 0 & 0 & 1 \\
+\hline
+2 & 0 & 1 & 0 & 1 \\
+\hline
+3 & 0 & 1 & 1 & 0 \\
+\hline
+4 & 1 & 0 & 1 & 0 \\
+\hline
+5 & 1 & 0 & 0 & 1 \\
+\hline
+\end{tabular}
+\caption{Séquences d'alimentation des bobines avec un couple maximal}
+\end{center}
+\end{figure}
+Une autre différence entre l'alimentation que d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable.
 
 \section{Drivers L293D}
 Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présent les avantages suivants :
@@ -347,7 +394,7 @@ Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajou
 
 \section{Contrôle des moteurs et écriture}
 \subsection*{Moteurs pas-à-pas}
-Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{cf section \ref{Elec_stepper} à la page \pageref{Elec_stepper}}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences.
+Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{cf section \ref{Elec_stepper} à la page \pageref{Elec_stepper}}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences. 
 
 \subsection*{Coordonnées polaires}
 Par soucis de compacité et ainsi s'inscrire dans l'optimalité du programme, nous avons décidé de développer une structure se basant sur les coordonnées polaires, permettant des dimensions maximum de 40 par 10 cm. L'utilisation de telles coordonnées nécessitait une plus grande précision et relevait donc d'un plus grand défi technique. Les coordonnées polaires ne sont de plus, que très peu utilisés pour ce type de système, ce qui nous à incité à développer une structure se basant sur ces coordonnées.

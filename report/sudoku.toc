@@ -1,0 +1,65 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {french}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Introduction}{1}{chapter*.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Pr\IeC {\'e}sentation et faits sur le sudoku}{3}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}M\IeC {\'e}canique}{4}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Choix concernant la structure du bras}{4}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Difficult\IeC {\'e}s rencontr\IeC {\'e}es et solutions mises en place}{5}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Conception du chariot en 3D}{5}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}\IeC {\'E}lectronique}{7}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Moteurs pas-\IeC {\`a}-pas}{7}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Drivers L293D}{8}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Sch\IeC {\'e}ma \IeC {\'e}lectrique}{8}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Premiers montages}{9}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Circuit imprim\IeC {\'e}}{9}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}\IeC {\'E}cran LCD}{9}{section.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Informatique}{11}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Pr\IeC {\'e}sentation globale}{11}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Reconnaissance du sudoku}{12}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}R\IeC {\'e}solution du sudoku}{14}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inclusion: un seul candidat pour une case}{15}{section*.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Exclusion: candidat unique pour une section}{15}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Paires}{15}{section*.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Jumeaux}{16}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Backtracking}{16}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{}{16}{section*.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Temps de calculs}{17}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Interface graphique}{17}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\IeC {\'E}dition}{17}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{R\IeC {\'e}solution}{18}{section*.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{M\IeC {\'e}thode}{19}{section*.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Contr\IeC {\^o}le des moteurs et \IeC {\'e}criture}{19}{section.4.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Conclusion}{22}{chapter*.41}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Remerciements}{23}{chapter*.42}
