@@ -8,13 +8,15 @@
 \usepackage{hyperref}
 \usepackage{lmodern}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{listings}
 \usepackage{enumitem}
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{color}
+\usepackage{tabularx}
 \usepackage{float}
 \usepackage{caption}
 \usepackage[backend=biber, autolang=other, sorting=none, style=science]{biblatex}
@@ -171,14 +173,22 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
-Les moteurs que nous avons utilisés sont constitués de deux bobines, soit quatre fils. On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir un couple et une vitesse constants lors de la rotation des moteurs. \`{A} chaque séquence, une seule bobine suffirait à mettre en mouvement le moteur, l'autre est tout de même alimentée afin d'obtenir un couple maximal. 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.4]{../pictures/schema_stepper_motor.png}
+ \caption{Schéma électrique réalisé avec \emph{Fritzing}}
+ \label{schema_stepper}
+\end{figure}
 
-\begin{figure}
+\paragraph{} Les moteurs que nous avons utilisés sont constitués de quatre bobines reliés deux à deux, soit quatre fils, comme le montre le schéma suivant, ainsi les bobines A et B seront désignées comme la bobine 1, C et D comme la bobine 2. Ces bobines, lorsqu'elles sont parcourues par un courant i, génère un champ magnétique. Ce champ magnétique a pour conséquence d'entrainer la rotation de la partie mobile du moteur : le stator, représenté par le cercle centrale N/S sur la figure \ref{schema_stepper}. Celui-ci est composé d'un aimant qui a tendance a s'aligner sur le champ magnétique de la bobine. 
+Les bobines sont enroulées autour d'un fer doux, généralement de la ferrite afin de mieux conduire le lignes de champs.
+
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
-\hline
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.5\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
+\multirow{2}*{Séquence} & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
+\cline{2-5} & \centering A & \centering B & \centering C & D \\ 
+\hline  
 1 & 1 & 0 & - & - \\
 \hline
 2 & - & - & 0 & 1 \\
@@ -189,17 +199,16 @@ Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
 \hline
 5 & 1 & 0 & - & - \\
 \hline
-\end{tabular}
-\caption{Séquences d'alimentation des bobines avec un couple minimal}
+\end{tabularx}
+\captionof{table}{Séquences d'alimentation des bobines avec un couple minimal}
 \end{center}
-\end{figure}
 
-\begin{figure}
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
-\hline
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.5\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
+\multirow{2}*{Séquence} & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
+\cline{2-5} & \centering A & \centering B & \centering C & D \\ 
+\hline  
 1 & 1 & 0 & 0 & 1 \\
 \hline
 2 & 0 & 1 & 0 & 1 \\
@@ -210,12 +219,15 @@ Séquence & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
 \hline
 5 & 1 & 0 & 0 & 1 \\
 \hline
-\end{tabular}
-\caption{Séquences d'alimentation des bobines avec un couple maximal}
+\end{tabularx}
+\captionof{table}{Séquences d'alimentation des bobines avec un couple maximal}
 \end{center}
-\end{figure}
-Une autre différence entre l'alimentation que d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable.
 
+\paragraph{} On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir un couple et une vitesse constants lors de la rotation des moteurs. \`{A} chaque séquence, une seule bobine suffirait à mettre en mouvement le moteur, l'autre est tout de même alimentée afin d'obtenir un couple maximal. 
+
+Une autre différence entre l'alimentation d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable.
+
+\newpage
 \section{Drivers L293D}
 Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présent les avantages suivants :
 \begin{itemize}[label=--]
@@ -237,7 +249,6 @@ Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deu
 
 \section{Premiers montages}
 Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing} :
-
 
 \begin{figure}[!h]
  \center
@@ -446,6 +457,6 @@ Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plott
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-%\include{annexe}
+\include{annexe}
 
 \end{document}
