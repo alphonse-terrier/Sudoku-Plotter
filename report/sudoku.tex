@@ -14,7 +14,7 @@
 \usepackage{stmaryrd}
 \usepackage{url}
 \usepackage{array}
-\usepackage{minted}
+%\usepackage{minted}
 \usepackage{color}
 \usepackage{tabularx}
 \usepackage{float}
@@ -170,62 +170,69 @@ Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, p
 \item un couple bien plus important que celui de servomoteurs;
 \item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
 \end{itemize}
-
 Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant une grande précision comme les imprimantes 3D dans lesquelles ils sont très largement employés.
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.4]{../pictures/schema_stepper_motor.png}
- \caption{Schéma électrique réalisé avec \emph{Fritzing}}
+ \includegraphics[scale=0.38]{../pictures/schema_stepper_motor.png}
+ \caption{Schéma simplifiée d'un moteur pas-à-pas\protect\footnotemark}
  \label{schema_stepper}
 \end{figure}
+\footnotetext{\url{http://eskimon.fr/290-arduino-603-petits-pas-le-moteur-pas-pas}}
 
-\paragraph{} Les moteurs que nous avons utilisés sont constitués de quatre bobines reliés deux à deux, soit quatre fils, comme le montre le schéma suivant, ainsi les bobines A et B seront désignées comme la bobine 1, C et D comme la bobine 2. Ces bobines, lorsqu'elles sont parcourues par un courant i, génère un champ magnétique. Ce champ magnétique a pour conséquence d'entrainer la rotation de la partie mobile du moteur : le stator, représenté par le cercle centrale N/S sur la figure \ref{schema_stepper}. Celui-ci est composé d'un aimant qui a tendance a s'aligner sur le champ magnétique de la bobine. 
+\paragraph{} Les moteurs que nous avons utilisés sont constitués de deux bobines, repliées tout autour de la partie centrale du moteur, permettant des petits déplacements de la partie mobile. Celles-ci sont divisées en deux sur la figure \ref{schema_stepper}. La bobine 1 a pour extrémités A et B; la bobine 2 C et D. Ces bobines, lorsqu'elles sont parcourues par un courant i, génèrent un champ magnétique. Ce champ magnétique a pour conséquence d'entrainer la rotation de la partie mobile du moteur : le stator, représenté par le cercle centrale N/S. Celui-ci est composé d'un aimant qui a tendance a s'aligner sur le champ magnétique créé par les bobines. 
 Les bobines sont enroulées autour d'un fer doux, généralement de la ferrite afin de mieux conduire le lignes de champs.
 
+\paragraph{} On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir une vitesse et un couple constants lors de la rotation des moteurs. 
+Comme le montre la figure \ref{Motor_min}, à chaque séquence, une seule bobine suffirait à mettre en mouvement le moteur, cependant nous avons choisi d'alimenter tout de même l'autre afin d'obtenir un couple maximal (cf figure \ref{Motor_max}). 
+
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{0.5\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{0.49\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
 \multirow{2}*{Séquence} & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
-\cline{2-5} & \centering A & \centering B & \centering C & D \\ 
-\hline  
-1 & 1 & 0 & - & - \\
-\hline
-2 & - & - & 0 & 1 \\
-\hline
-3 & 0 & 1 & - & - \\
-\hline
-4 & - & - & 1 & 0 \\
-\hline
-5 & 1 & 0 & - & - \\
-\hline
+\cline{2-5} & \centering A & \centering B & \centering C & D \\ \hline  
+1 & 1 & 0 & - & - \\ \hline
+2 & - & - & 0 & 1 \\ \hline
+3 & 0 & 1 & - & - \\ \hline
+4 & - & - & 1 & 0 \\ \hline
+5 & 1 & 0 & - & - \\ \hline
 \end{tabularx}
 \captionof{table}{Séquences d'alimentation des bobines avec un couple minimal}
 \end{center}
 
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{0.5\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{0.49\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}\hline
 \multirow{2}*{Séquence} & \multicolumn{2}{c|}{Bobine 1}  & \multicolumn{2}{c|}{Bobine 2} \\
-\cline{2-5} & \centering A & \centering B & \centering C & D \\ 
-\hline  
-1 & 1 & 0 & 0 & 1 \\
-\hline
-2 & 0 & 1 & 0 & 1 \\
-\hline
-3 & 0 & 1 & 1 & 0 \\
-\hline
-4 & 1 & 0 & 1 & 0 \\
-\hline
-5 & 1 & 0 & 0 & 1 \\
-\hline
+\cline{2-5} & \centering A & \centering B & \centering C & D \\ \hline  
+1 & 1 & 0 & 0 & 1 \\ \hline
+2 & 0 & 1 & 0 & 1 \\ \hline
+3 & 0 & 1 & 1 & 0 \\ \hline
+4 & 1 & 0 & 1 & 0 \\ \hline
+5 & 1 & 0 & 0 & 1 \\ \hline
 \end{tabularx}
 \captionof{table}{Séquences d'alimentation des bobines avec un couple maximal}
 \end{center}
 
-\paragraph{} On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir un couple et une vitesse constants lors de la rotation des moteurs. \`{A} chaque séquence, une seule bobine suffirait à mettre en mouvement le moteur, l'autre est tout de même alimentée afin d'obtenir un couple maximal. 
+\begin{center}
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.28]{../pictures/motor_min.png}
+ \caption{Fonctionnement à pas complet avec un couple minimal\protect\footnotemark}
+ \label{Motor_min}
+\end{figure}
+\footnotetext{Une animation du pas complet avec couple minimal est disponible sur \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/motor_min1.gif}}
 
-Une autre différence entre l'alimentation d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable.
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.28]{../pictures/motor_max.png}
+ \caption{Fonctionnement à pas complet avec un couple maximal\protect\footnotemark}
+ \label{Motor_max}
+\end{figure}
+\end{center}
+\footnotetext{Une animation du pas complet avec couple maximal est disponible sur \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/motor_max1.gif}}
+
+Une autre différence entre l'alimentation d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base ainsi sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable mais permet des déplacements plus précis.
 
 \newpage
 \section{Drivers L293D}
@@ -247,6 +254,7 @@ Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deu
  \caption{Schéma électrique réalisé avec \emph{Fritzing}}
 \end{figure}
 
+\newpage
 \section{Premiers montages}
 Nous avons réalisés nos premiers montages avec une breadboard facilitant les tests. Une simulation du schéma a également été réalisée sous \emph{Fritzing} :
 
@@ -372,7 +380,7 @@ La méthode des triplets est une généralisation de cette méthode à trois cas
  \caption{Méthode d'exclusion pour une région}
 \end{figure}
 
-\paragraph{Backtracking} Cette méthode\footnote{Une animation montrant le fonctionnement de cette méthode est disponible sur : \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}} consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille. 
+\paragraph{Backtracking} Cette méthode\footnote{Une animation du \emph{backtracking} est disponible sur : \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}} consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille. 
 
 Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable.
 Pour une ordinateur également, cette méthode peut se révéler fastidieuse dans le cas où la solution n'apparait que très tardivement, et après beaucoup d'itérations. Elle est surtout efficace dans le cas général, mais peut être mise en défaut.
@@ -457,6 +465,6 @@ Tous les scripts et ce dossier sont disponibles sur GitHub\footnote{Sudoku Plott
 
 Nous remercions M. Couvez pour ses précieux conseils et Tristan Vajente pour les impressions de pièces en 3D.
 
-\include{annexe}
+%\include{annexe}
 
 \end{document}
