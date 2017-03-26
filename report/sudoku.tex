@@ -129,7 +129,6 @@ Malheureusement, ce roulement tournait très mal et saccadait. De plus, du jeu �
 	
 	
 	\section{Conception du chariot en 3D}
-	
 	Nous avons pris la décision de concevoir certaines pièces de notre projet en 3D, celle-ci nécessitant de la précision. Le logiciel professionnel de modélisation SolidWorks, développé par DassaultSystèmes, a été utilisé pour développer ces pièces.
 	
 	Les mises en plan des pièces composant le chariot sont disponibles en annexe \ref{chariot} à partir de la page \pageref{chariot}.
@@ -165,7 +164,7 @@ Le chariot permet, de façon modulaire, d'accueillir un support caméra se divis
 \section{Moteurs pas-à-pas}
 \label{Elec_stepper}
 Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
-\begin{itemize}[label=--]
+\begin{itemize}[label=--,itemsep=0pt,font=\bf\Large,labelsep=5mm]
 \item une précision bien supérieure à celle de moteurs à courant continu;
 \item un couple bien plus important que celui de servomoteurs;
 \item mis sous tension, un déplacement fortuit du moteur n'est pas possible.
@@ -180,7 +179,7 @@ Les moteurs pas-à-pas sont notamment utilisés dans les systèmes nécessitant 
 \end{figure}
 \footnotetext{\url{http://eskimon.fr/290-arduino-603-petits-pas-le-moteur-pas-pas}}
 
-\paragraph{} Les moteurs que nous avons utilisés sont constitués de deux bobines, repliées tout autour de la partie centrale du moteur, permettant des petits déplacements de la partie mobile. Celles-ci sont divisées en deux sur la figure \ref{schema_stepper}. La bobine 1 a pour extrémités A et B; la bobine 2 C et D. Ces bobines, lorsqu'elles sont parcourues par un courant i, génèrent un champ magnétique. Ce champ magnétique a pour conséquence d'entrainer la rotation de la partie mobile du moteur : le stator, représenté par le cercle centrale N/S. Celui-ci est composé d'un aimant qui a tendance a s'aligner sur le champ magnétique créé par les bobines. 
+\paragraph{} Les moteurs que nous avons utilisés sont constitués de deux bobines, repliées tout autour de la partie centrale du moteur, permettant des petits déplacements de la partie mobile. Celles-ci sont divisées en deux sur la figure \ref{schema_stepper}. La bobine 1 a pour extrémités A et B; la bobine 2 C et D. Ces bobines, lorsqu'elles sont parcourues par un courant i, génèrent un champ magnétique. Ce champ magnétique a pour conséquence d'entrainer la rotation de la partie mobile du moteur : le rotor, représenté par le cercle centrale N/S. Celui-ci est composé d'un aimant qui a tendance a s'aligner sur le champ magnétique créé par les bobines. 
 Les bobines sont enroulées autour d'un fer doux, généralement de la ferrite afin de mieux conduire le lignes de champs.
 
 \paragraph{} On distingue deux types de fonctionnement pour ces moteurs bipolaires, un fonctionnement à demi-pas et un fonctionnement à pas complet. Nous avons retenu ce dernier système car il permettait d'obtenir une vitesse et un couple constants lors de la rotation des moteurs. 
@@ -234,24 +233,41 @@ Comme le montre la figure \ref{Motor_min}, à chaque séquence, une seule bobine
 
 Une autre différence entre l'alimentation d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base ainsi sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable mais permet des déplacements plus précis.
 
-\newpage
 \section{Drivers L293D}
-Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présent les avantages suivants :
-\begin{itemize}[label=--]
+Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présentent les avantages suivants :
+\begin{itemize}[label=--,itemsep=0pt,font=\bf\Large,labelsep=5mm]
 \item ils permettent l'utilisation d'une source de tension externe, la Raspberry ne pouvant fournir que du 5V;
-\item ils intègrent un pont en H permettant de contrôler les moteurs dans les deux sens de rotation;
-\item ils permettent d'éviter la création de courants induits dans la Raspberry, du faits des bobines, pouvant pouvant l'endommager ou la détruire.
+\item ils intègrent deux ponts en H permettant d'inverser le courant circulant dans les bobines;
+\item ils permettent d'éviter la création de courants induits dans la Raspberry, du faits des bobines, pouvant potentiellement l'endommager ou la détruire.
 \end{itemize}
 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.35]{../pictures/pontH.png}
+ \caption{Utilité du pont en H, réalisé avec \emph{QElectroTech}}
+ \label{pontH}
+\end{figure}
+
+Les ponts en H permettent l'alimentation d'une bobine dans les deux sens, ils permettent également de freiner le moteur en le court-circuitant. Celui-ci est constitué de quatre interrupteurs, conformément à la figure \ref{pontH}. Le moteur M représente une bobine. Les ponts en H sont utilisés dans quasiment tous les drivers des moteurs, que ce soit des moteurs continus ou des pas-à-pas. Les interrupteurs sont alors remplacés par des transistors, ce qui permet de les commander par une autre source d'alimentation (par exemple du 5V). Pour éviter la création de courants induits dans les bobines, on place généralement des diodes en parallèle des transistors (ou des interrupteurs). 
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.2]{../pictures/pont_en_H.png}
+ \caption{Pont en H intégré dans les drivers, réalisé avec \emph{QElectroTech}}
+ \label{pontH}
+\end{figure}
+
+Le driver L293D présente l'avantage d'intégrer deux pont en H ainsi que les diodes en parallèle ce qui permet des branchements aisés, sans besoin d'ajout d'autres composants. Comme nos moteurs intègrent deux bobines chacun, nous avons eu besoin de deux L293D, un par moteur.
 
 \section{Schéma électrique}
-Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation (notamment du convertisseur de tension).
+Le schéma ci-joint représente les principales connections au sein de notre montage, même s'il ne présente ni l'écran LCD, ni le détail de l'alimentation de la \emph{Raspberry Pi} (notamment du convertisseur de tension).
 
-Les moteurs pas-à-pas sont constitués de deux bobines qui sont reliées à deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions.
+Les moteurs deux bobines de chaque moteur sont reliées aux deux drivers l293D . Ceux-ci sont pilotés par quatre sorties GPIO qui envoient des impulsions au driver qui alimente les bobines en 12V à tour de rôle, ce qui permet à la fois de contrôler le sens et la vitesse de de rotation des moteurs, en choisissant à quelle fréquence envoyer les impulsions. La figure \ref{schema_elec} souligne la présence de deux alimentations différentes, à la fois l'alimentation 5V pour la \emph{Raspberry Pi} et l'alimentation 9V(ou 12V) pour alimenter les moteurs.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.33]{../pictures/Sudoku_schema_electrique.png}
  \caption{Schéma électrique réalisé avec \emph{Fritzing}}
+ \label{schema_elec}
 \end{figure}
 
 \newpage
@@ -261,7 +277,7 @@ Nous avons réalisés nos premiers montages avec une breadboard facilitant les t
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.45]{../pictures/Sudoku_schema}
- \caption{Premier montage}
+ \caption{Premier montage réalisé avec \emph{Fritzing}}
 \end{figure}
 
 \section{Circuit imprimé}
@@ -342,7 +358,6 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
  \includegraphics[scale=0.55]{../pictures/finished.png}
  \caption{Exemple de grille prête à être résolue}
 \end{figure}
-
 
 \section{Résolution du sudoku}
 \label{Resolution}
