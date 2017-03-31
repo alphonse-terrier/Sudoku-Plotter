@@ -4,6 +4,7 @@
 import os
 import time
 import numpy as np
+import tkinter as tk
 
 import save
 import write as w
@@ -28,6 +29,7 @@ class Main:
         self.beta_version = True
         self.error = []
         self.taille = (3, 3)
+        self.mode = "Directe"
         self.nb_cases = self.taille[0] * self.taille[1]
         self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
         self.methode_resolution = "Globale"
@@ -35,8 +37,9 @@ class Main:
 
         self.W = w.Write()
         self.Camera = cm.Camera(self)
-        self.Display = dp.Display(self)
         self.Resolution = rs.Resolution(self)
+        self.Resolution.start()
+        self.Display = dp.Display(self)
 
         self.Display.mainloop()
 
@@ -56,11 +59,23 @@ class Main:
         self.methode_resolution = methode
 
     def startResolution(self, sudoku):
-        self.sudoku, self.liste_position = self.Resolution.start(sudoku, self.methode_resolution)
-        self.Display.updateSudoku(self.sudoku, self.liste_position)
+        self.Resolution.update(sudoku, self.methode_resolution)
+        if self.mode == "Pas à pas":
+            self.Resolution.process = True
+            while self.Resolution.process:
+                time.sleep(self.Resolution.sleep)
+                try:
+                    self.Display.updateSudoku(self.Resolution.sudoku, self.Resolution.starting_possibilities)
+                except tk.TclError:
+                    pass
+        else:
+            self.Resolution.sleep = 0
+            self.sudoku, self.liste_position = self.Resolution.begin()
+            self.Display.updateSudoku(self.sudoku, self.liste_position)
+
 
     def stopResolution(self):
-        pass
+        self.Resolution.resolution = self.Resolution.process = self.Resolution.back_tracking = False
 
     def setSudoku(self, sudoku):
         self.sudoku = sudoku
@@ -69,6 +84,18 @@ class Main:
         self.sudoku = sudoku
         save.saveSudoku(sudoku)
         os.system("sudo python3 writing_main.py")
+
+    def setMode(self, mode):
+        self.mode = mode
+
+    def setVitesse(self, vitesse):
+        if vitesse == "Rapide": self.Resolution.sleep = 0.01
+        if vitesse == "Lente": self.Resolution.sleep = 0.1
+
+    def closeAll(self):
+        self.stopResolution()
+        self.Resolution.power = False
+        self.Display.destroy()
 
 
 Main()

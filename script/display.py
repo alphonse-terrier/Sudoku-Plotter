@@ -5,6 +5,7 @@ import save
 import numpy as np
 from tkinter import *
 from tkinter.messagebox import *
+from tkinter.filedialog import *
 
 
 class Display(Tk):
@@ -39,6 +40,10 @@ class Display(Tk):
         self.configure(menu=self.BarreMenu)
 
         self.createMatrix()
+        self.bind_all('<Control-o>', self.openSudoku)
+        self.bind_all('<Control-O>', self.openSudoku)
+        self.bind_all('<Control-s>', self.saveSudoku)
+        self.bind_all('<Control-S>', self.saveSudoku)
         self.bind_all('<Key>', self.tryToEdit)
 
         self.update()
@@ -49,8 +54,13 @@ class Display(Tk):
             for error in self.boss.getError():
                 self.showError(error)
 
+        self.protocol("WM_DELETE_WINDOW", self.boss.closeAll)
+
     def choixMethode(self, methode):
         self.boss.setMethodeResolution(methode)
+
+    def choixMode(self, mode):
+        self.boss.setMode(mode)
 
     def choixVitesse(self, vitesse):
         self.boss.setVitesse(vitesse)
@@ -72,10 +82,17 @@ class Display(Tk):
         save.saveSudoku(self.sudoku)
         showinfo("Sudoku", "La grille a été enregistrée avec succès !")
 
-    def openSudoku(self):
-        self.sudoku = save.readSudoku()
+    def openSudoku(self, evt=None):
+        filepath = None
+        filepath = askopenfilename(title="Ouvrir une grille", initialdir="/Sudoku-Plotter/text", filetypes=[('Text files', '.txt')])
+        if filepath: self.sudoku = save.readSudoku(filepath)
         self.boss.setSudoku(self.sudoku)
         self.updateSudoku()
+
+    def saveSudoku(self, evt=None):
+        filepath = asksaveasfilename(title="Enregistrer une grille", initialdir="/Sudoku-Plotter/text",
+                                     initialfile="Sudoku", filetypes=[('Text files', '.txt')])
+        save.saveSudoku(self.sudoku, filepath)
 
     def startManualEdition(self, edition=None):
         if edition is not None:
@@ -119,14 +136,15 @@ class Display(Tk):
             self.color = "black"
             print("black")
 
-        if key.upper() == 'c':
+        if key == 'space':
             self.boss.stopResolution()
 
         if key.lower() == "m":
             self.boss.writeSudoku(self.sudoku)
 
         if key.lower() == "o":
-            self.openSudoku()
+            self.sudoku = save.readSudoku()
+            self.updateSudoku(self.sudoku)
 
         if key.lower() == "r":
             self.color = "red"
@@ -135,7 +153,7 @@ class Display(Tk):
         if key.lower() == "s":
             self.backUp()
 
-        if key == "v".lower():
+        if key.lower() == "v":
             try:
                 sleep = float(input("sleep = "))
                 self.boss.setSpeed(sleep)
@@ -252,37 +270,40 @@ class Display(Tk):
         def __init__(self, boss):
             Menu.__init__(self)
             self.boss = boss
-            self.mode_resolution = IntVar()
+            self.mode = IntVar()
             self.vitesse = IntVar()
+            self.mode_resolution = IntVar()
 
             # Sélection par défaut des items
             self.mode_resolution.set(0)
+            self.mode.set(0)
             self.vitesse.set(0)
 
             # Création des menus
             self.menu_edition = Menu(self, tearoff=0)
             self.menu_resolution = Menu(self, tearoff=0)
             self.menu_methode = Menu(self, tearoff=0)
+            self.menu_vitesse = Menu(self, tearoff=0)
             self.menu_aide = Menu(self, tearoff=0)
 
             # Ajout des menus
             self.add_cascade(label="Edition", menu=self.menu_edition)
             self.add_cascade(label="Résolution", menu=self.menu_resolution)
             self.add_cascade(label="Méthode", menu=self.menu_methode)
+            self.add_cascade(label="Vitesse", menu=self.menu_vitesse)
             self.add_cascade(label="Aide", menu=self.menu_aide)
 
             # Ajout des items du menu 'Edition'
-            self.menu_edition.add_command(label="Sauvegarder", command=self.boss.backUp)
-            self.menu_edition.add_command(label="Automatique", command=self.boss.openSudoku)
+            self.menu_edition.add_command(label="Sauvegarder", command=self.boss.saveSudoku, accelerator="Ctrl+S")
+            self.menu_edition.add_command(label="Automatique", command=self.boss.openSudoku, accelerator="Ctrl+O")
             self.menu_edition.add_command(label="Manuelle", command=self.boss.startManualEdition)
             self.menu_edition.add_command(label="Effacer", command=self.boss.effacerSudoku)
 
             # Ajout des items du menu 'Résolution'
-            self.menu_resolution.add_radiobutton(label="Directe", value=0, variable=self.vitesse,
-                                                 command=lambda: self.boss.choixVitesse("Directe"))
-            self.menu_resolution.add_radiobutton(label="Pas à pas", value=1, variable=self.vitesse,
-                                                 command=lambda: self.boss.choixVitesse("Pas à pas"))
-
+            self.menu_resolution.add_radiobutton(label="Directe", value=0, variable=self.mode,
+                                                 command=lambda: self.boss.choixMode("Directe"))
+            self.menu_resolution.add_radiobutton(label="Pas à pas", value=1, variable=self.mode,
+                                                 command=lambda: self.boss.choixMode("Pas à pas"))
             self.menu_resolution.add_separator()
             self.menu_resolution.add_command(label="Lancer", command=self.boss.startResolution)
 
@@ -295,6 +316,12 @@ class Display(Tk):
                                               command=lambda: self.boss.choixMethode("Exclusion"))
             self.menu_methode.add_radiobutton(label="Backtracking", value=3, variable=self.mode_resolution,
                                               command=lambda: self.boss.choixMethode("Backtracking"))
+
+            # Ajout des items du menu "Vitesse"
+            self.menu_vitesse.add_radiobutton(label="Rapide", value=0, variable=self.vitesse,
+                                                 command=lambda: self.boss.choixVitesse("Rapide"))
+            self.menu_vitesse.add_radiobutton(label="Lente", value=1, variable=self.vitesse,
+                                                 command=lambda: self.boss.choixVitesse("Lente"))
 
             # Ajout des items du menu "Aide
             self.menu_aide.add_command(label="Fonctionnement", command=self.boss.showAide)

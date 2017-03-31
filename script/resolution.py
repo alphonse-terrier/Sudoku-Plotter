@@ -4,9 +4,10 @@
 import time
 import numpy as np
 from copy import copy
+import threading as th
 
 
-class Resolution:
+class Resolution(th.Thread):
     """
     Classe permettant de résoudre un sudoku grâce à différentes méthodes, à savoir :
         - inclusion
@@ -16,17 +17,34 @@ class Resolution:
     Si le sudoku n'est pas résoluble, lève une erreur
     """
     def __init__(self, boss):
+        th.Thread.__init__(self)
         self.boss = boss
-        self.taille = self.boss.taille
-        self.nb_cases = self.boss.nb_cases
-        self.sudoku = self.boss.sudoku
-        self.methode_resolution = None
-        self.possibilities = []
-        self.starting_possibilities = []
+        self.sleep = 0.01
+        self.power = True
+        self.process = False
         self.resolution = False
+        self.back_tracking = False
+        self.methode_resolution = None
+        self.taille = self.boss.taille
+        self.sudoku = self.boss.sudoku
+        self.nb_cases = self.boss.nb_cases
         self.carre = []
         self.ligne = []
         self.colonne = []
+        self.possibilities = []
+        self.starting_possibilities = []
+
+    def run(self):
+        while self.power:
+            if self.process:
+                self.begin()
+                self.process = False
+            else:
+                time.sleep(0.1)
+
+    def update(self, sudoku, methode):
+        self.sudoku = copy(sudoku)
+        self.methode_resolution = methode
 
     def beforeStart(self):
         self.possibilities = []
@@ -52,13 +70,12 @@ class Resolution:
                     self.possibilities.append((i, j))
         self.starting_possibilities = copy(self.possibilities)
 
-    def start(self, sudoku, methode):
-        self.sudoku = copy(sudoku)
+    def begin(self):
         self.beforeStart()
-        self.methode_resolution = methode
         zero_time = time.time()
         n = 0
         print(self.methode_resolution)
+        sudoku = self.sudoku
         if self.methode_resolution == "Backtracking":
             self.backTracking()
         else:
@@ -80,7 +97,7 @@ class Resolution:
                 print("Backtracking")
                 self.backTracking()
 
-        print(time.time() - zero_time, n)
+        print(time.time() - zero_time, n, '\n')
         return self.sudoku, self.starting_possibilities
 
     def checkListe(self, x, y):
@@ -122,7 +139,7 @@ class Resolution:
                 for x in x_possible:
                     for y in y_possible:
                         if (x, y) in self.possibilities: case_possible.append((x, y))
-                self.setValuesEsclusion(case_possible, k)
+                self.setValuesExclusion(case_possible, k)
 
             j = n
             for k in self.colonne[j]:
@@ -136,7 +153,7 @@ class Resolution:
                         if k in self.ligne[i] and (i, j) not in case_possible and \
                                 3 * (i // 3) + j // 3 in carre_possible:
                             case_possible.append((i, j))
-                self.setValuesEsclusion(case_possible, k)
+                self.setValuesExclusion(case_possible, k)
 
             i = n
             for k in self.ligne[i]:
@@ -150,16 +167,18 @@ class Resolution:
                         if k in self.colonne[j] and (i, j) not in case_possible and \
                                 3 * (i // 3) + j // 3 in carre_possible:
                             case_possible.append((i, j))
-                self.setValuesEsclusion(case_possible, k)
+                self.setValuesExclusion(case_possible, k)
 
     def backTracking(self):
         """
         Résoud un sudoku selon la méthode de backtracking
         :return: None or -1
         """
+        self.back_tracking = True
         liste_sudoku = []
         i = 0
-        while i < len(self.possibilities):
+        while self.back_tracking:
+            time.sleep(self.sleep)
             x, y = self.possibilities[i]
             liste = self.checkListe(x, y)
             if liste:
@@ -184,6 +203,7 @@ class Resolution:
                     else:
                         liste_sudoku.pop(i)
                         self.sudoku[x][y] = 0
+            if i >= len(self.possibilities): self.back_tracking = False
 
     def checkValues(self, x, y):
         if (x, y) in self.possibilities:
@@ -194,7 +214,7 @@ class Resolution:
                     possibilities.append(i)
             self.setValues(possibilities, x, y)
 
-    def setValuesEsclusion(self, case_possible, k):
+    def setValuesExclusion(self, case_possible, k):
         if len(case_possible) == 1:
             x, y = case_possible[0][0], case_possible[0][1]
             n = 3 * (x // 3) + y // 3
@@ -230,7 +250,8 @@ if __name__ == "__main__":
                                     [0, 0, 0, 0, 0, 0, 0, 0, 0],
                                     [7, 0, 0, 8, 0, 5, 0, 0, 1]])
             self.Resolution = Resolution(self)
-            self.sudoku, position = self.Resolution.start(self.sudoku, "Globale")
+            self.Resolution.start()
+            self.Resolution.update(self.sudoku, "Globale")
             print(self.sudoku)
 
 
