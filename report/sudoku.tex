@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage{enumitem}
 \usepackage{stmaryrd}
+\usepackage{animate}
 \usepackage{url}
 \usepackage{array}
 %\usepackage{minted}
@@ -367,7 +368,7 @@ Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de
 On dénombre pour chaque case vierge les chiffres pouvant être positionnés dans celle-ci. S'il n'y a qu'une seule possibilité alors elle est solution et est donc placée dans la case.
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.8]{../pictures/inclusion}
+ \includegraphics[scale=0.6]{../pictures/inclusion}
  \caption{Méthode d'inclusion pour une région}
 \end{figure}
 
@@ -375,14 +376,14 @@ On dénombre pour chaque case vierge les chiffres pouvant être positionnés dan
 Si pour un chiffre donné, on ne peut le placer dans une section que dans une seule case possible, alors ce chiffre est placé dans cette case
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.8]{../pictures/exclusion}
+ \includegraphics[scale=0.6]{../pictures/exclusion}
  \caption{Méthode d'exclusion pour une région}
 \end{figure}
 
 \paragraph{Paires} Si dans une section donnée, deux cases ne contiennent que deux \emph{candidats identiques}, alors ils ne peuvent être placés que dans ces deux cases, ce qui permet de les éliminer des autres possibilité pour la section
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.8]{../pictures/paire}
+ \includegraphics[scale=0.6]{../pictures/paire}
  \caption{Méthode des paires pour une ligne}
 \end{figure}
 
@@ -391,14 +392,18 @@ La méthode des triplets est une généralisation de cette méthode à trois cas
 \paragraph{Jumeaux} Si dans une section, un chiffre ne peut être placé que sur une ligne (resp. colonne), alors ce chiffre peut être supprimé des possibilités pour le reste de la ligne (resp.colonne). Cette méthode ne permet pas toujours de placer immédiatement celui-ci, mais permet de réduire les possibilités pour placer les autres.
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.8]{../pictures/jumeaux}
- \caption{Méthode d'exclusion pour une région}
+ \includegraphics[scale=0.6]{../pictures/jumeaux}
+ \caption{Méthode des jumeaux pour une ligne}
 \end{figure}
 
 \paragraph{Backtracking} Cette méthode\footnote{Une animation du \emph{backtracking} est disponible sur : \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}} consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille. 
 
 Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable.
 Pour une ordinateur également, cette méthode peut se révéler fastidieuse dans le cas où la solution n'apparait que très tardivement, et après beaucoup d'itérations. Elle est surtout efficace dans le cas général, mais peut être mise en défaut.
+
+%\begin{center}
+	%\animategraphics[width=0.6\linewidth]{24}{../gif/backtracking/backtracking-}{0}{660}
+%\end{center}
 
 \paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous l'avons changé de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs. 
 
