@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import time
-# import lcddriver
+import lcddriver
 
 
 class Lcd:
@@ -10,11 +10,12 @@ class Lcd:
         self.power = True
         self.text = ["", ""]
         self.previous_text = ["", ""]
-        # self.display = lcddriver.Lcd()
+        self.display = lcddriver.lcd()
 
     def start(self):
-        open("text.txt", "w").close()
-        open("previous_text.txt", "w").close()
+        previous_text = open("previous_text.txt", "w")
+	previous_text.close()
+	self.display.lcd_clear()
         while self.power:
             self.write()
             time.sleep(0.1)
@@ -38,12 +39,11 @@ class Lcd:
             previous_text.close()
 
     def writeLine(self, text, i):
-        print(text)
-        # self.display.lcd_dislplay_string(text, i)
+        self.display.lcd_display_string(text, i + 1)
 
     def close(self):
         self.power = False
-        # self.display.lcd_clear()
+        self.display.lcd_clear()
 
 
 Lcd().start()

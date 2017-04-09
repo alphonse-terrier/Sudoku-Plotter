@@ -28,6 +28,7 @@ class Main:
 
     def writeSudoku(self, sudoku):
         self.sudoku = sudoku
+        print(sudoku)
         lcd3.write("Sudoku writing in progress...")
 
     def stop(self):
