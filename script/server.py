@@ -25,12 +25,15 @@ class Server(th.Thread):
     def tryConnect(self):
         try:
             self.mySocket.bind((self.host, self.port))
-            lcd3.write("Server connected waiting...")
         except socket.error:
             lcd3.write("Connection failed!")
             sys.exit()
 
     def run(self):
+        self.starting()
+
+    def starting(self):
+        lcd3.write("Server connected waiting...")
         self.mySocket.listen(5)
         connexion, adresse = self.mySocket.accept()
         lcd3.write("connected to " + str(adresse[0]) + " ip")
@@ -42,10 +45,10 @@ class Server(th.Thread):
                 self.boss.writeSudoku(self.sudoku)
             except IndexError:
                 time.sleep(0.1)
-                self.start()
+                self.starting()
             except ConnectionAbortedError:
                 lcd3.write("Client disconnected")
-                self.start()
+                self.starting()
             time.sleep(0.1)
 
     def stop(self):

@@ -51,6 +51,9 @@ if __name__ == "__main__":
         def __init__(self):
             self.sudoku = np.zeros((9, 9), int)
 
+        def showInfo(self, info):
+            print(info)
+
     Boss = Boss()
     c = Client(Boss)
     c.sendSudoku(Boss.sudoku)
