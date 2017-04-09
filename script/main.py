@@ -7,8 +7,8 @@ import numpy as np
 import tkinter as tk
 
 import save
+import client
 import write as w
-import camera as cm
 import display as dp
 import resolution as rs
 
@@ -36,21 +36,26 @@ class Main:
         self.liste_position = []
 
         self.W = w.Write()
-        self.Camera = cm.Camera(self)
+        self.Client = client.Client(self)
         self.Resolution = rs.Resolution(self)
-        self.Resolution.start()
         self.Display = dp.Display(self)
+        self.Resolution.start()
 
         self.Display.mainloop()
 
 
-    def setError(self, error, off=True):
-        if off:
+    def setError(self, error, leave=True):
+        if leave:
             if error not in self.error:
                 self.error.append(error)
+            try: self.Display.showError(error)
+            except AttributeError: pass
         else:
             if error in self.error:
                 self.error.remove(error)
+
+    def showInfo(self, info):
+        self.Display.showInfo(info)
 
     def getError(self):
         return self.error
@@ -60,7 +65,11 @@ class Main:
 
     def startResolution(self, sudoku):
         self.Resolution.update(sudoku, self.methode_resolution)
-        if self.mode == "Pas à pas":
+        if self.mode == "Directe":
+            self.Resolution.sleep = 0
+            self.sudoku, self.liste_position = self.Resolution.begin()
+            self.Display.updateSudoku(self.sudoku, self.liste_position)
+        else:
             self.Resolution.process = True
             while self.Resolution.process:
                 time.sleep(self.Resolution.sleep)
@@ -68,11 +77,9 @@ class Main:
                     self.Display.updateSudoku(self.Resolution.sudoku, self.Resolution.starting_possibilities)
                 except tk.TclError:
                     pass
-        else:
-            self.Resolution.sleep = 0
-            self.sudoku, self.liste_position = self.Resolution.begin()
-            self.Display.updateSudoku(self.sudoku, self.liste_position)
 
+    def pauseResolution(self):
+        self.Resolution.wait()
 
     def stopResolution(self):
         self.Resolution.resolution = self.Resolution.process = self.Resolution.back_tracking = False
@@ -80,22 +87,21 @@ class Main:
     def setSudoku(self, sudoku):
         self.sudoku = sudoku
 
-    def writeSudoku(self, sudoku):
-        self.sudoku = sudoku
-        save.saveSudoku(sudoku)
-        os.system("sudo python3 writing_main.py")
+    def sendSudoku(self, evt=None):
+        self.sudoku = self.Display.sudoku
+        self.Client.tryConnect()
+        self.Client.sendSudoku(self.sudoku)
 
     def setMode(self, mode):
         self.mode = mode
-
-    def setVitesse(self, vitesse):
-        if vitesse == "Rapide": self.Resolution.sleep = 0.01
-        if vitesse == "Lente": self.Resolution.sleep = 0.1
+        if mode == "Rapide": self.Resolution.sleep = 0.01
+        if mode == "Lente": self.Resolution.sleep = 0.1
 
     def closeAll(self):
         self.stopResolution()
         self.Resolution.power = False
         self.Display.destroy()
+        self.Client.stop()
 
 
 Main()

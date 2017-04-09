@@ -46,6 +46,26 @@ class Resolution(th.Thread):
         self.sudoku = copy(sudoku)
         self.methode_resolution = methode
 
+    def checkBeforeStart(self):
+        for i in range(self.nb_cases):
+            liste_ligne = []
+            liste_colonne = []
+            liste_carre = []
+            x = 3 * (i // 3)
+            y = 3 * (i % 3)
+            for j in range(self.nb_cases):
+                if self.sudoku[x + j // 3, y + j % 3] in liste_carre \
+                        or self.sudoku[j, i] in liste_colonne \
+                        or self.sudoku[i, j] in liste_ligne:
+                    return False
+                if self.sudoku[i, j] != 0:
+                    liste_ligne.append(self.sudoku[i, j])
+                if self.sudoku[j, i] != 0:
+                    liste_colonne.append(self.sudoku[j, i])
+                if self.sudoku[x + j // 3, y + j % 3] != 0:
+                    liste_carre.append(self.sudoku[x + j // 3, y + j % 3])
+        return True
+
     def beforeStart(self):
         self.possibilities = []
         self.carre = []
@@ -72,32 +92,34 @@ class Resolution(th.Thread):
 
     def begin(self):
         self.beforeStart()
-        zero_time = time.time()
-        n = 0
-        print(self.methode_resolution)
-        sudoku = self.sudoku
-        if self.methode_resolution == "Backtracking":
-            self.backTracking()
+        if not self.checkBeforeStart():
+            self.boss.setError("sudoku_insoluble")
         else:
-            self.resolution = True
-            while self.resolution:
-                n += 1
-                if self.methode_resolution == "Inclusion":
-                    self.inclusion()
-                if self.methode_resolution == "Exclusion":
-                    self.exclusion()
-                if self.methode_resolution == "Globale":
-                    self.inclusion()
-                    self.exclusion()
-                if np.all(self.sudoku == sudoku):
-                    self.resolution = False
-                sudoku = copy(self.sudoku)
-            if np.any(self.sudoku == np.zeros((self.nb_cases, self.nb_cases), int)):
-                self.methode_resolution = "Backtracking"
-                print("Backtracking")
+            zero_time = time.time()
+            n = 0
+            print(self.methode_resolution)
+            if self.methode_resolution == "Backtracking":
                 self.backTracking()
-
-        print(time.time() - zero_time, n, '\n')
+            else:
+                self.resolution = True
+                while self.resolution:
+                    n += 1
+                    sudoku = self.sudoku
+                    if self.methode_resolution == "Inclusion":
+                        self.inclusion()
+                    if self.methode_resolution == "Exclusion":
+                        self.exclusion()
+                    if self.methode_resolution == "Globale":
+                        self.inclusion()
+                        self.exclusion()
+                    if np.all(self.sudoku == sudoku):
+                        self.resolution = False
+                    sudoku = copy(self.sudoku)
+                if np.any(self.sudoku == np.zeros((self.nb_cases, self.nb_cases), int)):
+                    self.methode_resolution = "Backtracking"
+                    print("Backtracking")
+                    self.backTracking()
+            print(time.time() - zero_time, n, '\n')
         return self.sudoku, self.starting_possibilities
 
     def checkListe(self, x, y):
@@ -169,12 +191,12 @@ class Resolution(th.Thread):
                             case_possible.append((i, j))
                 self.setValuesExclusion(case_possible, k)
 
-    def backTracking(self):
+    def backTracking(self, start=True):
         """
         Résoud un sudoku selon la méthode de backtracking
         :return: None or -1
         """
-        self.back_tracking = True
+        self.back_tracking = start
         liste_sudoku = []
         i = 0
         while self.back_tracking:
@@ -234,6 +256,8 @@ class Resolution(th.Thread):
             self.colonne[y].remove(k)
             self.carre[n].remove(k)
 
+    def wait(self):
+        pass
 
 if __name__ == "__main__":
     class Boss:

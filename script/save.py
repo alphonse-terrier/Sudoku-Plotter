@@ -1,5 +1,5 @@
+# !usr/bin/env python3
 # -*- coding: utf-8 -*-
-# !usr/bin/env python
 
 import os
 import numpy as np
@@ -14,7 +14,7 @@ def saveSudoku(sudoku, filename=None):
     """
     if not filename:
         nb = getFileName()
-        filename = "../text/Sudoku" + str(nb) + ".txt"
+        filename = "../sudoku/Sudoku" + str(nb) + ".txt"
     if ".txt" not in filename:
         filename += '.txt'
     fichier = open(filename, "w")
@@ -32,7 +32,7 @@ def readSudoku(filename=None):
     :return: sudoku: array
     """
     sudoku = np.zeros((9, 9), int)
-    if not filename: filename = "../text/" + getLastFile()
+    if not filename: filename = "../sudoku/" + getLastFile()
     try:
         fichier = open(filename, "r")
         for i in range(9):
@@ -53,7 +53,7 @@ def readSudoku(filename=None):
 
 
 def getFileName():
-    files = os.listdir("../text")
+    files = os.listdir("../sudoku")
     n = 0
     for files_name in files:
         i = "0"
@@ -64,8 +64,30 @@ def getFileName():
 
 
 def getLastFile():
-    files = os.listdir("../text")
+    files = os.listdir("../sudoku")
     if files:
         return files[-1]
     else:
         return None
+
+
+def sudokuToString(sudoku):
+    """
+    Transform a np.array into a str
+    :param sudoku: np.array
+    :return: str
+    """
+    s = ""
+    for i in range(9):
+        for j in range(9):
+            s += str(sudoku[i][j])
+        s += "\n"
+    return s
+
+
+def stringToSudoku(string):
+    sudoku = np.zeros((9, 9), int)
+    for i in range(9):
+        for j in range(9):
+            sudoku[i, j] = int(string.split()[i][j])
+    return sudoku
