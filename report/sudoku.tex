@@ -15,6 +15,7 @@
 \usepackage{animate}
 \usepackage{url}
 \usepackage{array}
+\usepackage{amsmath, amsfonts, amssymb}
 %\usepackage{minted}
 \usepackage{color}
 \usepackage{tabularx}
@@ -90,7 +91,7 @@ Une grille est considérée comme sudoku seulement si sa solution est unique.
 
 Le minimum de cases remplies au préalable pour espérer que la dite solution soit bien unique est de 17, cela a été prouvé par une équipe islandais en 2012.
 
-	\chapter{Mécanique}
+	\chapter{Mécanique}	
 	\section{Choix concernant la structure du bras}
 	La premier défi qui s'est imposé à nous a été le choix d'une structure adéquate : solide et pratique. Notre choix s'est alors porté sur les Makerbeam. MakerBeam est un système de construction Open-Source basé sur des profilés ALU en T.
 	
@@ -110,6 +111,129 @@ Ainsi, un moteur pas-à-pas assurera la rotation $\theta$ du bras. Ce moteur s'a
 
 
 De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas et un système courroie/poulie. Cette translation s'est faite le long de deux axes de $272$ mm et de $8$ mm de diamètre.
+
+	\section{Étude cinématique du mécanisme}
+	La pièce 0 correspondra par la suite au bâti. La base du bras et le bâti seront supposés en liaison encastrement, alors qu'ils sont en réalité en liaison appui-plan, cependant les forces de frottements entre ces deux pièces sont telles quelles sont immobiles l'une par rapport à l'autre. La pièce 2 correspond à la structure du bras, reposant sur la roue dentée. La pièce 3 symbolise le chariot et la pièce 3 le stylo.
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=1.1]{../pictures/schema_cinematique.png}
+ \caption{Schéma cinématique du mécanisme choisi}
+\end{figure}
+
+	Les deux liaisons en parallèle entre 2 et 3 peuvent être remplacés par une liaison équivalentede torseur $\{ T_c (2/3) \}$ devant vérifier l'équation suivante: : 
+	\begin{align*}
+\{ T_c (2/3) \}_{B} = \{ T'_c (2/3) \}_{B} = \{ T''_c (2/3) \}_{B}
+\end{align*}
+On notera les liaisons entre les pièces 2 et 3 $L'_{2/3}$ et $L''_{2/3}$. On a alors:
+\begin{align*}
+\{ T'_c (2/3) \} =
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _{\forall P \in (B,\overrightarrow{z})}
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & 0 \\
+	\gamma'_{2/3} & w'_{2/3} \\
+\end{array}
+\right\} _{x,y,z)}
+\end{align*} 
+\begin{align*}
+\{ T''_c (2/3) \} = 
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _{\forall P \in (C, \overrightarrow{z})}
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & 0 \\
+	\gamma''_{2/3} & w''_{2/3} \\
+\end{array}
+\right\} _{(x, y, z)}
+\end{align*}
+\begin{align*}
+\mbox{Or } \overrightarrow{V}(B \in 2/3) 
+&= \overrightarrow{V}(C \in 2/3)+\overrightarrow{\Omega}(2/3) \wedge \overrightarrow{CB}\\ 
+&= w''_{2/3} \overrightarrow{z} + \gamma''_{2/3} \overrightarrow{z} \wedge BC \overrightarrow{x} \\
+&= w''_{2/3} \overrightarrow{z} + \gamma''_{2/3}BC \overrightarrow{y}
+\end{align*} 
+\begin{align*}
+\mbox{On a donc }
+\{ T''_c (2/3) \} = 
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _{B}
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & \gamma''_{2/3}BC \\
+	\gamma''_{2/3} & w''_{2/3} \\
+\end{array}
+\right\} _{(x, y, z)}
+\end{align*}
+\begin{align*}
+\mbox{Donc }
+\{ T_c (2/3) \} = 
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _B
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & 0 \\
+	\gamma'_{2/3} & w'_{2/3} \\
+\end{array}
+\right\} _{x,y,z)} =
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _{B}
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & \gamma''_{2/3}BC \\
+	\gamma''_{2/3} & w''_{2/3} \\
+\end{array}
+\right\} _{(x, y, z)}
+\end{align*} 
+\begin{align*}
+\mbox{D'où le système d'équation : }
+\left\{
+\begin{array}{l}
+0 = 0 \\
+0 = 0 \\
+\gamma'_{2/3} = \gamma''_{2/3} \\
+0 = 0 \\
+\gamma''_{2/3} = 0 \\
+w'_{2/3} = w''_{2/3} \\
+\end{array}
+\right. 
+\end{align*} 
+\begin{align*}
+\mbox{On en déduit } 
+\{ T_c (2/3) \} = 
+\begin{array}{c}
+	\\ \\ \\ 
+\end{array} _B
+\left\{
+\begin{array}{cc}
+	0 & 0 \\
+	0 & 0 \\
+	0 & w'_{2/3} \\
+\end{array}
+\right\} _{x,y,z)}
+\end{align*}
+
+La liaison équivalente est donc une liaison glissière d'axe z, ce qui permet des déplacements verticaux du stylo, il peut ainsi être mis en contact avec la feuille.
+On a alors le schéma de la figure \ref{Schema_cine_simp}.
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=1.1]{../pictures/schema_cinematique_simplifie.png}
+ \caption{Schéma cinématique équivalent du mécanisme choisi}
+ \label{Schema_cine_simp}
+\end{figure}
+
 	\section{Difficultés rencontrées et solutions mises en place}
 	Nous avons notamment rencontré des difficultés concernant le roulement utilisé. En effet, nous avions au préalable utilisé un roulement à billes comme celui-ci :
 	
@@ -360,6 +484,7 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
  \caption{Exemple de grille prête à être résolue}
 \end{figure}
 
+\newpage
 \section{Résolution du sudoku}
 \label{Resolution}
 Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Les grilles les plus difficiles peuvent imposer au joueur de faire un choix entre plusieurs possibilités pour espérer mener à son terme la résolution. C'est sur ce constat que ce base la méthode dite de \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci n'est pas valide et possède plusieurs solutions. Bien sûr cette liste n'est pas exhaustive et il existe d'autres méthodes de résolution, même si ces méthodes ne sont pas forcément très employés faciles d'emploi.
@@ -402,7 +527,7 @@ Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure o�
 Pour une ordinateur également, cette méthode peut se révéler fastidieuse dans le cas où la solution n'apparait que très tardivement, et après beaucoup d'itérations. Elle est surtout efficace dans le cas général, mais peut être mise en défaut.
 
 %\begin{center}
-	%\animategraphics[width=0.6\linewidth]{24}{../gif/backtracking/backtracking-}{0}{660}
+%	\animategraphics[width=0.6\linewidth]{24}{../pictures/backtracking/backtracking-}{1}{1001}
 %\end{center}
 
 \paragraph{} Partant de ce constat, nous avons tout d'abord implémenté la méthode de \emph{backtracking}, ainsi, il nous était possible de résoudre toutes les grilles possibles. \`{A} l'origine, notre algorithme parcourait la grille dans un ordre prédéfini, à savoir de haut en bas et de gauche à droite. Cependant, il pouvait arriver que pour certaines grilles, ce système n'était pas tout à fait optimale. C'est pourquoi, nous l'avons changé de sorte que l'algorithme commence par les cases présentant le moins de possibilités, permettant dans le cas général de diminuer le temps de résolution. Cependant, dans le pire des cas, cette solution ne présentait aucune différence en terme de temps de calculs. 
@@ -459,12 +584,13 @@ En augmentant la précision théorique, on obtient des chiffres quasiment contin
  \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
 \end{figure}
 
-Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure suivante :
+Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure \ref{sudoku_trace}.
 
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.45]{../pictures/Sudoku_relies}
  \caption{Grille de sudoku tracée avec \emph{MatplotLib}}
+ \label{sudoku_trace}
 \end{figure}
 
 \chapter*{Conclusion}
