@@ -113,7 +113,7 @@ Ainsi, un moteur pas-à-pas assurera la rotation $\theta$ du bras. Ce moteur s'a
 De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas et un système courroie/poulie. Cette translation s'est faite le long de deux axes de $272$ mm et de $8$ mm de diamètre.
 
 	\section{Étude cinématique du mécanisme}
-	La pièce 0 correspondra par la suite au bâti. La base du bras et le bâti seront supposés en liaison encastrement, alors qu'ils sont en réalité en liaison appui-plan, cependant les forces de frottements entre ces deux pièces sont telles quelles sont immobiles l'une par rapport à l'autre. La pièce 2 correspond à la structure du bras, reposant sur la roue dentée. La pièce 3 symbolise le chariot et la pièce 3 le stylo.
+	La pièce 0 correspondra par la suite au bâti. La base du bras et le bâti seront supposés en liaison encastrement, alors qu'ils sont en réalité en liaison appui-plan, cependant les forces de frottements entre ces deux pièces sont telles quelles sont presque immobiles l'une par rapport à l'autre. La pièce 1 correspond à la structure du bras, reposant sur la roue dentée. La pièce 2 symbolise le chariot et la pièce 3 le stylo.
 
 \begin{figure}[!h]
  \center
@@ -121,7 +121,13 @@ De même la translation $r$ a été assurée par un deuxième moteur pas-à-pas 
  \caption{Schéma cinématique du mécanisme choisi}
 \end{figure}
 
-	Les deux liaisons en parallèle entre 2 et 3 peuvent être remplacés par une liaison équivalentede torseur $\{ T_c (2/3) \}$ devant vérifier l'équation suivante: : 
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.6]{../pictures/graphe_structure.png}
+ \caption{Graphe de structure du mécanisme choisi}
+\end{figure}
+
+	Les deux liaisons en parallèle entre 2 et 3 peuvent être remplacés par une liaison équivalent ede torseur $\{ T_c (2/3) \}$ devant vérifier l'équation suivante: : 
 	\begin{align*}
 \{ T_c (2/3) \}_{B} = \{ T'_c (2/3) \}_{B} = \{ T''_c (2/3) \}_{B}
 \end{align*}
@@ -230,7 +236,7 @@ On a alors le schéma de la figure \ref{Schema_cine_simp}.
 \begin{figure}[!h]
  \center
  \includegraphics[scale=1.1]{../pictures/schema_cinematique_simplifie.png}
- \caption{Schéma cinématique équivalent du mécanisme choisi}
+ \caption{Schéma cinématique équivalent au mécanisme choisi}
  \label{Schema_cine_simp}
 \end{figure}
 
@@ -288,7 +294,7 @@ Le chariot permet, de façon modulaire, d'accueillir un support caméra se divis
 	\chapter{Électronique}
 \section{Moteurs pas-à-pas}
 \label{Elec_stepper}
-Nous avons utilisés dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
+Nous avons utilisé dans ce projet deux moteurs pas-à-pas qui présentaient, par rapport à d'autres types de moteurs, les avantages suivants : 
 \begin{itemize}[label=--,itemsep=0pt,font=\bf\Large,labelsep=5mm]
 \item une précision bien supérieure à celle de moteurs à courant continu;
 \item un couple bien plus important que celui de servomoteurs;
@@ -356,14 +362,14 @@ Comme le montre la figure \ref{Motor_min}, à chaque séquence, une seule bobine
 \end{center}
 \footnotetext{Une animation du pas complet avec couple maximal est disponible sur \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/motor_max1.gif}}
 
-Une autre différence entre l'alimentation d'une ou deux bobines réside également dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base ainsi sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable mais permet des déplacements plus précis.
+Une autre différence entre l'alimentation d'une ou deux bobines réside dans la position de l'axe des deux moteurs, la position de celui-ci est décalé d'un demi-pas. Le fonctionnement en demi-pas se base ainsi sur la combinaison de ces deux méthodes, ce qui entraîne un couple variable mais permet des déplacements plus précis.
 
 \section{Drivers L293D}
 Pour piloter les moteurs, nous utilisons des drivers L293D. Ces drivers présentent les avantages suivants :
 \begin{itemize}[label=--,itemsep=0pt,font=\bf\Large,labelsep=5mm]
-\item ils permettent l'utilisation d'une source de tension externe, la Raspberry ne pouvant fournir que du 5V;
+\item ils permettent l'utilisation d'une source de tension externe, la \emph{Raspberry} ne pouvant fournir que du 5V;
 \item ils intègrent deux ponts en H permettant d'inverser le courant circulant dans les bobines;
-\item ils permettent d'éviter la création de courants induits dans la Raspberry, du faits des bobines, pouvant potentiellement l'endommager ou la détruire.
+\item ils permettent d'éviter la création de courants induits dans la \emph{Raspberry}, du faits des bobines, pouvant potentiellement l'endommager ou la détruire.
 \end{itemize}
 
 \begin{figure}[!h]
@@ -406,7 +412,7 @@ Nous avons réalisés nos premiers montages avec une breadboard facilitant les t
 \end{figure}
 
 \section{Circuit imprimé}
-Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacé la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car permettant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence de deux couches, cela se serait révéler très difficile et aurait sans doute coûté plus cher.
+Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de l'optimalité, nous avons souhaité remplacer la breadboard par une solution bien plus compacte, à savoir un circuit imprimé. Celui-ci sera enficher directement sur les ports GPIO de la Raspberry Pi. Nous avons de nouveau utilisé pour le réaliser le logiciel \emph{Fritzing}, permettant la réalisation du circuit sur deux couches (symbolisées par les couleurs orange et jaune), permettant un cablage plus facile, car autorisant les croisements. Nous avons utilisé \emph{Fritzing} car il été assez facile de faire faire fabriquer le circuit imprimé pour une dizaine d'euros. Nous avions hésité à réaliser entièrement ce circuit par nous même, mais du fait de la présence des deux couches, cela se serait révélé très difficile et aurait sans doute coûté plus cher.
 
 \begin{figure}[!h]
  \center
@@ -415,7 +421,8 @@ Pour rendre notre bras mécanique plus compact et ainsi rentrer dans le cadre de
 \end{figure}
 
 \section{Écran LCD}
-Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité, ce qui permettait de rendre le bras plus autonome et plus facile d'utilisation. L'écran utilisé est un écran LCD 2x16.
+Pour rendre le bras mécanique plus autonome, nous avons intégré un écran LCD permettant à l'utilisateur de se repérer dans l'évolution des différents scripts sans disposer nécessairement d'un ordinateur ou d'un écran à proximité, ce qui permettait une utilisation facilitée de celui-ci. L'écran utilisé est un écran LCD 2x16, disposant d'un potentiomètre intégré permettant de régler la luminosité de l'écran. Il dispose de quatre sorties, à savoir une sortie 5V, la masse et deux sorties pour envoyer les informations.
+
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.3]{../pictures/ecran_lcd}
@@ -427,11 +434,8 @@ Pour rendre le bras mécanique autonome, nous avons intégré un écran LCD perm
 \section{Présentation globale}
 	Tous les algorithmes développés dans le cadre de ce projet sont disponibles en annexe. Ils ont été, pour la plupart, développés sous Python 3, les autres sous Python 2 car certaines bibliothèques dont nous avions besoin, notamment pour la reconnaissance, n'était disponible que sous Python 2. 
 	
-	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des servo-moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des autres scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, permettant ainsi de tester chacun des scripts très facilement.
+	Nous avons développé une programmation modulaire, permettant de travailler simultanément sur le projet, sans pour autant poser de problème de logistique. Ainsi nous avons dissocié tous les scripts ; que ce soit la reconnaissance, la résolution, l'affichage, la gestion de la caméra ou des moteurs, etc. Pour cela, nous avons développé une relation qualifiable de maître-esclave entre nos scripts. Chacun des scripts dépend d'un fichier principal, appelé \emph{main}, qui récupère les informations des autres scripts et donne les ordres adéquats à ceux-ci, selon la situation. Ainsi, les scripts ne sont pas reliés les uns aux autres mais seulement à ce script principal, ce qui permet d'ajouter ou d'enlever très facilement tel ou tel script, sans pour autant altérer le fonctionnement de l'ensemble, permettant ainsi de tester chacun des scripts très facilement.
 	
-	Il nous apparaissait de plus nécessaire de développer une programmation permettant l'exécution simultanée de plusieurs instructions, notamment pour les moteurs. En effet, les moteurs doivent absolument fonctionner de manière synchrone afin des déplacements les plus précis possibles. C'est pour cela que nous nous sommes basés sur ce qui pourrait être qualifiée de "programmation parallèle" qui permet l'exécution de plusieurs processus simultanément. Cela est rendu possible en Python par l'utilisation de la bibliothèque \emph{threading} depuis laquelle nous utilisons \emph{Thread} (signifiant \emph{processus} en français).
-	
-\newpage
 \section{Reconnaissance du sudoku}
 	Le script de reconnaissance du sudoku a été réalisé sous Python 2 avec le module de traitements d'image OpenCV. Il a été réalisé pour :
 	\begin{itemize}[label=--]
@@ -467,7 +471,8 @@ Par cette transformation, on peut ensuite déterminer des équations de droites 
  \includegraphics[scale=0.55]{../pictures/unperspectived.png}
  \caption{Exemple de grille découpée sans perspective}
 \end{figure}
-\newpage
+
+
 On découpe chaque petite case de la grille comme ci-dessous :
 
 \begin{figure}[!h]
@@ -487,7 +492,7 @@ On utilise ensuite un module de reconnaissance de digits pour détecter les chif
 \newpage
 \section{Résolution du sudoku}
 \label{Resolution}
-Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Les grilles les plus difficiles peuvent imposer au joueur de faire un choix entre plusieurs possibilités pour espérer mener à son terme la résolution. C'est sur ce constat que ce base la méthode dite de \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci n'est pas valide et possède plusieurs solutions. Bien sûr cette liste n'est pas exhaustive et il existe d'autres méthodes de résolution, même si ces méthodes ne sont pas forcément très employés faciles d'emploi.
+Pour résoudre une grille de sudoku, un joueur utilise différentes méthodes de résolution, qui sont purement algorithmiques. Il utilise en grande majorité deux méthodes qui peuvent permettre de résoudre une grande partie des grilles disponibles sur le marché. On appelle ces deux méthodes \emph{inclusion} et \emph{exclusion}. Cependant les grilles de niveau supérieur font appel à des méthodes plus subtiles et souvent plus difficiles à appliquer en pratique qui se basent généralement sur des \emph{paires} ou des \emph{triplets}. Les grilles les plus difficiles peuvent imposer au joueur de faire un choix entre plusieurs possibilités pour espérer mener à son terme la résolution. C'est sur ce constat que ce base la méthode dite de \emph{backtracking} (ou \emph{retour sur trace}), qui permet de résoudre toute grille de sudoku, même si celle-ci n'est pas valide et possède plusieurs solutions. Bien sûr cette liste n'est pas exhaustive et il existe d'autres méthodes de résolution, même si ces méthodes ne sont pas forcément très employées et faciles d'emploi.
 
 \paragraph{Inclusion: un seul candidat pour une case}
 On dénombre pour chaque case vierge les chiffres pouvant être positionnés dans celle-ci. S'il n'y a qu'une seule possibilité alors elle est solution et est donc placée dans la case.
@@ -523,9 +528,6 @@ La méthode des triplets est une généralisation de cette méthode à trois cas
 
 \paragraph{Backtracking} Cette méthode\footnote{Une animation du \emph{backtracking} est disponible sur : \url{www.github.com/alphter/Sudoku-Plotter/blob/master/pictures/backtracking.gif}} consiste tout d'abord à lister pour chacune des cases vierges les chiffres qui pourraient correspondre. On part d'une case vierge quelconque qu'on remplit par un des chiffres pouvant théoriquement convenir, puis on liste les nouvelles possibilités des autres cases en fonction du chiffre précédemment ajouté puis on passe à la case suivante. S'il n'y a plus aucune possibilité, on revient sur nos pas et on change le chiffre qu'on venait d'ajouter en une autre possibilité. Si tout les chiffres possibles ont été testé, on revient de nouveau sur nos pas autant de fois que nécessaire, jusqu'à avoir compéter la totalité de la grille. 
 
-Cette méthode ne peut pas être mise en oeuvre par un joueur, dans la mesure où elle lui demanderait énormément de temps, et ne présenterait pour lui aucun intérêt. Cependant, elle peut être indispensable pour les grilles diaboliques lorsque le joueur doit faire un choix, cette méthode est alors indispensable.
-Pour une ordinateur également, cette méthode peut se révéler fastidieuse dans le cas où la solution n'apparait que très tardivement, et après beaucoup d'itérations. Elle est surtout efficace dans le cas général, mais peut être mise en défaut.
-
 %\begin{center}
 %	\animategraphics[width=0.6\linewidth]{24}{../pictures/backtracking/backtracking-}{1}{1001}
 %\end{center}
@@ -534,57 +536,107 @@ Pour une ordinateur également, cette méthode peut se révéler fastidieuse dan
 
 \paragraph{Temps de calculs} Au niveau informatique, ces méthodes ne se valent pas dans la mesure où elles sont plus ou moins fiables, efficaces et rapides. L'\emph{inclusion} et l'\emph{exclusion} sont comparables : elles sont rapides et efficaces mais ne permettent pas la résolution complète dans un certain nombre de cas. L'utilisation du \emph{backtracking} se révèle alors efficace en complément des deux précédentes, puisque cette méthode permet toujours de conclure. Les temps de calculs sont comparables pour toutes ces méthodes et sont de l'ordre du centième de secondes\footnote{Les résultats peuvent varier d'un machine à l'autre comme nous avons pu le constater, il est donc surtout intéressant de noter les différences d'ordres de grandeurs entre les différents résultats.}. La résolution peut parfois prendre plus d'une seconde mais cette situation ne s'est présentée que très rarement. Cependant, il peut arriver que pour des grilles très particulières, conçues pour tester la rapidité du \emph{backtracking}, la résolution du sudoku prenne bien plus de temps, jusqu'à 30 secondes. En utilisant les trois méthodes de manière couplée, le temps de calculs diminue pour arriver à seulement 20 secondes. Une utilisation couplée des méthodes est bien plus efficace car permet d'éliminer immédiatement toutes les possibilités évidentes, indétectables en \emph{backtracking}, pour ensuite l'utiliser éventuellement si la grille n'est pas résolue.
 
-
+\newpage
 \section{Interface graphique}
 Pour rendre la résolution plus simple d'utilisation, nous avons décidé d'ajouter une interface graphique. Le cahier des charges qu'elle devait vérifier était assez stricte. Elle devait pouvoir afficher, avant toute chose, une grille de sudoku qui devait dès lors être facilement modifiable. Pour cela, nous avons donc créé différents menus ; l'un permettant donc l'édition de la grille, un autre permettant de choisir la méthode de résolution, ainsi qu'un menu de résolution. 
+
+\begin{figure}[!h]
+ \center
+ \includegraphics[scale=0.7]{../pictures/sudoku}
+ \caption{Interface graphique du Sudoku}
+ \label{Menu_edition}
+\end{figure}
 
 \paragraph{Édition} Lors de l'édition de la grille, un carré rouge apparait, déplaçable avec les flèches directionnelles, il suffit alors pour modifier la case de rentrer un chiffre de 0 à 9, 0 correspondant à une case vierge. Il est également possible de sauvegarder une grille ou encore de récupérer une grille déjà enregistrée.
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.55]{../pictures/Sudoku_edition}
- \caption{Interface graphique affichant le menu Edition}
+ \includegraphics[scale=1.2]{../pictures/sudoku_envoyer}
+ \caption{Menu \emph{Édition} de l'interface graphique}
+ \label{Menu_edition}
 \end{figure}
-\newpage
+
 \paragraph{Résolution}Ce menu permet de lancer la résolution, et permet également de choisir entre une résolution rapide ou une résolution pas-à-pas permettant à l'utilisateur d'observer le fonctionnement de ces algorithmes.
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.55]{../pictures/Sudoku_resolution}
- \caption{Interface graphique affichant le menu Édition}
+ \includegraphics[scale=1.2]{../pictures/menu_resolution}
+ \caption{Menu \emph{Résolution} de l'interface graphique}
 \end{figure}
 
-\paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion} et le \emph{backtracking} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous les algorithmes, permettant ainsi d'être la plus rapide possible.
+\paragraph{Méthode}Le choix de la méthode se fait avec le menu \emph{Méthode}, qui permet de choisir la méthode de résolution parmi l'\emph{inclusion}, l'\emph{exclusion} et le \emph{backtracking} ou de choisir une méthode dite \emph{globale}, s'appuyant sur tous ces algorithmes, permettant ainsi d'être la plus rapide possible.
 
 \section{Contrôle des moteurs et écriture}
 \subsection*{Moteurs pas-à-pas}
-Les moteurs se devaient de fonctionner simultanément pour des questions de précision évidentes. Comme nous l'avons dit précédemment \footnote{cf section \ref{Elec_stepper} à la page \pageref{Elec_stepper}}, il suffit d'envoyer des impulsions dans les bobines à la bonne fréquence pour faire tourner les moteurs à la bonne vitesse et dans le bon sens. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences. 
+Il nous apparaissait nécessaire de développer une programmation permettant l'exécution simultanée de plusieurs instructions, notamment pour les moteurs. En effet, les moteurs doivent absolument fonctionner de manière synchrone afin d'obtenir des déplacements les plus précis possibles. C'est pour cela que nous nous sommes basés sur ce qui pourrait être qualifiée de "programmation parallèle" qui permet l'exécution de plusieurs processus simultanément. Cela est rendu possible en Python par l'utilisation de la bibliothèque \emph{threading} depuis laquelle nous utilisons \emph{Thread} (signifiant \emph{processus} en français). 
+Pour piloter les moteurs, il suffit d'envoyer des impulsions dans les bobines pour faire tourner les moteurs dans le bon sens. La fréquence d'envoi de ces impulsions conditionne la vitesse des moteurs. Les impulsions doivent être envoyés au maximum toute les 10 ms, ce qui constitue la vitesse maximum des moteurs. Ces impulsions sont envoyés au deux moteurs de manière cycliques, un cycle étant constitué de quatre séquences\footnote{cf section \ref{Elec_stepper} à la page \pageref{Elec_stepper}}. Le script d'écriture des digits transmet à celui des moteurs une liste des coordonnées des points à parcourir. Ces coordonnées sont ensuite converties en déplacements élémentaires pour les deux moteurs, ce qui se traduit alors en impulsions et permet les déplacements des moteurs.
 
 \subsection*{Coordonnées polaires}
 Par soucis de compacité et ainsi s'inscrire dans l'optimalité du programme, nous avons décidé de développer une structure se basant sur les coordonnées polaires, permettant des dimensions maximum de 40 par 10 cm. L'utilisation de telles coordonnées nécessitait une plus grande précision et relevait donc d'un plus grand défi technique. Les coordonnées polaires ne sont de plus, que très peu utilisés pour ce type de système, ce qui nous à incité à développer une structure se basant sur ces coordonnées.
+
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.5]{../pictures/Changement_repere}
  \caption{Changement de repères réalisé avec \emph{Geogebra}}
+ \label{polaire}
 \end{figure}
+
+Sur la figure \ref{polaire}, le point $O_1$ correspond au centre de la roue dentée. Le point $A$ correspond à la position du bras et le point $B$ correspond à la position que l'on souhaite atteindre. On peut noter que le bras doit pivoter d'un angle $\theta = 0.74$ rad et doit se déplacer d'une distance algébrique r pour atteindre ce point $B$. Ces deux données sont transmises aux moteurs qui vont se déplacer d'un nombre de pas équivalent pour l'un à $\theta$ et pour l'autre à $r$. On comprend alors qu'il faut suffisamment de points pour éviter de tracer des lignes courbes, en effet si $A$ et $B$ se situent à la même distance du centre $O_1$, le stylo tracera un arc de cercle
+Pour avoir accès à $\theta$ et $r$, il faut convertir les coordonnées des point $A$ et $B$ en coordonnées polaires de centre $O_1$. On notera $x_A$ et $y_A$ les coordonnées cartésiennes du point $A$ et $r_A$ et $\theta_A$ ses coordonnées polaires de centre $O_1$. Les coordonnées du point $O_1$ seront eux indicées par 0. On a alors :
+\begin{align*}
+\left\{
+\begin{array}{c}
+	x_A = r_A \cdot \cos \theta + x_0 \\ \\
+	y_A = r_A \cdot \cos \theta + y_0  \\
+\end{array}
+\right.
+\mbox{ et }
+\left\{
+\begin{array}{c}
+	r_A = \sqrt{(x_A - x_0)^2 + (y_A - y_0)^2} \\ \\
+	\theta_A = \frac{y_A - y_0}{|y_A - y_0|} \cdot \arccos \left( \dfrac{y_A - y_0}{r_A} \right) \\
+\end{array}
+\right.
+\end{align*}
+Comme $r_A = 0 \iff A = O_1$ et que $A$ est un point de la feuille alors que $O_1$ ne l'est pas, $r_A$ ne peut être nul\footnote{De plus, du fait du mécanisme, le point $O_1$ ne peut pas être atteint par le stylo}. On en déduit que $\theta_A$ est bien définie quelque soit $A$. En notant $nb_{step1}$ (resp. $nb_{step2}$) le nombre de déplacements élémentaires du moteur 1 (resp. du moteur 2), on obtient :
+\begin{align*}
+\left\{
+\begin{array}{c}
+	r = r_B - r_A \\ \\
+	\theta = \theta_A - \theta_B  \\
+\end{array}
+\right.
+\mbox{ et }
+\left\{
+\begin{array}{c}
+	nb_{step1} = E(\frac{r}{r_{step}} + \frac{1}{2})\\ \\
+	nb_{step2} = E(\frac{\theta}{\theta_{step}} + \frac{1}{2})\\
+\end{array}
+\right. 
+\end{align*}
+Les entiers relatifs $nb_{step1}$ et $nb_{step2}$ sont les deux informations véritablement importantes pour les moteurs et qui correspondent aux nombre de séquences de leurs déplacements.
 
 \subsection*{Écriture des digits}
 Nous souhaitions dès le début pouvoir écrire des grilles de différentes tailles, et non des grilles de tailles fixes. C'est pourquoi nous avons basé le script d'écriture sur du point par point, permettant de choisir la précision théorique des chiffres tracés. Cependant les moteurs pas-à-pas ne pouvant se déplacer que d'un pas fixé de 1.8\degre, une trop grande précision ne pourrait entraînerait que des déplacements nuls des moteurs, c'est pourquoi cette manière de programmation permet un compromis entre précision théorique et précision pratique.
+
 \begin{figure}[!h]
  \center
  \includegraphics[scale=0.35]{../pictures/numbers}
  \caption{Chiffres d'une précision théorique assez faible}
 \end{figure}
-\newpage
-En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure suivante :
+
+Le script permettant de tracer les chiffres prend deux paramètres, à savoir la hauteur des chiffres et la précision attendue. Lors des tests du bras mécanique, ces deux paramètres se sont révélés déterminants pour obtenir le meilleur résultat possible. Les chiffres en tant que tel sont constitués de lignes et d'arc de cercle permettant d'obtenir un résultats assez satisfaisants.
+
+En augmentant la précision théorique, on obtient des chiffres quasiment continus permettant d'obtenir la figure \ref{sudoku_points}.
 
 \begin{figure}[!h]
  \center
- \includegraphics[scale=0.45]{../pictures/Sudoku_points}
+ \includegraphics[scale=0.42]{../pictures/Sudoku_points}
  \caption{Grille de sudoku en point par point tracée avec \emph{MatplotLib}}
+ \label{sudoku_points}
 \end{figure}
 
-Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracée afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure \ref{sudoku_trace}.
+Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servomoteur afin qu'il lève le stylo lorsqu'un chiffre a été tracé afin d'éviter que les chiffres ne soient reliés entre eux, comme le suggère la figure \ref{sudoku_trace}.
 
 \begin{figure}[!h]
  \center
@@ -592,6 +644,13 @@ Il faut prévoir dans le script la possibilité d'envoyer une impulsion au servo
  \caption{Grille de sudoku tracée avec \emph{MatplotLib}}
  \label{sudoku_trace}
 \end{figure}
+
+\newpage
+\subsection*{Connexion entre la Raspberry Pi et un ordinateur distant}
+Une Raspberry Pi peut être utilisée comme un véritable ordinateur, il suffit pour cela de lui brancher un écran et un clavier. Le problème de cette utilisation réside dans l'utilisation de l'écran, en effet la \emph{Raspberry Pi} dispose d'une sortie HDMI sur laquelle se branche l'écran. Cependant l'utilisation de cette sortie sur notre bras n'aurait pas du tout été pratique et nous n'avions pas forcément un écran à disposition. C'est pour cela que nous avons développé la possibilité de contrôler la \emph{Raspberry Pi} via une connection sécurisée, le \emph{SSH} (\emph{Secure Shell}). Cependant ce type de connection ne permet pas l'échange d'informations directes entre les deux appareils mais permet de prendre la main à distance sur la \emph{Raspberry} (permettant par exemple d'exécuter des scripts à distance).
+
+
+C'est pour cela que nous avons utilisé un module python appelé \emph{socket} qui permet l'échange d'informations entre un serveur et un client. Lors de la mise sous tension de la \emph{Raspberry Pi}, plusieurs de nos scripts, à savoir le script principal et le script qui démarre le serveur, sont automatiquement exécutés. Sur le PC distant, il suffit de démarrer l'interface graphique, qui est alors un client pouvant se connecter au serveur de la \emph{Raspberry}. Dans le menu édition, le bouton \emph{Envoyer}\footnote{Cf Figure \ref{Menu_edition} à la page \pageref{Menu_edition}} permet de transmettre la grille courante à la \emph{Raspberry} qui va se charger de l'écrire physiquement. L'écran LCD sert alors à vérifier que les informations ont bien été transmises.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
