@@ -13,6 +13,9 @@ class Lcd:
         self.display = lcddriver.lcd()
 
     def start(self):
+	text = open("text.txt", "w")
+	text.write("Sudoku Plotter\nWelcome!")
+	text.close()
         previous_text = open("previous_text.txt", "w")
 	previous_text.close()
 	self.display.lcd_clear()
