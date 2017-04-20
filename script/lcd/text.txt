@@ -1,2 +1,2 @@
-Sudoku writing
-in progress...
+Sudoku Plotter
+Welcome!
