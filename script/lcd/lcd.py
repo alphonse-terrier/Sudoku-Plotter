@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import time
 import lcddriver
 
@@ -11,11 +12,12 @@ class Lcd:
         self.text = ["", ""]
         self.previous_text = ["", ""]
         self.display = lcddriver.lcd()
+        os.chdir("/home/pi/Desktop/Sudoku-Plotter/script/lcd")
 
     def start(self):
         previous_text = open("previous_text.txt", "w")
-	previous_text.close()
-	self.display.lcd_clear()
+        previous_text.close()
+        self.display.lcd_clear()
         while self.power:
             self.write()
             time.sleep(0.1)

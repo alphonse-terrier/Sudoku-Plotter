@@ -117,8 +117,8 @@ class Display(Tk):
         """
         self.Can.delete(ALL)
         for i in range(self.nb_cases + 1):
-            column = self.Can.create_line(50 * i + 5, 5, 50 * i + 5, 455, width=2)
-            line = self.Can.create_line(3, 50 * i + 5, 457, 50 * i + 5, width=2)
+            column = self.Can.create_line(50 * i + 4, 5, 50 * i + 4, 455, width=2)
+            line = self.Can.create_line(2, 50 * i + 4, 457, 50 * i + 4, width=2)
             if i % self.taille[0] == 0:
                 self.Can.itemconfigure(column, width=5)
             if i % self.taille[1] == 0:
@@ -319,7 +319,7 @@ class Display(Tk):
             self.title("A propos")
             self.label = Label(self)
             self.focus_set()
-            self.text = ["Cette application a été\n développée par Laurent Tainturier\n et Alphonse Terrier\n",
+            self.text = ["\nCette application a été\n développée par Laurent Tainturier\n et Alphonse Terrier\n",
                          "dans le cadre de leur TIPE\n intitulé 'Sudoku Plotter'\n supervisé par Patrick Couvez.\n\n\n",
                          "Plus d'informations disponibles sur :\n www.github.com/alphter/Sudoku-Plotter"]
             self.label.configure(text=''.join(self.text), font=('Times', 12), borderwidth=3)

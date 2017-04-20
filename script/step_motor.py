@@ -11,7 +11,7 @@ except ImportError:
     error = "module_GPIO"
 
 
-class InitMoveMotor:
+class MotorControl:
     """
     Vérifie que le module RPI.GPIO permettant de gérer les sorties/entrées GPIO
     de la raspberry a été importé correctement,
@@ -25,6 +25,7 @@ class InitMoveMotor:
         self.beta_version = True
         self.bobines_motor1 = (29, 31, 33, 35)
         self.bobines_motor2 = (7, 11, 13, 15)
+        self.pwm_servo = 8
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(7.5, 7)
@@ -36,6 +37,7 @@ class InitMoveMotor:
 
         self.motor1 = Motor(self.bobines_motor1)
         self.motor2 = Motor(self.bobines_motor2)
+        self.servoMotor = ServoMotor(self.pwm_servo)
         self.turnOnLed = BlinkingLed(self.turn_on_led)
         self.workingLed = BlinkingLed(self.working_led, True)
 
@@ -58,24 +60,27 @@ class InitMoveMotor:
         self.sleep(False)
         n = max(1, len(self.points) // 1000)
         while self.points:
-            x_b, y_b = self.points[0]
-            B = Point(x_b, y_b)
-            r = B.r - self.M.r
-            theta = B.theta - self.M.theta
-            print(r, theta)
-            nb_steps1 = int(r / self.r_step + 0.5)
-            nb_steps2 = int(theta / self.theta_step + 0.5)
-            print(nb_steps1, nb_steps2)
-            if abs(nb_steps1) > abs(nb_steps2):
-                self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
+            if self.points[0] == "up"or self.points[0] == "down":
+                self.servoMotor.setServo(self.points[0])
             else:
-                self.motor2.speed, self.motor1.speed = self.setTime(nb_steps2, nb_steps1)
-            print(self.motor1.speed, self.motor2.speed)
-            self.motor1.nb_steps = nb_steps1
-            self.motor2.nb_steps = nb_steps2
-            while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
-                time.sleep(0.1)
-            self.M = Point(x_b, y_b)
+                x_b, y_b = self.points[0]
+                B = Point(x_b, y_b)
+                r = B.r - self.M.r
+                theta = B.theta - self.M.theta
+                print(r, theta)
+                nb_steps1 = int(r / self.r_step + 0.5)
+                nb_steps2 = int(theta / self.theta_step + 0.5)
+                print(nb_steps1, nb_steps2)
+                if abs(nb_steps1) > abs(nb_steps2):
+                    self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
+                else:
+                    self.motor2.speed, self.motor1.speed = self.setTime(nb_steps2, nb_steps1)
+                print(self.motor1.speed, self.motor2.speed)
+                self.motor1.nb_steps = nb_steps1
+                self.motor2.nb_steps = nb_steps2
+                while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
+                    time.sleep(0.1)
+                self.M = Point(x_b, y_b)
             self.points.pop(0)
         self.sleep()
 
@@ -98,6 +103,7 @@ class InitMoveMotor:
         if not error:
             GPIO.setmode(GPIO.BOARD)
             GPIO.setwarnings(False)
+            GPIO.setup(self.pwm_servo, GPIO.OUT)
             for i in range(4):
                 GPIO.setup(self.bobines_motor1[i], GPIO.OUT)
                 GPIO.setup(self.bobines_motor2[i], GPIO.OUT)
@@ -184,6 +190,19 @@ class Motor(threading.Thread):
         self.power = power
 
 
+class ServoMotor:
+    def __init__(self, pin):
+        self.positions = {'up': 2, 'down': 6}
+        self.frequency = 50
+        self.pin = pin
+        self.power = True
+        self.pwm = GPIO.PWM(self.pin, self.frequency)
+        self.pwm.start(self.positions['up'])
+
+    def setServo(self, position):
+        self.pwm.ChangeDutyCycle(self.positions[position])
+
+
 class ManualMotor(Motor):
     def __init__(self, bobines, position=0, nb_steps=0, speed=100):
         Motor.__init__(self)
@@ -258,10 +277,8 @@ class Point(Origin):
 
     def newPolarCoords(self):
         self.r = math.sqrt((self.x - self.x_0) ** 2 + (self.y - self.y_0) ** 2)
-        if self.y - self.y_0 < 0:
-            self.theta = -math.acos((self.x - self.x_0) / self.r)
-        else:
-            self.theta = math.acos((self.x - self.x_0) / self.r)
+        if self.y == self.y_0: self.theta = 0
+        else: self.theta = (self.y - self.y_0) / abs(self.y - self.y_0) * math.acos((self.x - self.x_0) / self.r)
 
     def newCartesianCoords(self):
         self.x = self.r * math.cos(self.theta) + self.x_0
@@ -269,6 +286,6 @@ class Point(Origin):
 
 
 if __name__ == "__main__":
-    init = InitMoveMotor()
+    init = MotorControl()
     time.sleep(5)
     init.stop()
