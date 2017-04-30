@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import time
 import socket
@@ -20,7 +21,6 @@ class Server(th.Thread):
         self.port = 50000
         self.sudoku = np.zeros((9, 9), int)
         self.mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.tryConnect()
 
     def tryConnect(self):
         try:
@@ -30,6 +30,7 @@ class Server(th.Thread):
             sys.exit()
 
     def run(self):
+        self.tryConnect()
         self.starting()
 
     def starting(self):
@@ -39,14 +40,29 @@ class Server(th.Thread):
         lcd3.write("connected to " + str(adresse[0]) + " ip")
         while self.power:
             try:
-                sudoku_string = connexion.recv(1024).decode()
-                self.sudoku = save.stringToSudoku(sudoku_string)
-                connexion.send("sudoku_received".encode())
-                self.boss.writeSudoku(self.sudoku)
-            except IndexError:
-                time.sleep(0.1)
-                self.starting()
-            except ConnectionAbortedError:
+                text = connexion.recv(1024).decode()
+                if not text:
+                    self.starting()
+                elif text == "reboot":
+                    connexion.send("raspi_reboot".encode())
+                    print("reboot")
+                    # os.system("reboot")
+                elif text == "shutdown":
+                    connexion.send("raspi_shutdown".encode())
+                    print("shutdown")
+                    # os.system("sudo shutdown -h now")
+                elif text == "photo":
+                    connexion.send("photo_taken".encode())
+                    print("photo")
+                else:
+                    try:
+                        self.sudoku = save.stringToSudoku(text)
+                        print(self.sudoku)
+                        # self.boss.writeSudoku(self.sudoku)
+                        connexion.send("sudoku_received".encode())
+                    except IndexError or ValueError:
+                        self.sudoku = np.zeros((9, 9), int)
+            except ConnectionAbortedError or ConnectionResetError:
                 lcd3.write("Client disconnected")
                 self.starting()
             time.sleep(0.1)
@@ -63,6 +79,5 @@ if __name__ == "__main__":
         def writeSudoku(self, sudoku):
             self.sudoku = sudoku
             print(self.sudoku, '\n')
-
 
     Server(Boss).start()

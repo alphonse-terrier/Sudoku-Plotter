@@ -89,8 +89,10 @@ class Main:
 
     def sendSudoku(self, evt=None):
         self.sudoku = self.Display.sudoku
-        self.Client.tryConnect()
         self.Client.sendSudoku(self.sudoku)
+
+    def sendInfo(self, info):
+        self.Client.sendInfo(info)
 
     def setMode(self, mode):
         self.mode = mode

@@ -34,8 +34,13 @@ class Display(Tk):
         self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
         self.affichage_sudoku = [[0 for i in range(self.nb_cases)] for i in range(self.nb_cases)]
 
+        os.chdir("../pictures/tkinter/")
+        self.raspberry = PhotoImage(file="raspi_icone.png").subsample(2)
+        os.chdir("../../script/")
+
         # Creation des variables tkinter et widgets
         self.Can = Canvas(width=455, height=455)
+        self.raspi = self.Can.create_image(227, 227, image=self.raspberry)
         self.BarreMenu = self.BarreMenu(self)
 
         # Placement des widgets
@@ -86,10 +91,12 @@ class Display(Tk):
         self.showInfo("sudoku_save")
 
     def openSudoku(self, evt=None):
+        self.showRaspi(False)
         filepath = None
         filepath = askopenfilename(title="Ouvrir une grille", initialdir="/Sudoku-Plotter/sudoku",
                                    filetypes=[('Text files', '.txt')])
-        if filepath: self.sudoku = save.readSudoku(filepath)
+        if filepath:
+            self.sudoku = save.readSudoku(filepath)
         self.boss.setSudoku(self.sudoku)
         self.updateSudoku()
 
@@ -110,12 +117,18 @@ class Display(Tk):
             self.Can.itemconfigure(self.rectangle, width=0)
         self.update()
 
+    def showRaspi(self, show=True):
+        if show:
+            self.raspi = self.Can.create_image(227, 227, image=self.raspberry)
+            self.Can.tag_lower(self.raspi)
+        else:
+            self.Can.delete(self.raspi)
+
     def createMatrix(self):
         """
         Permet d'afficher une grille de sudoku vide ainsi que le curseur qui est à l'origine masqué
         :return: None
         """
-        self.Can.delete(ALL)
         for i in range(self.nb_cases + 1):
             column = self.Can.create_line(50 * i + 4, 5, 50 * i + 4, 455, width=2)
             line = self.Can.create_line(2, 50 * i + 4, 457, 50 * i + 4, width=2)
@@ -140,37 +153,38 @@ class Display(Tk):
     def tryToEdit(self, evt):
         key = evt.keysym
 
+        self.showRaspi(False)
         if key == 'F5':
             self.startResolution()
 
-        if key.lower() == "b":
+        elif key.lower() == "b":
             self.color = "black"
             print("black")
 
-        if key == 'space':
+        elif key == 'space':
             self.boss.stopResolution()
 
-        if key.lower() == "o":
+        elif key.lower() == "o":
             self.sudoku = save.readSudoku()
             self.updateSudoku(self.sudoku)
 
-        if key.lower() == "r":
+        elif key.lower() == "r":
             self.color = "red"
             print("red")
 
-        if key.lower() == "s":
+        elif key.lower() == "s":
             self.backUp()
 
-        if key.lower() == "x":
+        elif key.lower() == "x":
             self.effacerSudoku()
 
-        if key == 'Return':
+        elif key == 'Return':
             self.startManualEdition()
 
-        if key == "BackSpace":
+        elif key == "BackSpace":
             self.eraseResolution()
 
-        if self.edition:
+        elif self.edition:
             if key == 'Right':
                 self.y += 1
                 if self.y == self.nb_cases:
@@ -202,8 +216,12 @@ class Display(Tk):
 
             self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
 
+        else:
+            self.showRaspi()
+
     def updateSudoku(self, sudoku=None, liste_position=[]):
-        if sudoku is None: sudoku = self.boss.sudoku
+        if sudoku is None:
+            sudoku = self.boss.sudoku
         self.liste_position = liste_position
         self.startManualEdition(False)
         for x in range(self.nb_cases):
@@ -221,6 +239,8 @@ class Display(Tk):
             for y in range(self.nb_cases):
                 self.Can.itemconfigure(self.affichage_sudoku[x][y], text="", fill='black')
         self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
+        self.startManualEdition(False)
+        self.showRaspi()
 
     def showError(self, error):
         if error == "sudoku_insoluble":
@@ -233,8 +253,14 @@ class Display(Tk):
     def showInfo(self, info):
         if info == "sudoku_received":
             showinfo("Sudoku", "La grille a été transmis à la Raspberry Pi avec succès !")
-        if info == "sudoku_save":
+        elif info == "sudoku_save":
             showinfo("Sudoku", "La grille a été enregistrée avec succès !")
+        elif info == "photo_taken":
+            showinfo("Raspberry", "LA Raspberry a pris une photo avec succès ! !")
+        elif info == "raspi_shutdown":
+            showinfo("Raspberry", "La Raspberry a été arrétée avec succès !")
+        elif info == "raspi_reboot":
+            showinfo("Raspberry", "La Raspberry a été redémarrée avec succès !")
 
     def showAide(self, evt=None):
         self.HelpMenu()
@@ -345,6 +371,9 @@ class Display(Tk):
             self.send_icon = PhotoImage(file="send_icon.png").subsample(43)
             self.run_icon = PhotoImage(file="run_icone.png").subsample(13)
             self.pause_icon = PhotoImage(file="pause_icone.png").subsample(22)
+            self.restart_icone = PhotoImage(file="restart_icone.png").subsample(27)
+            self.shutdown_icon = PhotoImage(file="shutdown_icone.png").subsample(17)
+            self.photo_icon = PhotoImage(file="photo_icone.png").subsample(6)
             self.stop_icon = PhotoImage(file="stop_icone.png").subsample(10)
             self.help_icon = PhotoImage(file="help_icone.png").subsample(19)
             self.about_icon = PhotoImage(file="about_icon.png").subsample(37)
@@ -359,12 +388,14 @@ class Display(Tk):
             self.menu_edition = Menu(self, tearoff=0)
             self.menu_resolution = Menu(self, tearoff=0)
             self.menu_methode = Menu(self, tearoff=0)
+            self.menu_raspberry = Menu(self, tearoff=0)
             self.menu_aide = Menu(self, tearoff=0)
 
             # Ajout des menus
             self.add_cascade(label="Edition", menu=self.menu_edition)
             self.add_cascade(label="Résolution", menu=self.menu_resolution)
             self.add_cascade(label="Méthode", menu=self.menu_methode)
+            self.add_cascade(label="Raspberry", menu=self.menu_raspberry)
             self.add_cascade(label="Aide", menu=self.menu_aide)
 
             # Ajout des items du menu 'Edition'
@@ -372,8 +403,6 @@ class Display(Tk):
                                           image=self.open_icon, compound=LEFT)
             self.menu_edition.add_command(label="Sauvegarder", command=self.boss.saveSudoku, accelerator="Ctrl+S",
                                           image=self.save_icon, compound=LEFT)
-            self.menu_edition.add_command(label="Envoyer", command=self.boss.boss.sendSudoku,
-                                          image=self.send_icon, compound=LEFT, accelerator="Ctrl+E")
             self.menu_edition.add_command(label="Manuelle", command=self.boss.startManualEdition,
                                           image=self.edit_icon, compound=LEFT)
             self.menu_edition.add_command(label="Effacer", command=self.boss.effacerSudoku,
@@ -397,7 +426,7 @@ class Display(Tk):
             self.menu_resolution.add_command(label="Stop", command=self.boss.boss.stopResolution,
                                              image=self.stop_icon, compound=LEFT)
 
-            # Ajout des items du menu "Méthode"
+            # Ajout des items du menu 'Méthode'
             self.menu_methode.add_radiobutton(label="Globale", value=0, variable=self.mode_resolution,
                                               command=lambda: self.boss.choixMethode("Globale"))
             self.menu_methode.add_radiobutton(label="Inclusion", value=1, variable=self.mode_resolution,
@@ -407,7 +436,17 @@ class Display(Tk):
             self.menu_methode.add_radiobutton(label="Backtracking", value=3, variable=self.mode_resolution,
                                               command=lambda: self.boss.choixMethode("Backtracking"))
 
-            # Ajout des items du menu "Aide
+            # Ajout des items du menu 'Raspberry'
+            self.menu_raspberry.add_command(label="Envoyer", command=self.boss.boss.sendSudoku,
+                                            image=self.send_icon, compound=LEFT, accelerator="Ctrl+E")
+            self.menu_raspberry.add_command(label="Photo", image=self.photo_icon, compound=LEFT,
+                                            command=lambda: self.boss.boss.sendInfo("photo"))
+            self.menu_raspberry.add_command(label="Redémarrer", image=self.restart_icone, compound=LEFT,
+                                            command=lambda: self.boss.boss.sendInfo("reboot"))
+            self.menu_raspberry.add_command(label="Arréter", image=self.shutdown_icon, compound=LEFT,
+                                            command=lambda: self.boss.boss.sendInfo("shutdown"))
+
+            # Ajout des items du menu 'Aide'
             self.menu_aide.add_command(label="A propos", command=self.boss.showAPropos,
                                        image=self.about_icon, compound=LEFT)
             self.menu_aide.add_command(label="Aide", command=self.boss.showAide, image=self.help_icon,

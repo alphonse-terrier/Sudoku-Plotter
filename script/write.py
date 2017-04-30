@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 class Write:
     def __init__(self):
         self.points = []
-        self.step = 0.0017
+        self.step = 0.2  # 0.0017
         self.coordinate = [(5, 20), (20, 5)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
@@ -396,5 +396,5 @@ if __name__ == "__main__":
                        [9, 0, 0, 0, 4, 0, 5, 0, 0],
                        [4, 7, 0, 0, 0, 6, 0, 0, 0]])
     point = w.writeSudoku(sudoku)
-    print(point)
+    for i in point: print(i)
     w.write(True)

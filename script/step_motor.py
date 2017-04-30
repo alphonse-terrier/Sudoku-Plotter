@@ -28,7 +28,7 @@ class MotorControl:
         self.pwm_servo = 8
         self.turn_on_led = 19
         self.working_led = 21
-        self.M = Point(7.5, 7)
+        self.M = Point(0, 7)
         self.points = [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.r_step = 0.0203
         self.theta_step = 0.0056

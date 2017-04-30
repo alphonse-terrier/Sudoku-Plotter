@@ -1,2 +1,2 @@
-Sudoku Plotter
-Welcome!
+Server connected
+ waiting...
