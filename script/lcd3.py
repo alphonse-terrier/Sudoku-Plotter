@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+
 
 def configure(text):
     text = text.strip()
@@ -18,6 +20,7 @@ def configure(text):
 
 def write(text):
     text = configure(text)
+    os.chdir("/home/pi/Desktop/Sudoku-Plotter/script/lcd")
     file = open("lcd/text.txt", "w")
     file.write(text[0] + '\n' + text[1])
     file.close()

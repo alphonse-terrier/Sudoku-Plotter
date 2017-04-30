@@ -45,11 +45,11 @@ class Server(th.Thread):
                 elif text == "reboot":
                     connexion.send("raspi_reboot".encode())
                     print("reboot")
-                    # os.system("reboot")
+                    os.system("reboot")
                 elif text == "shutdown":
                     connexion.send("raspi_shutdown".encode())
                     print("shutdown")
-                    # os.system("sudo shutdown -h now")
+                    os.system("sudo shutdown -h now")
                 elif text == "photo":
                     connexion.send("photo_taken".encode())
                     print("photo")

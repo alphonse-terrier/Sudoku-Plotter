@@ -11,7 +11,7 @@ import save
 class Client:
     def __init__(self, boss):
         self.boss = boss
-        self.host = "localhost"  # "192.168.43.101"
+        self.host = "192.168.43.101"
         self.port = 50000
         self.power = True
         self.connected = False
@@ -38,7 +38,7 @@ class Client:
                 self.mySocket.send(self.sudoku_string.encode())
                 msgServer = self.mySocket.recv(1024).decode()
                 self.boss.showInfo(msgServer)
-            except ConnectionResetError:
+            except ConnectionResetError or ConnectionAbortedError:
                 self.boss.setError("raspi_connection")
 
     def sendInfo(self, info):
@@ -47,7 +47,7 @@ class Client:
                 self.mySocket.send(info.encode())
                 msgServer = self.mySocket.recv(1024).decode()
                 if msgServer: self.boss.showInfo(msgServer)
-            except ConnectionResetError:
+            except ConnectionResetError or ConnectionAbortedError:
                 self.boss.setError("raspi_connection")
                 self.connected = False
 
