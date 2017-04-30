@@ -29,7 +29,7 @@ class MotorControl:
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.points = [(22, 7), (16.2, 24.07), (4.3, 14.93)]
+        self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.r_step = 0.0203
         self.theta_step = 0.0056
 
@@ -47,6 +47,7 @@ class MotorControl:
         self.workingLed.start()
 
         self.initializePosition()
+        # self.move()
         if self.points: self.movingMotor()
 
     def initializePosition(self):
@@ -56,11 +57,21 @@ class MotorControl:
         """
         pass
 
+    def move(self):
+        """self.motor1.nb_steps = 600
+        while self.motor1.nb_steps != 0: time.sleep(0.1)
+        self.motor2.nb_steps = 100
+        while self.motor2.nb_steps != 0: time.sleep(0.1)"""
+        self.motor1.nb_steps = 600
+        while self.motor1.nb_steps != 0: time.sleep(0.1)
+        self.stop()
+
+
     def movingMotor(self):
         self.sleep(False)
         n = max(1, len(self.points) // 1000)
         while self.points:
-            if self.points[0] == "up"or self.points[0] == "down":
+            if self.points[0] == "up" or self.points[0] == "down":
                 self.servoMotor.setServo(self.points[0])
             else:
                 x_b, y_b = self.points[0]
@@ -145,7 +156,7 @@ class Motor(threading.Thread):
     Permet de piloter les moteurs pas-à-pas indépendamment l'un de l'autre
     """
     nb = 1
-    def __init__(self, bobines=0, position=0, nb_steps=0, speed=100):
+    def __init__(self, bobines=0, position=0, nb_steps=0, speed=10):
         threading.Thread.__init__(self)
         self.number = Motor.nb
         self.bobines = bobines
@@ -192,7 +203,7 @@ class Motor(threading.Thread):
 
 class ServoMotor:
     def __init__(self, pin):
-        self.positions = {'up': 2, 'down': 6}
+        self.positions = {'up': 5.5, 'down': 2}
         self.frequency = 50
         self.pin = pin
         self.power = True
@@ -257,7 +268,7 @@ class BlinkingLed(threading.Thread):
 
 class Origin:
     def __init__(self):
-        self.x_0 = -6
+        self.x_0 = -7.5
         self.y_0 = 7
 
     def coords(self):

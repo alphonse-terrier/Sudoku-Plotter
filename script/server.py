@@ -34,10 +34,9 @@ class Server(th.Thread):
         self.starting()
 
     def starting(self):
-        lcd3.write("Server connected waiting...")
         self.mySocket.listen(5)
         connexion, adresse = self.mySocket.accept()
-        lcd3.write("connected to " + str(adresse[0]) + " ip")
+        lcd3.write("connected to  ip " + str(adresse[0]))
         while self.power:
             try:
                 text = connexion.recv(1024).decode()
@@ -58,7 +57,7 @@ class Server(th.Thread):
                     try:
                         self.sudoku = save.stringToSudoku(text)
                         print(self.sudoku)
-                        # self.boss.writeSudoku(self.sudoku)
+                        self.boss.writeSudoku(self.sudoku)
                         connexion.send("sudoku_received".encode())
                     except IndexError or ValueError:
                         self.sudoku = np.zeros((9, 9), int)

@@ -4,6 +4,7 @@
 import os
 import time
 import lcddriver
+import RPi.GPIO as GPIO
 
 
 class Lcd:
@@ -11,13 +12,21 @@ class Lcd:
         self.power = True
         self.text = ["", ""]
         self.previous_text = ["", ""]
+        self.setGPIO()
         self.display = lcddriver.lcd()
         os.chdir("/home/pi/Desktop/Sudoku-Plotter/script/lcd")
 
+    def setGPIO(self):
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(8, GPIO.OUT)
+        GPIO.setup(10, GPIO.OUT)
+        GPIO.output(8, GPIO.HIGH)
+        GPIO.output(10, GPIO.HIGH)
+
     def start(self):
-	text = open("text.txt", "w")
-	text.write("Sudoku Plotter\nWelcome!")
-	text.close()
+        text = open("text.txt", "w")
+        text.close()
         previous_text = open("previous_text.txt", "w")
         previous_text.close()
         self.display.lcd_clear()
