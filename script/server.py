@@ -26,17 +26,16 @@ class Server(th.Thread):
         try:
             self.mySocket.bind((self.host, self.port))
         except socket.error:
-            lcd3.write("Connection failed!")
+            lcd3.write("Connection failed")
             sys.exit()
 
     def run(self):
         self.starting()
 
     def starting(self):
-        lcd3.write("Server connected waiting...")
         self.mySocket.listen(5)
         connexion, adresse = self.mySocket.accept()
-        lcd3.write("connected to " + str(adresse[0]) + " ip")
+        lcd3.write("connected to  ip " + str(adresse[0]))
         while self.power:
             try:
                 sudoku_string = connexion.recv(1024).decode()

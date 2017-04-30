@@ -9,15 +9,15 @@ import matplotlib.pyplot as plt
 class Write:
     def __init__(self):
         self.points = []
-        self.step = 0.0017
-        self.coordinate = [(5, 20), (20, 5)]
+        self.step = 0.2  # 0.0017
+        self.coordinate = [(2, 12), (12, 2)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9
         self.ny = (self.b - self.d) / 9
         self.x0 = self.a + self.nx / 2
         self.y0 = self.d + self.ny / 2
-        self.L = 2 / 3 * min(self.nx, self.ny)
+        self.L = 10  #  2 / 3 * min(self.nx, self.ny)
 
     def append(self, liste_x, liste_y, x0, y0):
         for i in range(len(liste_x)):
