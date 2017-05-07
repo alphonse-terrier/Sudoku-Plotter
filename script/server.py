@@ -60,6 +60,7 @@ class Server(th.Thread):
                     connexion.send("photo_taken".encode())
                     lcd3.write("one photo has been taken")
                 elif text == "stop":
+                    connexion.send("raspi_stop".encode())
                     lcd3.write("Sudoku writing process stopped!")
                     self.boss.sleep()
                 else:

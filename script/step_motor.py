@@ -59,7 +59,6 @@ class MotorControl(threading.Thread):
         self.motor1.initializePosition()
 
     def movingMotor(self):
-        self.initializePosition()
         self.sleep(False)
         while self.points:
             if self.points[0] == "up" or self.points[0] == "down":

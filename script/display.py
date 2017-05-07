@@ -259,6 +259,8 @@ class Display(Tk):
             showinfo("Raspberry", "La Raspberry a été arrétée avec succès !")
         elif info == "raspi_reboot":
             showinfo("Raspberry", "La Raspberry a été redémarrée avec succès !")
+        elif info == "raspi_photo":
+            showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
 
     def showAide(self, evt=None):
         self.HelpMenu()
