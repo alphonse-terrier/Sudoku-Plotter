@@ -13,7 +13,7 @@ except ImportError:
     error = "module_GPIO"
 
 
-class MotorControl:
+class MotorControl(threading.Thread):
     """
     Vérifie que le module RPI.GPIO permettant de gérer les sorties/entrées GPIO
     de la raspberry a été importé correctement,
@@ -23,7 +23,9 @@ class MotorControl:
     """
 
     def __init__(self):
+        threading.Thread.__init__(self)
         self.tryError()
+        self.power = True
         self.beta_version = True
         self.bobines_motor1 = (29, 31, 33, 35)
         self.bobines_motor2 = (7, 11, 13, 15)
@@ -32,8 +34,8 @@ class MotorControl:
         self.working_led = 21
         self.M = Point(0, 7)
         self.r_step = 0.0203
-        self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.theta_step = 0.0056
+        self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
 
         self.pinInit()
 
@@ -48,10 +50,16 @@ class MotorControl:
         self.turnOnLed.start()
         self.workingLed.start()
 
-        if self.points: self.movingMotor()
+    def run(self):
+        while self.power:
+            if self.points: self.movingMotor()
+            time.sleep(0.1)
+
+    def initializePosition(self):
+        self.motor1.initializePosition()
 
     def movingMotor(self):
-        self.motor1.initializePosition()
+        self.initializePosition()
         self.sleep(False)
         while self.points:
             if self.points[0] == "up" or self.points[0] == "down":
@@ -122,6 +130,7 @@ class MotorControl:
         return self.points
 
     def sleep(self, sleep=True):
+        self.points = ["up○"]
         if sleep:
             self.motor1.sleep()
             self.motor2.sleep()
@@ -132,16 +141,19 @@ class MotorControl:
             self.turnOnLed.sleep()
 
     def stop(self):
+        self.points = ["up"]
         self.motor1.stop()
         self.motor2.stop()
         self.workingLed.stop()
         self.turnOnLed.stop()
         if not error: GPIO.cleanup()
+        self.power = False
 
 
 class Motor(threading.Thread):
     """
-    Permet de piloter les moteurs pas-à-pas indépendamment l'un de l'autre
+    Classe permettant de controller les moteurs 
+    pas-à-pas indépendamment l'un de l'autre
     """
     nb = 1
 

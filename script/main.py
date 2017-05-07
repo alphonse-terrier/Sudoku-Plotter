@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
 import time
 import numpy as np
 import tkinter as tk
 
-import save
 import client
 import write as w
 import display as dp
@@ -42,7 +40,6 @@ class Main:
         self.Resolution.start()
 
         self.Display.mainloop()
-
 
     def setError(self, error, leave=True):
         if leave:

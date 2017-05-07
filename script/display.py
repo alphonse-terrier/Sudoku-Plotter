@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
-import time
 import numpy as np
 from tkinter import *
 from tkinter import ttk
@@ -441,6 +439,9 @@ class Display(Tk):
                                             image=self.send_icon, compound=LEFT, accelerator="Ctrl+E")
             self.menu_raspberry.add_command(label="Photo", image=self.photo_icon, compound=LEFT,
                                             command=lambda: self.boss.boss.sendInfo("photo"))
+            self.menu_raspberry.add_command(label="Stop", image=self.delete_icon, compound=LEFT,
+                                            command=lambda: self.boss.boss.sendInfo("stop"))
+            self.menu_raspberry.add_separator()
             self.menu_raspberry.add_command(label="Redémarrer", image=self.restart_icone, compound=LEFT,
                                             command=lambda: self.boss.boss.sendInfo("reboot"))
             self.menu_raspberry.add_command(label="Arréter", image=self.shutdown_icon, compound=LEFT,

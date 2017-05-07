@@ -13,6 +13,11 @@ import lcd3
 
 
 class Server(th.Thread):
+    """
+    Genere la creation d'une connexion sur le reseau local (serveur)
+    afin de communiquer par exemple avec un PC distant (client)
+    """
+
     def __init__(self, boss):
         th.Thread.__init__(self)
         self.boss = boss
@@ -49,10 +54,14 @@ class Server(th.Thread):
                 elif text == "shutdown":
                     connexion.send("raspi_shutdown".encode())
                     lcd3.write("Sudoku Plotter Goodbye!")
+                    self.boss.stop()
                     os.system("sudo shutdown -h now")
                 elif text == "photo":
                     connexion.send("photo_taken".encode())
                     lcd3.write("one photo has been taken")
+                elif text == "stop":
+                    lcd3.write("Sudoku writing process stopped!")
+                    self.boss.sleep()
                 else:
                     try:
                         self.sudoku = save.stringToSudoku(text)

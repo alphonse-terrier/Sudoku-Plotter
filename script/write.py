@@ -7,6 +7,11 @@ import matplotlib.pyplot as plt
 
 
 class Write:
+    """
+    Classe permettant la creation de chiffres de différentes tailles
+    Les chiffres sont constitues d'une succession de coordonnees
+    """
+
     def __init__(self):
         self.points = []
         self.step = 0.2  # 0.0017

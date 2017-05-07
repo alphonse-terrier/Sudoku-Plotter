@@ -12,41 +12,39 @@ import step_motor as stp
 
 
 class Main:
+    """
+    Classe principale pour la Raspberry Pi
+    S'occupe de la gestion des différents scripts afin 
+    de les faire communiquer les uns avec les autres 
+    """
+
     def __init__(self):
+
         self.power = True
         self.sudoku = np.zeros((9, 9), int)
         self.Write = write.Write()
         self.Server = server.Server(self)
         self.MotorControl = stp.MotorControl()
+        self.MotorControl.start()
         os.chdir("/home/pi/Desktop/Sudoku-Plotter/script/lcd")
         lcd3.write("Sudoku Plotter Welcome!")
 
     def start(self):
         self.Server.start()
-        """time.sleep(1)
-        self.Write.writeLine(3, 5, 3, 20)
-        self.Write.writeLine(3, 20, 18, 20)
-        self.Write.writeLine(18, 20, 18, 5)
-        self.Write.writeLine(18, 5, 3, 5)
-        points = self.Write.points
-        points.insert(0, "down")
-        points.append("up")
-        print(points)
-        self.MotorControl.setPoins(points)
-        self.MotorControl.movingMotor()"""
         while self.power:
             time.sleep(1)
-  
+
     def writeSudoku(self, sudoku):
         try:
             self.sudoku = sudoku
             print(sudoku)
-            lcd3.write("Sudoku writing in progress...")
             points = self.Write.writeSudoku(sudoku)
             while self.MotorControl.getPoints():
                 time.sleep(1)
+            lcd3.write("Initialisation of the position")
+            self.MotorControl.initializePosition()
             self.MotorControl.setPoins(points)
-            self.MotorControl.movingMotor()
+            lcd3.write("Sudoku writing in progress...")
         except KeyboardInterrupt:
             self.stop()
 
@@ -54,6 +52,10 @@ class Main:
         self.power = False
         self.Server.stop()
         self.MotorControl.stop()
+
+    def sleep(self):
+        self.MotorControl.points = ["up"]
+        self.MotorControl.sleep()
 
 
 if __name__ == "__main__":

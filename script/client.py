@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time
 import socket
 import numpy as np
 
@@ -9,6 +8,11 @@ import save
 
 
 class Client:
+    """
+    Classe essayant de se connecter au server de la Raspberry Pi
+    Permet, le cas echeant, l'échange d'informations entre 
+    celle-ci et le PC distant
+    """
     def __init__(self, boss):
         self.boss = boss
         self.host = "192.168.43.101"

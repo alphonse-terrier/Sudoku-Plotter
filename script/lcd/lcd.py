@@ -8,6 +8,11 @@ import RPi.GPIO as GPIO
 
 
 class Lcd:
+    """
+    Classe permettent l'affichage de messages sur l'ecran lcd
+    Ceux-ci sont constitues de chaines de caracteres, centres sur deux lignes
+    """
+
     def __init__(self):
         self.power = True
         self.text = ["", ""]
