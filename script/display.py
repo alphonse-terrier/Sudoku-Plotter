@@ -256,7 +256,7 @@ class Display(Tk):
         elif info == "sudoku_save":
             showinfo("Sudoku", "La grille a été enregistrée avec succès !")
         elif info == "photo_taken":
-            showinfo("Raspberry", "LA Raspberry a pris une photo avec succès ! !")
+            showinfo("Raspberry", "La Raspberry a pris une photo avec succès ! !")
         elif info == "raspi_shutdown":
             showinfo("Raspberry", "La Raspberry a été arrétée avec succès !")
         elif info == "raspi_reboot":

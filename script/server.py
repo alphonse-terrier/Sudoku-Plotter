@@ -26,7 +26,7 @@ class Server(th.Thread):
         try:
             self.mySocket.bind((self.host, self.port))
         except socket.error:
-            lcd3.write("Connection failed!")
+            lcd3.write("Connection failed")
             sys.exit()
 
     def run(self):
@@ -44,21 +44,20 @@ class Server(th.Thread):
                     self.starting()
                 elif text == "reboot":
                     connexion.send("raspi_reboot".encode())
-                    print("reboot")
+                    lcd3.write("Sudoku Plotter rebooting...")
                     os.system("reboot")
                 elif text == "shutdown":
                     connexion.send("raspi_shutdown".encode())
-                    print("shutdown")
+                    lcd3.write("Sudoku Plotter Goodbye!")
                     os.system("sudo shutdown -h now")
                 elif text == "photo":
                     connexion.send("photo_taken".encode())
-                    print("photo")
+                    lcd3.write("one photo has been taken")
                 else:
                     try:
                         self.sudoku = save.stringToSudoku(text)
-                        print(self.sudoku)
-                        self.boss.writeSudoku(self.sudoku)
                         connexion.send("sudoku_received".encode())
+                        self.boss.writeSudoku(self.sudoku)
                     except IndexError or ValueError:
                         self.sudoku = np.zeros((9, 9), int)
             except ConnectionAbortedError or ConnectionResetError:

@@ -21,8 +21,6 @@ def configure(text):
 def write(text):
     text = configure(text)
     os.chdir("/home/pi/Desktop/Sudoku-Plotter/script/lcd")
-    file = open("lcd/text.txt", "w")
+    file = open("text.txt", "w")
     file.write(text[0] + '\n' + text[1])
     file.close()
-
-write("Sudoku Plotter welcome!")

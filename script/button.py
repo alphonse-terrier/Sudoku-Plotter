@@ -2,8 +2,6 @@ import RPi.GPIO as GPIO
 import threading
 import time
 
-import lcd3
-
 
 class Button:
     number = 0
@@ -28,18 +26,21 @@ class Buttons(threading.Thread):
 
     def run(self):
         while self.power:
+            old_pressed = self.pressed
+            time.sleep(0.001)
             for i in range(len(self.liste)):
                 if GPIO.input(self.liste[i].pin):
                     self.pressed[i] = 1
-            time.sleep(2)
+                else:
+                    self.pressed[i] = 0
 
     def stop(self):
         self.power = False
 
 
 if __name__ == "__main__":
-    bt = Buttons([11, 13, 15])
+    bt = Buttons((16, 18))
     bt.start()
     while True:
         print(bt.pressed)
-        time.sleep(1)
+        time.sleep(0.1)

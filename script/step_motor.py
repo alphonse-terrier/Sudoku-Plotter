@@ -4,8 +4,10 @@
 import time
 import math
 import threading
+
 try:
     error = None
+    import button as bt
     import RPi.GPIO as GPIO
 except ImportError:
     error = "module_GPIO"
@@ -29,8 +31,8 @@ class MotorControl:
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.r_step = 0.0203
+        self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
         self.theta_step = 0.0056
 
         self.pinInit()
@@ -46,30 +48,11 @@ class MotorControl:
         self.turnOnLed.start()
         self.workingLed.start()
 
-        self.initializePosition()
-        # self.move()
         if self.points: self.movingMotor()
 
-    def initializePosition(self):
-        """
-        Déplace le moteur de sorte de le placer en position initiale
-        :return: None
-        """
-        pass
-
-    def move(self):
-        """self.motor1.nb_steps = 600
-        while self.motor1.nb_steps != 0: time.sleep(0.1)
-        self.motor2.nb_steps = 100
-        while self.motor2.nb_steps != 0: time.sleep(0.1)"""
-        self.motor1.nb_steps = 600
-        while self.motor1.nb_steps != 0: time.sleep(0.1)
-        self.stop()
-
-
     def movingMotor(self):
+        self.motor1.initializePosition()
         self.sleep(False)
-        n = max(1, len(self.points) // 1000)
         while self.points:
             if self.points[0] == "up" or self.points[0] == "down":
                 self.servoMotor.setServo(self.points[0])
@@ -92,7 +75,11 @@ class MotorControl:
                 while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
                     time.sleep(0.1)
                 self.M = Point(x_b, y_b)
+                if self.motor1.stop_left: self.M.r = 7
+                elif self.motor1.stop_right: self.M.r = 22
+                self.M.newCartesianCoords()
             self.points.pop(0)
+        self.servoMotor.setServo("up")
         self.sleep()
 
     def setTime(self, nb_step_a, nb_step_b):
@@ -118,7 +105,8 @@ class MotorControl:
             for i in range(4):
                 GPIO.setup(self.bobines_motor1[i], GPIO.OUT)
                 GPIO.setup(self.bobines_motor2[i], GPIO.OUT)
-        else: print(error)
+        else:
+            print(error)
 
     def tryError(self):
         """
@@ -156,15 +144,24 @@ class Motor(threading.Thread):
     Permet de piloter les moteurs pas-à-pas indépendamment l'un de l'autre
     """
     nb = 1
+
     def __init__(self, bobines=0, position=0, nb_steps=0, speed=10):
         threading.Thread.__init__(self)
+        self.power = True
+        self.speed = speed
         self.number = Motor.nb
         self.bobines = bobines
         self.position = position
         self.nb_steps = nb_steps
-        self.speed = speed
-        self.power = True
+        self.button_pin = (16, 18)
+        self.stop_left = False
+        self.stop_right = False
+        self.direction = {"left": -1, "right": 1}
         self.motor_alim = [[1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0]]
+
+        self.bt = bt.Buttons(self.button_pin)
+        self.bt.start()
+
         Motor.nb += 1
 
     def run(self):
@@ -175,7 +172,21 @@ class Motor(threading.Thread):
             else:
                 time.sleep(0.1)
 
+    def initializePosition(self, direction='left'):
+        while not self.bt.pressed[0]:
+            self.position += self.direction[direction]
+            self.setPins()
+            time.sleep(0.01)
+
     def moveMotor(self):
+        if self.number == 1:
+            self.stop_right = self.stop_left = False
+            if self.bt.pressed[0] and self.nb_steps < 0:
+                self.stop_left = True
+                return 0
+            if self.bt.pressed[1] and self.nb_steps > 0:
+                self.stop_right = True
+                return 0
         if self.nb_steps != 0:
             rotation = int(self.nb_steps / abs(self.nb_steps))
             self.nb_steps -= rotation
@@ -288,8 +299,10 @@ class Point(Origin):
 
     def newPolarCoords(self):
         self.r = math.sqrt((self.x - self.x_0) ** 2 + (self.y - self.y_0) ** 2)
-        if self.y == self.y_0: self.theta = 0
-        else: self.theta = (self.y - self.y_0) / abs(self.y - self.y_0) * math.acos((self.x - self.x_0) / self.r)
+        if self.y == self.y_0:
+            self.theta = 0
+        else:
+            self.theta = (self.y - self.y_0) / abs(self.y - self.y_0) * math.acos((self.x - self.x_0) / self.r)
 
     def newCartesianCoords(self):
         self.x = self.r * math.cos(self.theta) + self.x_0
