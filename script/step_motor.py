@@ -52,7 +52,8 @@ class MotorControl(threading.Thread):
 
     def run(self):
         while self.power:
-            if self.points: self.movingMotor()
+            if self.points:
+                self.movingMotor()
             time.sleep(0.1)
 
     def initializePosition(self):
@@ -64,6 +65,7 @@ class MotorControl(threading.Thread):
             if self.points[0] == "up" or self.points[0] == "down":
                 self.servoMotor.setServo(self.points[0])
             else:
+                print(self.points)
                 x_b, y_b = self.points[0]
                 B = Point(x_b, y_b)
                 r = B.r - self.M.r
@@ -122,14 +124,14 @@ class MotorControl(threading.Thread):
         """
         pass
 
-    def setPoins(self, points):
+    def setPoints(self, points):
         self.points = points
 
     def getPoints(self):
         return self.points
 
     def sleep(self, sleep=True):
-        self.points = ["up○"]
+        self.servoMotor.setServo("up")
         if sleep:
             self.motor1.sleep()
             self.motor2.sleep()
@@ -140,7 +142,7 @@ class MotorControl(threading.Thread):
             self.turnOnLed.sleep()
 
     def stop(self):
-        self.points = ["up"]
+        self.servoMotor.setServo("up")
         self.motor1.stop()
         self.motor2.stop()
         self.workingLed.stop()

@@ -38,19 +38,19 @@ class Main:
         try:
             self.sudoku = sudoku
             print(sudoku)
-            points = self.Write.writeSudoku(sudoku)
             while self.MotorControl.getPoints():
                 time.sleep(1)
             lcd3.write("Initialisation of the position")
             self.MotorControl.initializePosition()
             lcd3.write("Sudoku writing in progress...")
-            self.MotorControl.points = points
+            self.MotorControl.setPoints(self.Write.writeSudoku(sudoku))
         except KeyboardInterrupt:
             self.stop()
 
     def stop(self):
         self.power = False
         self.Server.stop()
+        self.MotorControl.points = ["up"]
         self.MotorControl.stop()
 
     def sleep(self):
