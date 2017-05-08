@@ -58,7 +58,7 @@ class Server(th.Thread):
                     os.system("sudo shutdown -h now")
                 elif text == "photo":
                     connexion.send("photo_taken".encode())
-                    lcd3.write("a photo has been taken")
+                    lcd3.write("a photo was taken")
                     os.system("raspistill -o sudoku.jpg")
                 elif text == "stop":
                     connexion.send("raspi_stop".encode())
