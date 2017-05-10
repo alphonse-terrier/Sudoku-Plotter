@@ -16,6 +16,7 @@ class Resolution(th.Thread):
         - ...
     Si le sudoku n'est pas résoluble, lève une erreur
     """
+
     def __init__(self, boss):
         th.Thread.__init__(self)
         self.boss = boss
@@ -104,7 +105,7 @@ class Resolution(th.Thread):
                 self.resolution = True
                 while self.resolution:
                     n += 1
-                    sudoku = self.sudoku
+                    sudoku = copy(self.sudoku)
                     if self.methode_resolution == "Inclusion":
                         self.inclusion()
                     if self.methode_resolution == "Exclusion":
@@ -115,7 +116,8 @@ class Resolution(th.Thread):
                     if np.all(self.sudoku == sudoku):
                         self.resolution = False
                     sudoku = copy(self.sudoku)
-                if np.any(self.sudoku == np.zeros((self.nb_cases, self.nb_cases), int)):
+                if np.any(self.sudoku == np.zeros((self.nb_cases, self.nb_cases), int)) and \
+                                self.methode_resolution == "Globale":
                     self.methode_resolution = "Backtracking"
                     print("Backtracking")
                     self.backTracking()
@@ -173,7 +175,7 @@ class Resolution(th.Thread):
                 for i in range(self.nb_cases):
                     if (i, j) in self.possibilities:
                         if k in self.ligne[i] and (i, j) not in case_possible and \
-                                3 * (i // 3) + j // 3 in carre_possible:
+                                                        3 * (i // 3) + j // 3 in carre_possible:
                             case_possible.append((i, j))
                 self.setValuesExclusion(case_possible, k)
 
@@ -187,7 +189,7 @@ class Resolution(th.Thread):
                 for j in range(self.nb_cases):
                     if (i, j) in self.possibilities:
                         if k in self.colonne[j] and (i, j) not in case_possible and \
-                                3 * (i // 3) + j // 3 in carre_possible:
+                                                        3 * (i // 3) + j // 3 in carre_possible:
                             case_possible.append((i, j))
                 self.setValuesExclusion(case_possible, k)
 
@@ -258,6 +260,7 @@ class Resolution(th.Thread):
 
     def wait(self):
         pass
+
 
 if __name__ == "__main__":
     class Boss:

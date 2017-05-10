@@ -89,7 +89,6 @@ class Display(Tk):
         self.showInfo("sudoku_save")
 
     def openSudoku(self, evt=None):
-        self.showRaspi(False)
         filepath = None
         filepath = askopenfilename(title="Ouvrir une grille", initialdir="/Sudoku-Plotter/sudoku",
                                    filetypes=[('Text files', '.txt')])
@@ -116,11 +115,10 @@ class Display(Tk):
         self.update()
 
     def showRaspi(self, show=True):
+        self.Can.delete(self.raspi)
         if show:
             self.raspi = self.Can.create_image(227, 227, image=self.raspberry)
             self.Can.tag_lower(self.raspi)
-        else:
-            self.Can.delete(self.raspi)
 
     def createMatrix(self):
         """
@@ -151,71 +149,69 @@ class Display(Tk):
     def tryToEdit(self, evt):
         key = evt.keysym
 
-        self.showRaspi(False)
-        if key == 'F5':
-            self.startResolution()
-
-        elif key.lower() == "b":
-            self.color = "black"
-            print("black")
-
-        elif key == 'space':
-            self.boss.stopResolution()
-
-        elif key.lower() == "o":
-            self.sudoku = save.readSudoku()
-            self.updateSudoku(self.sudoku)
-
-        elif key.lower() == "r":
-            self.color = "red"
-            print("red")
-
-        elif key.lower() == "s":
-            self.backUp()
-
-        elif key.lower() == "x":
+        if key.lower() == "x":
             self.effacerSudoku()
-
-        elif key == 'Return':
-            self.startManualEdition()
-
-        elif key == "BackSpace":
-            self.eraseResolution()
-
-        elif self.edition:
-            if key == 'Right':
-                self.y += 1
-                if self.y == self.nb_cases:
-                    self.y = 0
-
-            if key == 'Left':
-                self.y -= 1
-                if self.y == -1:
-                    self.y = self.nb_cases - 1
-
-            if key == 'Down':
-                self.x += 1
-                if self.x == self.nb_cases:
-                    self.x = 0
-
-            if key == 'Up':
-                self.x -= 1
-                if self.x == -1:
-                    self.x = self.nb_cases - 1
-
-            try:
-                if 0 < int(key) < self.nb_cases + 1:
-                    self.Can.itemconfigure(self.affichage_sudoku[self.x][self.y], text=key, fill=self.color)
-                if int(key) == 0:
-                    self.Can.itemconfigure(self.affichage_sudoku[self.x][self.y], text="")
-                self.sudoku[self.x, self.y] = int(key)
-            except ValueError:
-                pass
-
-            self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
-
-        else:
             self.showRaspi()
+        else:
+            self.showRaspi(False)
+            if key == 'F5':
+                self.startResolution()
+
+            elif key.lower() == "b":
+                self.color = "black"
+                print("black")
+
+            elif key == 'space':
+                self.boss.stopResolution()
+
+            elif key.lower() == "o":
+                self.sudoku = save.readSudoku()
+                self.updateSudoku(self.sudoku)
+
+            elif key.lower() == "r":
+                self.color = "red"
+                print("red")
+
+            elif key.lower() == "s":
+                self.backUp()
+
+            elif key == 'Return':
+                self.startManualEdition()
+
+            elif key == "BackSpace":
+                self.eraseResolution()
+
+            elif self.edition:
+                if key == 'Right':
+                    self.y += 1
+                    if self.y == self.nb_cases:
+                        self.y = 0
+
+                if key == 'Left':
+                    self.y -= 1
+                    if self.y == -1:
+                        self.y = self.nb_cases - 1
+
+                if key == 'Down':
+                    self.x += 1
+                    if self.x == self.nb_cases:
+                        self.x = 0
+
+                if key == 'Up':
+                    self.x -= 1
+                    if self.x == -1:
+                        self.x = self.nb_cases - 1
+
+                try:
+                    if 0 < int(key) < self.nb_cases + 1:
+                        self.Can.itemconfigure(self.affichage_sudoku[self.x][self.y], text=key, fill=self.color)
+                    if int(key) == 0:
+                        self.Can.itemconfigure(self.affichage_sudoku[self.x][self.y], text="")
+                    self.sudoku[self.x, self.y] = int(key)
+                except ValueError:
+                    pass
+
+                self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
 
     def updateSudoku(self, sudoku=None, liste_position=[]):
         if sudoku is None:
@@ -233,12 +229,12 @@ class Display(Tk):
         self.sudoku = np.copy(sudoku)
 
     def effacerSudoku(self):
-        for x in range(self.nb_cases):
-            for y in range(self.nb_cases):
-                self.Can.itemconfigure(self.affichage_sudoku[x][y], text="", fill='black')
-        self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
-        self.startManualEdition(False)
-        self.showRaspi()
+        if not self.boss.Resolution.process:
+            for x in range(self.nb_cases):
+                for y in range(self.nb_cases):
+                    self.Can.itemconfigure(self.affichage_sudoku[x][y], text="", fill='black')
+            self.sudoku = np.zeros((self.nb_cases, self.nb_cases), int)
+            self.startManualEdition(False)
 
     def showError(self, error):
         if error == "sudoku_insoluble":
