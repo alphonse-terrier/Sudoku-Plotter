@@ -32,7 +32,7 @@ def digit():
     dig = 0
     k = 0
     kernel = np.ones((2, 2), np.uint8)
-    decou = cv2.imread('Images/Traitement/decoup.jpg')
+    decou = cv2.imread('../pictures/Traitement/decoup.jpg')
     decou = cv2.cvtColor(decou, cv2.COLOR_BGR2GRAY)
     decou = cv2.GaussianBlur(decou, (5, 5), 0)
     thresh = cv2.adaptiveThreshold(decou, 255, 1, 1, 11, 2)
@@ -50,7 +50,7 @@ def digit():
         l = len(thresh) - 1
         thresh = thresh[0:l - 1, 1:l]
 
-    cv2.imwrite('Images/Traitement/minithresh.jpg', thresh)
+    cv2.imwrite('../pictures/Traitement/minithresh.jpg', thresh)
     dig = commands.getoutput("gocr -C \"123456789\" Images/Traitement/minithresh.jpg")
     dig = str(dig)
     if len(dig) == 0:
@@ -64,7 +64,7 @@ def digit():
     return dig
 
 
-image_sudoku_original = cv2.imread('Images/sudoku.jpg')
+image_sudoku_original = cv2.imread('../pictures/sudoku.jpg')
 image_sudoku_gray = cv2.cvtColor(image_sudoku_original, cv2.COLOR_BGR2GRAY)
 image_sudoku_gray = cv2.GaussianBlur(image_sudoku_gray, (5, 5), 0)
 thresh = cv2.adaptiveThreshold(image_sudoku_gray, 255, 1, 1, 11, 2)
@@ -97,10 +97,10 @@ for i in range(0, 9):
         a = str(i)
         b = str(j)
         c = 'decoup' + a + 'et' + b + '.jpg'
-        cv2.imwrite('Images/Traitement/decoup.jpg', decoup)
-        cv2.imwrite('Images/Traitement/' + c, decoup)
+        cv2.imwrite('../pictures/Traitement/decoup.jpg', decoup)
+        cv2.imwrite('../pictures/Images/Traitement/' + c, decoup)
         sudoku[i][j] = digit()
 
-cv2.imwrite('Images/Traitement/warp.jpg', warp)
+cv2.imwrite('../pictures/Traitement/warp.jpg', warp)
 
 print(saveSudoku(sudoku))

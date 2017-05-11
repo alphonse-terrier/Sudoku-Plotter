@@ -38,14 +38,17 @@ class Main:
         try:
             self.sudoku = sudoku
             print(sudoku)
-            while self.MotorControl.getPoints():
-                time.sleep(1)
             lcd3.write("Initialisation of the position")
             self.MotorControl.initializePosition()
             lcd3.write("Sudoku writing in progress...")
             self.MotorControl.setPoints(self.Write.writeSudoku(sudoku))
+            lcd3.write("Sudoku Plotter Welcome!")
         except KeyboardInterrupt:
             self.stop()
+
+    def setPenPosition(self, text):
+        if not self.MotorControl.getPoints():
+            self.MotorControl.setPoints(text)
 
     def stop(self):
         self.power = False

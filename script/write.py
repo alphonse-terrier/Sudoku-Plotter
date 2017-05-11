@@ -14,8 +14,8 @@ class Write:
 
     def __init__(self):
         self.points = []
-        self.step = 0.2  # 0.0017
-        self.coordinate = [(2, 12), (12, 2)]
+        self.step = 0.01  # 0.0017
+        self.coordinate = [(10, 15), (20, 25)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9

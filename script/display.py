@@ -153,7 +153,6 @@ class Display(Tk):
             self.effacerSudoku()
             self.showRaspi()
         else:
-            self.showRaspi(False)
             if key == 'F5':
                 self.startResolution()
 
@@ -161,8 +160,8 @@ class Display(Tk):
                 self.color = "black"
                 print("black")
 
-            elif key == 'space':
-                self.boss.stopResolution()
+            elif key.lower() == "d":
+                self.boss.setPenPosition("down")
 
             elif key.lower() == "o":
                 self.sudoku = save.readSudoku()
@@ -175,11 +174,17 @@ class Display(Tk):
             elif key.lower() == "s":
                 self.backUp()
 
-            elif key == 'Return':
-                self.startManualEdition()
+            elif key.lower() == "u":
+                self.boss.setPenPosition("up")
 
             elif key == "BackSpace":
                 self.eraseResolution()
+
+            elif key == 'Return':
+                self.startManualEdition()
+
+            elif key == 'space':
+                self.boss.stopResolution()
 
             elif self.edition:
                 if key == 'Right':
@@ -212,6 +217,7 @@ class Display(Tk):
                     pass
 
                 self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
+            self.showRaspi(False)
 
     def updateSudoku(self, sudoku=None, liste_position=[]):
         if sudoku is None:
@@ -257,6 +263,8 @@ class Display(Tk):
             showinfo("Raspberry", "La Raspberry a été redémarrée avec succès !")
         elif info == "raspi_stop":
             showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
+        elif info == "pen_set":
+            showinfo("Raspberry", "La position a été prise en compte")
 
     def showAide(self, evt=None):
         self.HelpMenu()

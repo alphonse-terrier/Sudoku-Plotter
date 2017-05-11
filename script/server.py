@@ -48,22 +48,25 @@ class Server(th.Thread):
                 if not text:
                     self.starting()
                 elif text == "reboot":
-                    connexion.send("raspi_reboot".encode())
                     lcd3.write("Sudoku Plotter rebooting...")
+                    connexion.send("raspi_reboot".encode())
                     os.system("reboot")
                 elif text == "shutdown":
-                    connexion.send("raspi_shutdown".encode())
                     lcd3.write("Sudoku Plotter Goodbye!")
+                    connexion.send("raspi_shutdown".encode())
                     self.boss.stop()
                     os.system("sudo shutdown -h now")
                 elif text == "photo":
-                    connexion.send("photo_taken".encode())
                     lcd3.write("a photo was taken")
                     os.system("raspistill -o sudoku.jpg")
+                    connexion.send("photo_taken".encode())
                 elif text == "stop":
-                    connexion.send("raspi_stop".encode())
                     lcd3.write("Sudoku writing process stopped!")
+                    connexion.send("raspi_stop".encode())
                     self.boss.sleep()
+                elif text == "up" or text == "up":
+                    connexion.send("pen_set")
+                    self.boss.setPenPosition(text)
                 else:
                     try:
                         self.sudoku = save.stringToSudoku(text)
