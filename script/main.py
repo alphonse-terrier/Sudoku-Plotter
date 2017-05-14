@@ -84,9 +84,6 @@ class Main:
     def setSudoku(self, sudoku):
         self.sudoku = sudoku
 
-    def setPenPosition(self, position):
-        self.Client.sendInfo(position)
-
     def sendSudoku(self, evt=None):
         self.sudoku = self.Display.sudoku
         self.Client.sendSudoku(self.sudoku)

@@ -58,7 +58,10 @@ def getFileName():
     for files_name in files:
         i = "0"
         for l in files_name:
-            if l.isnumeric(): i += l
+            try:
+                if l.isnumeric(): i += l
+            except AttributeError:
+                if l.isdigit(): i += l
         if int(i) > n: n = int(i)
     return n + 1
 

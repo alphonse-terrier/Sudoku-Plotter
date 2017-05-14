@@ -65,7 +65,6 @@ class MotorControl(threading.Thread):
             if self.points[0] == "up" or self.points[0] == "down":
                 self.servoMotor.setServo(self.points[0])
             else:
-                print(self.points)
                 x_b, y_b = self.points[0]
                 B = Point(x_b, y_b)
                 r = B.r - self.M.r
@@ -88,7 +87,6 @@ class MotorControl(threading.Thread):
                 elif self.motor1.stop_right: self.M.r = 22
                 self.M.newCartesianCoords()
             self.points.pop(0)
-        self.servoMotor.setServo("up")
         self.sleep()
 
     def setTime(self, nb_step_a, nb_step_b):
@@ -131,7 +129,6 @@ class MotorControl(threading.Thread):
         return self.points
 
     def sleep(self, sleep=True):
-        self.servoMotor.setServo("up")
         if sleep:
             self.motor1.sleep()
             self.motor2.sleep()

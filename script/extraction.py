@@ -51,7 +51,7 @@ def digit():
         thresh = thresh[0:l - 1, 1:l]
 
     cv2.imwrite('../pictures/Traitement/minithresh.jpg', thresh)
-    dig = commands.getoutput("gocr -C \"123456789\" Images/Traitement/minithresh.jpg")
+    dig = commands.getoutput("gocr -C \"123456789\" ../pictures/Traitement/minithresh.jpg")
     dig = str(dig)
     if len(dig) == 0:
         dig = 0
@@ -68,7 +68,7 @@ image_sudoku_original = cv2.imread('../pictures/sudoku.jpg')
 image_sudoku_gray = cv2.cvtColor(image_sudoku_original, cv2.COLOR_BGR2GRAY)
 image_sudoku_gray = cv2.GaussianBlur(image_sudoku_gray, (5, 5), 0)
 thresh = cv2.adaptiveThreshold(image_sudoku_gray, 255, 1, 1, 11, 2)
-contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+item, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 biggest = None
 max_zone = 0
 for i in contours:
@@ -98,9 +98,10 @@ for i in range(0, 9):
         b = str(j)
         c = 'decoup' + a + 'et' + b + '.jpg'
         cv2.imwrite('../pictures/Traitement/decoup.jpg', decoup)
-        cv2.imwrite('../pictures/Images/Traitement/' + c, decoup)
+        cv2.imwrite('../pictures//Traitement/' + c, decoup)
         sudoku[i][j] = digit()
 
 cv2.imwrite('../pictures/Traitement/warp.jpg', warp)
 
-print(saveSudoku(sudoku))
+print(sudoku)
+saveSudoku(sudoku, "/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku.txt")

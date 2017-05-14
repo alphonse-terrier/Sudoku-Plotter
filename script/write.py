@@ -15,7 +15,7 @@ class Write:
     def __init__(self):
         self.points = []
         self.step = 0.01  # 0.0017
-        self.coordinate = [(10, 15), (20, 25)]
+        self.coordinate = [(2, 25), (12, 15)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9
@@ -330,11 +330,11 @@ class Write:
             if y0 < y1:
                 while y < y1:
                     self.points.append((x, y))
-                    y += self.step
+                    y += self.step * 10
             else:
                 while y > y1:
                     self.points.append((x, y))
-                    y -= self.step
+                    y -= self.step * 10
         else:
             a = (y1 - y0) / (x1 - x0)
             b = y0 - a * x0
@@ -342,12 +342,13 @@ class Write:
                 while x < x1:
                     y = a * x + b
                     self.points.append((x, y))
-                    x += self.step
+                    x += self.step * 10
             else:
                 while x > x1:
                     y = a * x + b
                     self.points.append((x, y))
-                    x -= self.step
+                    x -= self.step * 10
+        self.points.append((x1, y1))
         self.points.append("up")
 
     def writeSudoku(self, sudoku):

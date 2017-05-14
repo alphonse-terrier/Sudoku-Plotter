@@ -58,14 +58,17 @@ class Server(th.Thread):
                     os.system("sudo shutdown -h now")
                 elif text == "photo":
                     lcd3.write("a photo was taken")
-                    os.system("raspistill -o sudoku.jpg")
+                    self.boss.takePhoto()
+                    sudoku = save.readSudoku("/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku")
+                    sudoku_string = save.sudokuToString(sudoku)
+                    connexion.send(sudoku_string.encode())
                     connexion.send("photo_taken".encode())
                 elif text == "stop":
                     lcd3.write("Sudoku writing process stopped!")
                     connexion.send("raspi_stop".encode())
                     self.boss.sleep()
-                elif text == "up" or text == "up":
-                    connexion.send("pen_set")
+                elif text == "up" or text == "down":
+                    connexion.send(text.encode())
                     self.boss.setPenPosition(text)
                 else:
                     try:

@@ -41,14 +41,21 @@ class Main:
             lcd3.write("Initialisation of the position")
             self.MotorControl.initializePosition()
             lcd3.write("Sudoku writing in progress...")
+            self.MotorControl.points = []
             self.MotorControl.setPoints(self.Write.writeSudoku(sudoku))
             lcd3.write("Sudoku Plotter Welcome!")
         except KeyboardInterrupt:
             self.stop()
 
     def setPenPosition(self, text):
+        lcd3.write("Sudokku Plotter position set")
         if not self.MotorControl.getPoints():
-            self.MotorControl.setPoints(text)
+            self.MotorControl.points = [text]
+
+    def takePhoto(self):
+        os.chdir("/home/pi/Desktop/Sudoku-Plotter/script")
+        os.system("raspistill -o ../pictures/sudoku.jpg")
+        os.system("sudo python extraction.py")
 
     def stop(self):
         self.power = False

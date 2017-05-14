@@ -6,6 +6,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import *
 from tkinter.filedialog import *
+
 import save
 
 
@@ -161,7 +162,7 @@ class Display(Tk):
                 print("black")
 
             elif key.lower() == "d":
-                self.boss.setPenPosition("down")
+                self.boss.sendInfo("down")
 
             elif key.lower() == "o":
                 self.sudoku = save.readSudoku()
@@ -175,7 +176,7 @@ class Display(Tk):
                 self.backUp()
 
             elif key.lower() == "u":
-                self.boss.setPenPosition("up")
+                self.boss.sendInfo("up")
 
             elif key == "BackSpace":
                 self.eraseResolution()
@@ -263,8 +264,13 @@ class Display(Tk):
             showinfo("Raspberry", "La Raspberry a été redémarrée avec succès !")
         elif info == "raspi_stop":
             showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
-        elif info == "pen_set":
-            showinfo("Raspberry", "La position a été prise en compte")
+        elif info == "up" or info == "down":
+            print(info)
+        else:
+            try:
+                self.sudoku = save.stringToSudoku(info)
+            except IndexError or ValueError:
+                self.sudoku = np.zeros((9, 9), int)
 
     def showAide(self, evt=None):
         self.HelpMenu()
