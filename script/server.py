@@ -59,10 +59,9 @@ class Server(th.Thread):
                 elif text == "photo":
                     lcd3.write("a photo was taken")
                     self.boss.takePhoto()
-                    sudoku = save.readSudoku("/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku")
+                    sudoku = save.readSudoku("/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku.txt")
                     sudoku_string = save.sudokuToString(sudoku)
                     connexion.send(sudoku_string.encode())
-                    connexion.send("photo_taken".encode())
                 elif text == "stop":
                     lcd3.write("Sudoku writing process stopped!")
                     connexion.send("raspi_stop".encode())

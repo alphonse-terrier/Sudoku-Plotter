@@ -51,7 +51,7 @@ def digit():
         thresh = thresh[0:l - 1, 1:l]
 
     cv2.imwrite('../pictures/Traitement/minithresh.jpg', thresh)
-    dig = commands.getoutput("gocr -C \"123456789\" ../pictures/Traitement/minithresh.jpg")
+    dig = commands.getoutput("gocr -C \"123456789\" /pictures/Traitement/minithresh.jpg")
     dig = str(dig)
     if len(dig) == 0:
         dig = 0
@@ -98,7 +98,7 @@ for i in range(0, 9):
         b = str(j)
         c = 'decoup' + a + 'et' + b + '.jpg'
         cv2.imwrite('../pictures/Traitement/decoup.jpg', decoup)
-        cv2.imwrite('../pictures//Traitement/' + c, decoup)
+        cv2.imwrite('../pictures/Traitement/' + c, decoup)
         sudoku[i][j] = digit()
 
 cv2.imwrite('../pictures/Traitement/warp.jpg', warp)

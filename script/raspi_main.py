@@ -54,7 +54,7 @@ class Main:
 
     def takePhoto(self):
         os.chdir("/home/pi/Desktop/Sudoku-Plotter/script")
-        os.system("raspistill -o ../pictures/sudoku.jpg")
+        os.system("raspistill -o ../pictures/Sudoku.jpg")
         os.system("sudo python extraction.py")
 
     def stop(self):
