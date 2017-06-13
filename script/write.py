@@ -14,8 +14,8 @@ class Write:
 
     def __init__(self):
         self.points = []
-        self.step = 0.01  # 0.0017
-        self.coordinate = [(2, 25), (12, 15)]
+        self.step = 0.1  # 0.0017
+        self.coordinate = [(5, 25), (15, 15)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9
@@ -373,8 +373,9 @@ class Write:
         return self.points
 
     def writeAllNumbers(self):
+        self.L = 2.5
         for i in range(10):
-            self.writeNumbers(i, 4 / 5 * i, 0)
+            self.writeNumbers(i, 4 / 5 * i * self.L, 0)
 
     def write(self, linked=False):
         x, y = [], []
@@ -382,11 +383,11 @@ class Write:
             if point != "up" and point != "down":
                 x.append(point[0])
                 y.append(point[1])
-        if linked: plt.plot(x, y, 'r', linewidth=2)
+        if linked: plt.plot(x, y, 'ro', linewidth=2)
         else: plt.scatter(x, y, c='red', s=8)
         plt.grid(True)
         plt.axis('equal')
-        plt.axis('off')
+        # plt.axis('off')
         plt.show()
 
 
@@ -401,6 +402,8 @@ if __name__ == "__main__":
                        [0, 0, 8, 5, 0, 0, 0, 0, 0],
                        [9, 0, 0, 0, 4, 0, 5, 0, 0],
                        [4, 7, 0, 0, 0, 6, 0, 0, 0]])
+    sudoku = np.zeros((9, 9), int)
+    w.writeSudoku(sudoku)
     point = w.writeSudoku(sudoku)
-    for i in point: print(i)
+    # point = w.writeAllNumbers()
     w.write(True)

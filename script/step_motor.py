@@ -33,8 +33,8 @@ class MotorControl(threading.Thread):
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.r_step = 0.0203
-        self.theta_step = 0.0056
+        self.r_step = 0.0025375  # 0.0203
+        self.theta_step = 0.0007  # 0.0056
         self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
 
         self.pinInit()
@@ -42,13 +42,9 @@ class MotorControl(threading.Thread):
         self.motor1 = Motor(self.bobines_motor1)
         self.motor2 = Motor(self.bobines_motor2)
         self.servoMotor = ServoMotor(self.pwm_servo)
-        self.turnOnLed = BlinkingLed(self.turn_on_led)
-        self.workingLed = BlinkingLed(self.working_led, True)
 
         self.motor1.start()
         self.motor2.start()
-        self.turnOnLed.start()
-        self.workingLed.start()
 
     def run(self):
         while self.power:
@@ -60,7 +56,6 @@ class MotorControl(threading.Thread):
         self.motor1.initializePosition()
 
     def movingMotor(self):
-        self.sleep(False)
         while self.points:
             if self.points[0] == "up" or self.points[0] == "down":
                 self.servoMotor.setServo(self.points[0])
@@ -69,15 +64,13 @@ class MotorControl(threading.Thread):
                 B = Point(x_b, y_b)
                 r = B.r - self.M.r
                 theta = B.theta - self.M.theta
-                print(r, theta)
                 nb_steps1 = int(r / self.r_step + 0.5)
                 nb_steps2 = int(theta / self.theta_step + 0.5)
-                print(nb_steps1, nb_steps2)
+                print("%d \t %d \t %d \t %d" % (x_b, y_b, nb_steps1, nb_steps2))
                 if abs(nb_steps1) > abs(nb_steps2):
                     self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
                 else:
                     self.motor2.speed, self.motor1.speed = self.setTime(nb_steps2, nb_steps1)
-                print(self.motor1.speed, self.motor2.speed)
                 self.motor1.nb_steps = nb_steps1
                 self.motor2.nb_steps = nb_steps2
                 while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
@@ -86,11 +79,11 @@ class MotorControl(threading.Thread):
                 if self.motor1.stop_left: self.M.r = 7
                 elif self.motor1.stop_right: self.M.r = 22
                 self.M.newCartesianCoords()
-            self.points.pop(0)
+            if self.points: self.points.pop(0)
         self.sleep()
 
     def setTime(self, nb_step_a, nb_step_b):
-        speed_a = 10
+        speed_a = 5
         if nb_step_b != 0:
             speed_b = abs(nb_step_a * speed_a / nb_step_b)
         else:
@@ -128,22 +121,15 @@ class MotorControl(threading.Thread):
     def getPoints(self):
         return self.points
 
-    def sleep(self, sleep=True):
-        if sleep:
-            self.motor1.sleep()
-            self.motor2.sleep()
-            self.workingLed.sleep()
-            self.turnOnLed.sleep(False)
-        else:
-            self.workingLed.sleep(False)
-            self.turnOnLed.sleep()
+    def sleep(self):
+        self.points = []
+        self.motor1.sleep()
+        self.motor2.sleep()
 
     def stop(self):
         self.servoMotor.setServo("up")
         self.motor1.stop()
         self.motor2.stop()
-        self.workingLed.stop()
-        self.turnOnLed.stop()
         if not error: GPIO.cleanup()
         self.power = False
 
@@ -167,7 +153,15 @@ class Motor(threading.Thread):
         self.stop_left = False
         self.stop_right = False
         self.direction = {"left": -1, "right": 1}
-        self.motor_alim = [[1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0]]
+        self.PWM = self.initPWM()
+        self.motor_alim = [[1, 0, 0, 0], [0.875, 0, 0, 0.125], [0.75, 0, 0, 0.25], [0.625, 0, 0, 0.375],
+                           [0.5, 0, 0, 0.5], [0.375, 0, 0, 0.625], [0.25, 0, 0, 0.75], [0.125, 0, 0, 0.875],
+                           [0, 0, 0, 1], [0, 0.125, 0, 0.875], [0, 0.25, 0, 0.75], [0, 0.375, 0, 0.625],
+                           [0, 0.5, 0, 0.5], [0, 0.625, 0, 0.375], [0, 0.75, 0, 0.25], [0, 0.875, 0, 0.125],
+                           [0, 1, 0, 0], [0, 0.875, 0.125, 0], [0, 0.75, 0.25, 0], [0, 0.625, 0.375, 0],
+                           [0, 0.5, 0.5, 0], [0, 0.375, 0.625, 0], [0, 0.25, 0.75, 0], [0, 0.125, 0.875, 0],
+                           [0, 0, 1, 0], [0.125, 0, 0.875, 0], [0.25, 0, 0.75, 0], [0.375, 0, 0.625, 0],
+                           [0.5, 0, 0.5, 0], [0.625, 0, 0.375, 0], [0.75, 0, 0.25, 0], [0.875, 0, 0.125, 0]]
 
         self.bt = bt.Buttons(self.button_pin)
         self.bt.start()
@@ -182,11 +176,18 @@ class Motor(threading.Thread):
             else:
                 time.sleep(0.1)
 
+    def initPWM(self):
+        pwm = []
+        for i in range(4):
+            pwm.append(GPIO.PWM(self.bobines[i], 500))
+            pwm[i].start(0)
+        return pwm
+
     def initializePosition(self, direction='left'):
         while not self.bt.pressed[0]:
             self.position += self.direction[direction]
             self.setPins()
-            time.sleep(0.01)
+            time.sleep(0.00125)
 
     def moveMotor(self):
         if self.number == 1:
@@ -206,7 +207,7 @@ class Motor(threading.Thread):
     def setPins(self):
         if not error:
             for i in range(4):
-                GPIO.output(self.bobines[i], self.motor_alim[self.position % 4][i])
+                self.PWM[i].ChangeDutyCycle(self.motor_alim[self.position % 32][i] * 100)
 
     def sleep(self):
         print("motor{}: sleep".format(self.number))
@@ -255,36 +256,6 @@ class ManualMotor(Motor):
 
     def moveMotor(self):
         self.position += self.direction
-
-
-class BlinkingLed(threading.Thread):
-    def __init__(self, led_pin, sleeping=False):
-        threading.Thread.__init__(self)
-        self.power = True
-        self.sleeping = sleeping
-        self.led_pin = led_pin
-        self.pinInit()
-
-    def run(self):
-        while self.power:
-            if self.sleeping or error:
-                time.sleep(2)
-            else:
-                GPIO.output(self.led_pin, 1)
-                time.sleep(0.1)
-                GPIO.output(self.led_pin, 0)
-                time.sleep(1)
-
-    def pinInit(self):
-        if not error:
-            GPIO.setmode(GPIO.BOARD)
-            GPIO.setup(self.led_pin, GPIO.OUT)
-
-    def stop(self):
-        self.power = False
-
-    def sleep(self, sleeping=True):
-        self.sleeping = sleeping
 
 
 class Origin:

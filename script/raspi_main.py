@@ -19,7 +19,6 @@ class Main:
     """
 
     def __init__(self):
-
         self.power = True
         self.sudoku = np.zeros((9, 9), int)
         self.Write = write.Write()

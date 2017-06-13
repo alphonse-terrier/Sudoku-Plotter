@@ -15,7 +15,7 @@ class Client:
     """
     def __init__(self, boss):
         self.boss = boss
-        self.host = "192.168.43.101"
+        self.host = "192.168.43.17"
         self.port = 50000
         self.power = True
         self.connected = False

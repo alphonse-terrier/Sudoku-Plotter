@@ -69,6 +69,10 @@ class Display(Tk):
         self.bind_all('<Control-O>', self.openSudoku)
         self.bind_all('<Control-s>', self.saveSudoku)
         self.bind_all('<Control-S>', self.saveSudoku)
+        self.bind_all('<Control-p>', lambda x: self.boss.sendInfo("photo"))
+        self.bind_all('<Control-P>', lambda x: self.boss.sendInfo("photo"))
+        self.bind_all('<Control-z>', lambda x: self.boss.sendInfo("stop"))
+        self.bind_all('<Control-Z>', lambda x: self.boss.sendInfo("stop"))
         self.bind_all('<Key>', self.tryToEdit)
 
     def choixMethode(self, methode):
@@ -149,10 +153,16 @@ class Display(Tk):
 
     def tryToEdit(self, evt):
         key = evt.keysym
+        # self.showRaspi()
+        if key.lower() == "d":
+            self.boss.sendInfo("down")
 
-        if key.lower() == "x":
+        elif key.lower() == "u":
+            self.boss.sendInfo("up")
+
+        elif key.lower() == "x":
             self.effacerSudoku()
-            self.showRaspi()
+
         else:
             if key == 'F5':
                 self.startResolution()
@@ -160,9 +170,6 @@ class Display(Tk):
             elif key.lower() == "b":
                 self.color = "black"
                 print("black")
-
-            elif key.lower() == "d":
-                self.boss.sendInfo("down")
 
             elif key.lower() == "o":
                 self.sudoku = save.readSudoku()
@@ -174,9 +181,6 @@ class Display(Tk):
 
             elif key.lower() == "s":
                 self.backUp()
-
-            elif key.lower() == "u":
-                self.boss.sendInfo("up")
 
             elif key == "BackSpace":
                 self.eraseResolution()
@@ -262,7 +266,7 @@ class Display(Tk):
             showinfo("Raspberry", "La Raspberry a été redémarrée avec succès !")
         elif info == "raspi_stop":
             showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
-        elif info == "up" or info == "down":
+        elif info == "up" or info == "down" or info == "numbers_get":
             print(info)
         else:
             print(info)
@@ -270,6 +274,8 @@ class Display(Tk):
                 self.sudoku = save.stringToSudoku(info)
             except IndexError or ValueError:
                 self.sudoku = np.zeros((9, 9), int)
+            self.updateSudoku(self.sudoku)
+            self.showRaspi(False)
 
     def showAide(self, evt=None):
         self.HelpMenu()
@@ -448,9 +454,9 @@ class Display(Tk):
             # Ajout des items du menu 'Raspberry'
             self.menu_raspberry.add_command(label="Envoyer", command=self.boss.boss.sendSudoku,
                                             image=self.send_icon, compound=LEFT, accelerator="Ctrl+E")
-            self.menu_raspberry.add_command(label="Photo", image=self.photo_icon, compound=LEFT,
+            self.menu_raspberry.add_command(label="Photo", image=self.photo_icon, accelerator="Ctrl+P", compound=LEFT,
                                             command=lambda: self.boss.boss.sendInfo("photo"))
-            self.menu_raspberry.add_command(label="Stop", image=self.delete_icon, compound=LEFT,
+            self.menu_raspberry.add_command(label="Stop", image=self.delete_icon, accelerator="Ctrl+Z", compound=LEFT,
                                             command=lambda: self.boss.boss.sendInfo("stop"))
             self.menu_raspberry.add_separator()
             self.menu_raspberry.add_command(label="Redémarrer", image=self.restart_icone, compound=LEFT,

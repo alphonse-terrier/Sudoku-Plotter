@@ -64,7 +64,7 @@ def digit():
     return dig
 
 
-image_sudoku_original = cv2.imread('../pictures/sudoku.jpg')
+image_sudoku_original = cv2.imread('../pictures/Sudoku.jpg')
 image_sudoku_gray = cv2.cvtColor(image_sudoku_original, cv2.COLOR_BGR2GRAY)
 image_sudoku_gray = cv2.GaussianBlur(image_sudoku_gray, (5, 5), 0)
 thresh = cv2.adaptiveThreshold(image_sudoku_gray, 255, 1, 1, 11, 2)
