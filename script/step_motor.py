@@ -33,8 +33,9 @@ class MotorControl(threading.Thread):
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.r_step = 0.0025375  # 0.0203
-        self.theta_step = 0.0007  # 0.0056
+        self.max_speed = 40
+        self.r_step = 0.0203
+        self.theta_step = 0.0056
         self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
 
         self.pinInit()
@@ -42,6 +43,7 @@ class MotorControl(threading.Thread):
         self.motor1 = Motor(self.bobines_motor1)
         self.motor2 = Motor(self.bobines_motor2)
         self.servoMotor = ServoMotor(self.pwm_servo)
+        self.setMicroStep()
 
         self.motor1.start()
         self.motor2.start()
@@ -66,7 +68,7 @@ class MotorControl(threading.Thread):
                 theta = B.theta - self.M.theta
                 nb_steps1 = int(r / self.r_step + 0.5)
                 nb_steps2 = int(theta / self.theta_step + 0.5)
-                print("%d \t %d \t %d \t %d" % (x_b, y_b, nb_steps1, nb_steps2))
+                # print("%d \t %d \t %d \t %d" % (x_b, y_b, nb_steps1, nb_steps2))
                 if abs(nb_steps1) > abs(nb_steps2):
                     self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
                 else:
@@ -83,7 +85,7 @@ class MotorControl(threading.Thread):
         self.sleep()
 
     def setTime(self, nb_step_a, nb_step_b):
-        speed_a = 5
+        speed_a = self.max_speed
         if nb_step_b != 0:
             speed_b = abs(nb_step_a * speed_a / nb_step_b)
         else:
@@ -115,6 +117,12 @@ class MotorControl(threading.Thread):
         """
         pass
 
+    def setMicroStep(self):
+        micro_step = min(self.motor1.micro_step, self.motor2.micro_step)
+        self.max_speed = self.max_speed / micro_step
+        self.r_step /= self.motor1.micro_step
+        self.theta_step /= self.motor2.micro_step
+
     def setPoints(self, points):
         self.points = points
 
@@ -145,6 +153,7 @@ class Motor(threading.Thread):
         threading.Thread.__init__(self)
         self.power = True
         self.speed = speed
+        self.micro_step = 8
         self.number = Motor.nb
         self.bobines = bobines
         self.position = position
@@ -154,14 +163,7 @@ class Motor(threading.Thread):
         self.stop_right = False
         self.direction = {"left": -1, "right": 1}
         self.PWM = self.initPWM()
-        self.motor_alim = [[1, 0, 0, 0], [0.875, 0, 0, 0.125], [0.75, 0, 0, 0.25], [0.625, 0, 0, 0.375],
-                           [0.5, 0, 0, 0.5], [0.375, 0, 0, 0.625], [0.25, 0, 0, 0.75], [0.125, 0, 0, 0.875],
-                           [0, 0, 0, 1], [0, 0.125, 0, 0.875], [0, 0.25, 0, 0.75], [0, 0.375, 0, 0.625],
-                           [0, 0.5, 0, 0.5], [0, 0.625, 0, 0.375], [0, 0.75, 0, 0.25], [0, 0.875, 0, 0.125],
-                           [0, 1, 0, 0], [0, 0.875, 0.125, 0], [0, 0.75, 0.25, 0], [0, 0.625, 0.375, 0],
-                           [0, 0.5, 0.5, 0], [0, 0.375, 0.625, 0], [0, 0.25, 0.75, 0], [0, 0.125, 0.875, 0],
-                           [0, 0, 1, 0], [0.125, 0, 0.875, 0], [0.25, 0, 0.75, 0], [0.375, 0, 0.625, 0],
-                           [0.5, 0, 0.5, 0], [0.625, 0, 0.375, 0], [0.75, 0, 0.25, 0], [0.875, 0, 0.125, 0]]
+        self.motor_alim = self.setMicroStep()
 
         self.bt = bt.Buttons(self.button_pin)
         self.bt.start()
@@ -179,9 +181,24 @@ class Motor(threading.Thread):
     def initPWM(self):
         pwm = []
         for i in range(4):
-            pwm.append(GPIO.PWM(self.bobines[i], 500))
+            pwm.append(GPIO.PWM(self.bobines[i], 1500))
             pwm[i].start(0)
         return pwm
+
+    def setMicroStep(self):
+        next = None
+        previous = None
+        motor_alim = [[1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
+        new_alim = []
+        for i in range(4):
+            for j in range(4):
+                if motor_alim[i][j]: previous = j
+                if motor_alim[(i + 1) % 4][j]: next = j
+            for j in range(self.micro_step):
+                new_alim.append([0, 0, 0, 0])
+                new_alim[-1][previous] = 1 - j / self.micro_step
+                new_alim[-1][next] = j / self.micro_step
+        return new_alim
 
     def initializePosition(self, direction='left'):
         while not self.bt.pressed[0]:
@@ -213,7 +230,7 @@ class Motor(threading.Thread):
         print("motor{}: sleep".format(self.number))
         if not error:
             for i in range(4):
-                GPIO.output(self.bobines[i], 0)
+                self.PWM[i].ChangeDutyCycle(0)
 
     def stop(self):
         print("motor{}: stop".format(self.number))
