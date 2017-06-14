@@ -33,7 +33,7 @@ class MotorControl(threading.Thread):
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.max_speed = 40
+        self.max_speed = 80
         self.r_step = 0.0203
         self.theta_step = 0.0056
         self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
@@ -204,7 +204,7 @@ class Motor(threading.Thread):
         while not self.bt.pressed[0]:
             self.position += self.direction[direction]
             self.setPins()
-            time.sleep(0.00125)
+            time.sleep(0.01 / self.micro_step)
 
     def moveMotor(self):
         if self.number == 1:
@@ -224,7 +224,7 @@ class Motor(threading.Thread):
     def setPins(self):
         if not error:
             for i in range(4):
-                self.PWM[i].ChangeDutyCycle(self.motor_alim[self.position % 32][i] * 100)
+                self.PWM[i].ChangeDutyCycle(self.motor_alim[self.position % (4 * self.micro_step)][i] * 100)
 
     def sleep(self):
         print("motor{}: sleep".format(self.number))
