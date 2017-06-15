@@ -19,7 +19,7 @@ class MotorControl(threading.Thread):
     de la raspberry a été importé correctement,
     définit les sorties GPIO de la Raspberry utilisées pour controler les moteurs,
     initialise les processus des moteurs (motor1 et motor2),
-    déplace les moteurs simultanément pour se rendre d'un point à un autre
+    déplace les moteurs simultanément pour se rendre b'un point à un autre
     """
 
     def __init__(self):
@@ -33,7 +33,7 @@ class MotorControl(threading.Thread):
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.max_speed = 80
+        self.max_speed = 40
         self.r_step = 0.0203
         self.theta_step = 0.0056
         self.points = []  # ['down', (5, 16), (5, 20), (9, 20), (9, 16), (5, 16), 'up']  # [(22, 7), (16.2, 24.07), (4.3, 14.93)]
@@ -68,7 +68,7 @@ class MotorControl(threading.Thread):
                 theta = B.theta - self.M.theta
                 nb_steps1 = int(r / self.r_step + 0.5)
                 nb_steps2 = int(theta / self.theta_step + 0.5)
-                # print("%d \t %d \t %d \t %d" % (x_b, y_b, nb_steps1, nb_steps2))
+                # print("%b \t %b \t %b \t %b" % (x_b, y_b, nb_steps1, nb_steps2))
                 if abs(nb_steps1) > abs(nb_steps2):
                     self.motor1.speed, self.motor2.speed = self.setTime(nb_steps1, nb_steps2)
                 else:
@@ -188,7 +188,7 @@ class Motor(threading.Thread):
     def setMicroStep(self):
         next = None
         previous = None
-        motor_alim = [[1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
+        motor_alim = [[1, 0, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0], [0, 0, 1, 0]]
         new_alim = []
         for i in range(4):
             for j in range(4):
