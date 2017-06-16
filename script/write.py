@@ -14,8 +14,8 @@ class Write:
 
     def __init__(self):
         self.points = []
-        self.step = 0.1  # 0.0017
-        self.coordinate = [(5, 15), (14, 24)]
+        self.step = 0.02  # 0.0017
+        self.coordinate = [(0.5, 0.5), (18.5, 18.5)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9
@@ -42,6 +42,7 @@ class Write:
         self.points.append((x0 + self.L / 12, y0 - self.L / 2))
         x = - self.L / 12
         y = - self.L / 2
+        self.points.append("up")
         while x < self.L / 4:
             self.points.append((x + x0, y + y0))
             x += self.step
@@ -157,7 +158,7 @@ class Write:
                 y -= self.step
         liste_x, liste_y = [], []
         while x < self.L / 6:
-            y = - self.L / 6 + math.sqrt(self.L ** 2 / 9 - (x + self.L / 12) ** 2)
+            y = - self.L / 6 + math.sqrt(abs(self.L ** 2 / 9 - (x + self.L / 12) ** 2))
             liste_x.append(x)
             liste_y.append(y)
             x += self.step
@@ -263,9 +264,16 @@ class Write:
             liste_y.insert(0, liste_y[2 * i])
         l = len(liste_x)
         for i in range(l):
-            liste_x.append(liste_x[l - i - 1])
-            liste_y.append(-liste_y[l - 1 - i])
+            liste_x.append(liste_x[i])
+            liste_y.append(-liste_y[i])
         l = len(liste_x)
+        liste_x += [0]
+        liste_y += [0]
+        while x < self.L / 6:
+            y = self.L / 4 + math.sqrt((self.L / 4) ** 2 - x ** 2)
+            liste_y.append(y)
+            liste_x.append(x)
+            x += self.step
         for i in range(l):
             self.points.append((liste_x[l - 1 - i] + x0, liste_y[l - 1 - i] + y0))
 
@@ -299,13 +307,15 @@ class Write:
             liste_x.append(liste_x[i])
             liste_y.append(self.L / 2 - liste_y[i])
         l = len(liste_x)
+        liste_x.reverse()
+        liste_y.reverse()
         self.append(liste_x, liste_y, x0, y0)
         x = y = self.L / 4
         while y > - self.L / 6:
             self.points.append((x + x0, y + y0))
             y -= self.step
         while x > self.L / 5:
-            x = - self.L / 12 + math.sqrt(self.L ** 2 / 9 - (y + self.L / 6) ** 2)
+            x = - self.L / 12 + math.sqrt(abs(self.L ** 2 / 9 - (y + self.L / 6) ** 2))
             self.points.append((x + x0, y + y0))
             y -= self.step
         while x >= - self.L / 5:
@@ -344,11 +354,11 @@ class Write:
             if y0 < y1:
                 while y < y1:
                     self.points.append((x, y))
-                    y += self.step
+                    y += self.step * 10
             else:
                 while y > y1:
                     self.points.append((x, y))
-                    y -= self.step
+                    y -= self.step * 10
         else:
             a = (y1 - y0) / (x1 - x0)
             b = y0 - a * x0
@@ -356,12 +366,12 @@ class Write:
                 while x < x1:
                     y = a * x + b
                     self.points.append((x, y))
-                    x += self.step
+                    x += self.step * 10
             else:
                 while x > x1:
                     y = a * x + b
                     self.points.append((x, y))
-                    x -= self.step
+                    x -= self.step * 10
         self.points.append((x1, y1))
         self.points.append("up")
 
@@ -378,14 +388,20 @@ class Write:
                 self.writeLine(self.a + self.nx * i, self.d, self.a + self.nx * i, self.b)
         for i in range(9):
             for j in range(9):
-                if sudoku[i][j]:
-                    self.writeNumbers(sudoku[i][j], self.x0 + self.nx * j,
-                                      self.y0 + self.ny * (8 - i))
+                if i % 2:
+                    if sudoku[i][j]:
+                        self.writeNumbers(sudoku[i][j], self.x0 + self.nx * j,
+                                          self.y0 + self.ny * (8 - i))
+                else:
+                    if sudoku[i][8 - j]:
+                        self.writeNumbers(sudoku[i][8 - j], self.x0 + self.nx * (8 - j),
+                                          self.y0 + self.ny * (8 - i))
         s = 0
         for i in range(len(self.points) - 1):
             if self.points[i + s] == "up":
                 self.points.insert(i + s + 2, "down")
                 s += 1
+        self.points.insert(1, "down")
         return self.points
 
     def writeAllNumbers(self):

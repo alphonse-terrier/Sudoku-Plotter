@@ -42,7 +42,6 @@ class Main:
             lcd3.write("Sudoku writing in progress...")
             self.MotorControl.points = []
             self.MotorControl.setPoints(self.Write.writeSudoku(sudoku))
-            lcd3.write("Sudoku Plotter Welcome!")
         except KeyboardInterrupt:
             self.stop()
 
