@@ -75,6 +75,12 @@ class Main:
                 except tk.TclError:
                     pass
 
+    def startAll(self):
+        self.Client.sendInfo("photo")
+        if self.Display.showInfo("continuer"):
+            self.sudoku = self.Display.sudoku
+            self.startResolution(self.sudoku)
+
     def pauseResolution(self):
         self.Resolution.wait()
 
@@ -100,7 +106,7 @@ class Main:
         self.stopResolution()
         self.Resolution.power = False
         self.Display.destroy()
-        self.Client.stop()
+        self.Client.close()
 
 
 Main()

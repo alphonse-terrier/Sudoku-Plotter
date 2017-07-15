@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 import socket
 import numpy as np
 
@@ -10,12 +11,12 @@ import save
 class Client:
     """
     Classe essayant de se connecter au server de la Raspberry Pi
-    Permet, le cas echeant, l'échange d'informations entre 
+    Permet, le cas echeant, l'échange b'informations entre 
     celle-ci et le PC distant
     """
     def __init__(self, boss):
         self.boss = boss
-        self.host = "192.168.43.17"
+        self.host = "10.3.141.1"
         self.port = 50000
         self.power = True
         self.connected = False
@@ -33,6 +34,7 @@ class Client:
                 self.connected = False
                 self.boss.setError("raspi_connection")
         return self.connected
+
 
     def sendSudoku(self, sudoku):
         if self.tryConnect():
@@ -55,7 +57,7 @@ class Client:
                 self.boss.setError("raspi_connection")
                 self.connected = False
 
-    def stop(self):
+    def close(self):
         self.power = False
         self.mySocket.close()
 
