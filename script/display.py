@@ -12,8 +12,8 @@ import save
 
 class Display(Tk):
     """
-    Hérite de la classe Tk() qui permet l'affichage d'une fenêtre sous tkinter
-    Permet d'exploiter une interface graphique pour afficher et éditer une
+    Hérite de la classe Tk() qui permet l'affichage b'une fenêtre sous tkinter
+    Permet b'exploiter une interface graphique pour afficher et éditer une
     grille de sudoku de manière plus interactive avec l'utilisateur.
     """
 
@@ -98,9 +98,10 @@ class Display(Tk):
         filepath = askopenfilename(title="Ouvrir une grille", initialdir="/Sudoku-Plotter/sudoku",
                                    filetypes=[('Text files', '.txt')])
         if filepath:
-            self.sudoku = save.readSudoku(filepath)
+            self.sudoku, coord = save.readSudoku(filepath)
         self.boss.setSudoku(self.sudoku)
         self.updateSudoku()
+        self.showRaspi(False)
 
     def saveSudoku(self, evt=None):
         filepath = asksaveasfilename(title="Enregistrer une grille", initialdir="/Sudoku-Plotter/sudoku",
@@ -127,7 +128,7 @@ class Display(Tk):
 
     def createMatrix(self):
         """
-        Permet d'afficher une grille de sudoku vide ainsi que le curseur qui est à l'origine masqué
+        Permet b'afficher une grille de sudoku vide ainsi que le curseur qui est à l'origine masqué
         :return: None
         """
         for i in range(self.nb_cases + 1):
@@ -153,7 +154,7 @@ class Display(Tk):
 
     def tryToEdit(self, evt):
         key = evt.keysym
-        # self.showRaspi()
+        self.showRaspi()
         if key.lower() == "d":
             self.boss.sendInfo("down")
 
@@ -164,15 +165,19 @@ class Display(Tk):
             self.effacerSudoku()
 
         else:
+            self.showRaspi(False)
             if key == 'F5':
                 self.startResolution()
+
+            if key == 'F1':
+                self.boss.startAll()
 
             elif key.lower() == "b":
                 self.color = "black"
                 print("black")
 
             elif key.lower() == "o":
-                self.sudoku = save.readSudoku()
+                self.sudoku, coords = save.readSudoku()
                 self.updateSudoku(self.sudoku)
 
             elif key.lower() == "r":
@@ -222,7 +227,7 @@ class Display(Tk):
                     pass
 
                 self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
-            self.showRaspi(False)
+            else: self.showRaspi()
 
     def updateSudoku(self, sudoku=None, liste_position=[]):
         if sudoku is None:
@@ -251,7 +256,7 @@ class Display(Tk):
         if error == "sudoku_insoluble":
             showerror("Sudoku", "Le sudoku n'est pas résoluble !")
         elif error == "raspi_connection":
-            showerror("Connexion impossible", "Assurez-vous d'être connécté à la Rapsberry Pi !")
+            showerror("Connexion impossible", "Assurez-vous d'être connecté à la Rapsberry Pi !")
         else:
             showerror("Erreur", "Une erreur inattendue est survenue !")
 
@@ -268,8 +273,9 @@ class Display(Tk):
             showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
         elif info == "up" or info == "down" or info == "numbers_get":
             print(info)
+        elif info == "continuer":
+            return askokcancel("Continuez ?", "Souhaitez-vous continuer ?")
         else:
-            print(info)
             try:
                 self.sudoku = save.stringToSudoku(info)
             except IndexError or ValueError:
@@ -347,7 +353,7 @@ class Display(Tk):
         def showLabel(self, Frame):
             self.label = Label(Frame)
             self.url = Label(Frame)
-            url = "Plus d'informations disponibles sur www.github.com/alphter/Sudoku-Plotter"
+            url = "Plus b'informations disponibles sur www.github.com/alphter/Sudoku-Plotter"
             self.label.configure(text=''.join(self.text), font=('Times', 12), borderwidth=3,
                                  anchor=N, justify=LEFT, height=15)
             self.url.configure(text=url, font=('Times', 12), borderwidth=3, anchor=N, justify=LEFT)

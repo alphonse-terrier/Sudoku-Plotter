@@ -5,7 +5,7 @@ import os
 import numpy as np
 
 
-def saveSudoku(sudoku, filename=None):
+def saveSudoku(sudoku, filename=None, coords=None):
     """
     Enregistre la grille dans un fichier texte
     :param filename: 
@@ -22,6 +22,10 @@ def saveSudoku(sudoku, filename=None):
         for j in range(9):
             fichier.write(str(sudoku[i][j]))
         fichier.write("\n")
+    if coords is not None:
+        for i in coords:
+            fichier.write(str(i[0]) + " " + str(i[1]))
+            fichier.write("\n")
     fichier.close()
     return readSudoku()
 
@@ -32,6 +36,7 @@ def readSudoku(filename=None):
     :return: sudoku: array
     """
     sudoku = np.zeros((9, 9), int)
+    coords = np.zeros((4, 2), int)
     if not filename: filename = "../sudoku/" + getLastFile()
     try:
         fichier = open(filename, "r")
@@ -44,12 +49,23 @@ def readSudoku(filename=None):
                     j += 1
                 except ValueError:
                     pass
+        for i in range(4):
+            ligne = fichier.readline()
+            coord = ""
+            for s in ligne:
+                coord += s
+            a, b, c = coord.partition(" ")
+            try:
+                coords[i, 0] = int(a)
+                coords[i, 1] = int(c)
+            except ValueError:
+                pass
         fichier.close()
     except IndexError:
         sudoku = np.zeros((9, 9), int)
     except IOError:
         pass
-    return sudoku
+    return sudoku, coords
 
 
 def getFileName():
