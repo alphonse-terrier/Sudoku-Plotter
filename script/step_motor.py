@@ -1,6 +1,7 @@
 #!/usr/bin/env/python3
 # -*- coding: utf-8 -*-
 
+import pdb
 import time
 import math
 import threading
@@ -31,6 +32,8 @@ class MotorControl(threading.Thread):
         self.bobines_motor2 = (7, 11, 13, 15)
         self.pwm_servo = 8
         self.sleep_servo = 0.4
+        self.up = []
+        self.down = []
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
@@ -49,16 +52,18 @@ class MotorControl(threading.Thread):
         self.setMicroStep()
 
     def run(self):
+        # pdb.set_trace()
         while self.power:
             self.motor1.checkTime()
             self.motor2.checkTime()
-            if not self.motor1.nb_steps and not self.motor2.nb:
+            if not self.motor1.nb_steps and not self.motor2.nb_steps:
                 self.writeNextPoints()
 
     def initializePosition(self):
         self.motor1.initializePosition()
 
     def writeNextPoints(self):
+        pdb.set_trace()
         if self.up and not self.up[0]:
             self.servoMotor.setServo("up")
             time.sleep(self.servo_sleep)
@@ -97,7 +102,7 @@ class MotorControl(threading.Thread):
                 theta = B.theta - self.M.theta
                 self.nb_steps.append((int(r / self.r_step + 0.5), int(theta / self.theta_step + 0.5)))
                 self.M = Point(self.M.r + self.nb_steps[-1][0] * self.r_step,
-                               self.M.theta + self.nb_steps2[-1][1] * self.theta_step, "polar")
+                               self.M.theta + self.nb_steps[-1][1] * self.theta_step, "polar")
 
         """for i in range(len(self.points)):
             if self.points[i] != "up" and self.points[i] != "down":
@@ -112,22 +117,40 @@ class MotorControl(threading.Thread):
         self.sleep()
 
     def setTime(self):
-        if not self.nb_steps1[-1]:
+        """if not self.nb_steps[-1][0]:
             self.motor1.speed.append(0)
             self.motor2.speed.append(self.max_speed2)
-        elif not self.nb_steps2[-1]:
+        elif not self.nb_steps[-1][1]:
             self.motor1.speed.append(self.max_speed1)
             self.motor2.speed.append(0)
         else:
-            total_time1 = abs(self.max_speed1 * self.nb_steps1[-1])
-            total_time2 = abs(self.max_speed2 * self.nb_steps2[-1])
-            if (total_time1 > total_time2 and abs(total_time2 / self.nb_steps1[-1]) > self.max_speed1) or abs(
-                            total_time1 / self.nb_steps2[-1]) < self.max_speed2:
+            total_time1 = abs(self.max_speed1 * self.nb_steps[-1][0])
+            total_time2 = abs(self.max_speed2 * self.nb_steps[-1][1])
+            if (total_time1 > total_time2 and abs(total_time2 / self.nb_steps[-1][0]) > self.max_speed1) or abs(
+                            total_time1 / self.nb_steps[-1][1]) < self.max_speed2:
                 total_time = total_time2
             else:
                 total_time = total_time1
-            self.motor1.speed.append(abs(total_time / self.nb_steps1[-1]))
-            self.motor2.speed.append(abs(total_time / self.nb_steps2[-1]))
+            self.motor1.speed.append(abs(total_time / self.nb_steps[-1][0]))
+            self.motor2.speed.append(abs(total_time / self.nb_steps[-1][1]))"""
+    
+        if not self.nb_steps[-1][0]:
+            self.motor1.speed = 0
+            self.motor2.speed = self.max_speed2
+        elif not self.nb_steps[-1][1]:
+            self.motor1.speed = self.max_speed1
+            self.motor2.speed = 0
+        else:
+            total_time1 = abs(self.max_speed1 * self.nb_steps[-1][0])
+            total_time2 = abs(self.max_speed2 * self.nb_steps[-1][1])
+            if (total_time1 > total_time2 and abs(total_time2 / self.nb_steps[-1][0]) > self.max_speed1) or abs(
+                            total_time1 / self.nb_steps[-1][1]) < self.max_speed2:
+                total_time = total_time2
+            else:
+                total_time = total_time1
+            self.motor1.speed = abs(total_time / self.nb_steps[-1][0])
+            self.motor2.speed = abs(total_time / self.nb_steps[-1][1])
+
 
     def pinInit(self):
         """
@@ -341,3 +364,5 @@ class Point(Origin):
 if __name__ == "__main__":
     init = MotorControl()
     init.start()
+    init.convertPoints([(12, 3), (4, 5), "up", (3, 7), "up", "down"])
+
