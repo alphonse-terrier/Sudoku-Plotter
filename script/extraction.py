@@ -51,7 +51,7 @@ def digit():
         thresh = thresh[0:l - 1, 1:l]
 
     cv2.imwrite('../pictures/Traitement/minithresh.jpg', thresh)
-    dig = commands.getoutput("gocr -C \"123456789\" /pictures/Traitement/minithresh.jpg")
+    dig = commands.getoutput("gocr -C \"123456789\" ../pictures/Traitement/minithresh.jpg")
     dig = str(dig)
     if len(dig) == 0:
         dig = 0

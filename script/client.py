@@ -35,6 +35,7 @@ class Client:
                 self.boss.setError("raspi_connection")
         return self.connected
 
+
     def sendSudoku(self, sudoku):
         if self.tryConnect():
             try:

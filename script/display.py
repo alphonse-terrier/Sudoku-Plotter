@@ -228,8 +228,12 @@ class Display(Tk):
                     pass
 
                 self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
+<<<<<<< HEAD
             else:
                 self.showRaspi(False)
+=======
+            else: self.showRaspi()
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
 
     def updateSudoku(self, sudoku=None, liste_position=[]):
         if sudoku is None:

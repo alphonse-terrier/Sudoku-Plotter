@@ -14,8 +14,8 @@ class Write:
 
     def __init__(self):
         self.points = []
-        self.step = 0.1  # 0.0017
-        self.coordinate = [(5, 15), (14, 24)]
+        self.step = 0.02  # 0.0017
+        self.coordinate = [(0.5, 0.5), (18.5, 18.5)]
         self.a, self.b = self.coordinate[0][0], self.coordinate[0][1]
         self.c, self.d = self.coordinate[1][0], self.coordinate[1][1]
         self.nx = (self.c - self.a) / 9
@@ -43,6 +43,7 @@ class Write:
         self.points.append("up")
         x = - self.L / 12
         y = - self.L / 2
+        self.points.append("up")
         while x < self.L / 4:
             self.points.append((x + x0, y + y0))
             x += self.step
@@ -158,12 +159,18 @@ class Write:
                 y -= self.step
         liste_x, liste_y = [], []
         while x < self.L / 6:
+<<<<<<< HEAD
             try:
                 y = - self.L / 6 + math.sqrt(self.L ** 2 / 9 - (x + self.L / 12) ** 2)
                 liste_x.append(x)
                 liste_y.append(y)
             except ValueError:
                 pass
+=======
+            y = - self.L / 6 + math.sqrt(abs(self.L ** 2 / 9 - (x + self.L / 12) ** 2))
+            liste_x.append(x)
+            liste_y.append(y)
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
             x += self.step
         while y > - self.L / 6:
             x = - self.L / 12 + math.sqrt(self.L ** 2 / 9 - (y + self.L / 6) ** 2)
@@ -268,6 +275,13 @@ class Write:
             liste_x.append(liste_x[i])
             liste_y.append(-liste_y[i])
         l = len(liste_x)
+        liste_x += [0]
+        liste_y += [0]
+        while x < self.L / 6:
+            y = self.L / 4 + math.sqrt((self.L / 4) ** 2 - x ** 2)
+            liste_y.append(y)
+            liste_x.append(x)
+            x += self.step
         for i in range(l):
             self.points.append((liste_x[l - 1 - i] + x0, liste_y[l - 1 - i] + y0))
 
@@ -300,6 +314,10 @@ class Write:
         for i in range(l - 1, -1, -1):
             liste_x.append(liste_x[i])
             liste_y.append(self.L / 2 - liste_y[i])
+<<<<<<< HEAD
+=======
+        l = len(liste_x)
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
         liste_x.reverse()
         liste_y.reverse()
         self.append(liste_x, liste_y, x0, y0)
@@ -308,10 +326,15 @@ class Write:
             self.points.append((x + x0, y + y0))
             y -= self.step
         while x > self.L / 5:
+<<<<<<< HEAD
             try:
                 x = - self.L / 12 + math.sqrt(abs(self.L ** 2 / 9 - (y + self.L / 6) ** 2))
                 self.points.append((x + x0, y + y0))
             except ValueError: pass
+=======
+            x = - self.L / 12 + math.sqrt(abs(self.L ** 2 / 9 - (y + self.L / 6) ** 2))
+            self.points.append((x + x0, y + y0))
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
             y -= self.step
         while x >= - self.L / 5:
             y = - self.L / 6 - math.sqrt(self.L ** 2 / 9 - (x + self.L / 12) ** 2)
@@ -348,11 +371,19 @@ class Write:
             if y0 < y1:
                 while y < y1:
                     self.points.append((x, y))
+<<<<<<< HEAD
                     y += self.step / 15
             else:
                 while y > y1:
                     self.points.append((x, y))
                     y -= self.step / 15
+=======
+                    y += self.step * 10
+            else:
+                while y > y1:
+                    self.points.append((x, y))
+                    y -= self.step * 10
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
         else:
             a = (y1 - y0) / (x1 - x0)
             b = y0 - a * x0
@@ -360,12 +391,20 @@ class Write:
                 while x < x1:
                     y = a * x + b
                     self.points.append((x, y))
+<<<<<<< HEAD
                     x += self.step / 15
+=======
+                    x += self.step * 10
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
             else:
                 while x > x1:
                     y = a * x + b
                     self.points.append((x, y))
+<<<<<<< HEAD
                     x -= self.step / 15
+=======
+                    x -= self.step * 10
+>>>>>>> e452e8dd06e839fc6778d2e9119472cb964122a2
         self.points.append((x1, y1))
         self.points.append("up")
 
@@ -396,6 +435,7 @@ class Write:
             if self.points[i + s] == "up":
                 self.points.insert(i + s + 2, "down")
                 s += 1
+        self.points.insert(1, "down")
         return self.points
 
     def writeAllNumbers(self):
