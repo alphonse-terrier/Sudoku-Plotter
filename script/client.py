@@ -10,12 +10,12 @@ import save
 class Client:
     """
     Classe essayant de se connecter au server de la Raspberry Pi
-    Permet, le cas echeant, l'échange d'informations entre 
+    Permet, le cas echeant, l'échange b'informations entre 
     celle-ci et le PC distant
     """
     def __init__(self, boss):
         self.boss = boss
-        self.host = "192.168.43.17"
+        self.host = "10.3.141.1"
         self.port = 50000
         self.power = True
         self.connected = False

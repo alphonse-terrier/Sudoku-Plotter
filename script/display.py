@@ -12,8 +12,8 @@ import save
 
 class Display(Tk):
     """
-    Hérite de la classe Tk() qui permet l'affichage d'une fenêtre sous tkinter
-    Permet d'exploiter une interface graphique pour afficher et éditer une
+    Hérite de la classe Tk() qui permet l'affichage b'une fenêtre sous tkinter
+    Permet b'exploiter une interface graphique pour afficher et éditer une
     grille de sudoku de manière plus interactive avec l'utilisateur.
     """
 
@@ -127,7 +127,7 @@ class Display(Tk):
 
     def createMatrix(self):
         """
-        Permet d'afficher une grille de sudoku vide ainsi que le curseur qui est à l'origine masqué
+        Permet b'afficher une grille de sudoku vide ainsi que le curseur qui est à l'origine masqué
         :return: None
         """
         for i in range(self.nb_cases + 1):
@@ -347,7 +347,7 @@ class Display(Tk):
         def showLabel(self, Frame):
             self.label = Label(Frame)
             self.url = Label(Frame)
-            url = "Plus d'informations disponibles sur www.github.com/alphter/Sudoku-Plotter"
+            url = "Plus b'informations disponibles sur www.github.com/alphter/Sudoku-Plotter"
             self.label.configure(text=''.join(self.text), font=('Times', 12), borderwidth=3,
                                  anchor=N, justify=LEFT, height=15)
             self.url.configure(text=url, font=('Times', 12), borderwidth=3, anchor=N, justify=LEFT)
