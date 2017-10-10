@@ -61,6 +61,7 @@ class Display(Tk):
         self.protocol("WM_DELETE_WINDOW", self.boss.closeAll)
 
     def bindAll(self):
+        print("bind")
         self.bind_all('<Control-e>', self.boss.sendSudoku)
         self.bind_all('<Control-E>', self.boss.sendSudoku)
         self.bind_all('<Control-h>', self.showAide)
@@ -98,9 +99,10 @@ class Display(Tk):
         filepath = askopenfilename(title="Ouvrir une grille", initialdir="/Sudoku-Plotter/sudoku",
                                    filetypes=[('Text files', '.txt')])
         if filepath:
-            self.sudoku = save.readSudoku(filepath)
+            self.sudoku, coord = save.readSudoku(filepath)
         self.boss.setSudoku(self.sudoku)
         self.updateSudoku()
+        self.showRaspi(False)
 
     def saveSudoku(self, evt=None):
         filepath = asksaveasfilename(title="Enregistrer une grille", initialdir="/Sudoku-Plotter/sudoku",
@@ -153,7 +155,7 @@ class Display(Tk):
 
     def tryToEdit(self, evt):
         key = evt.keysym
-        # self.showRaspi()
+        self.showRaspi()
         if key.lower() == "d":
             self.boss.sendInfo("down")
 
@@ -164,15 +166,19 @@ class Display(Tk):
             self.effacerSudoku()
 
         else:
+            self.showRaspi(False)
             if key == 'F5':
                 self.startResolution()
+
+            if key == 'F1':
+                self.boss.startAll()
 
             elif key.lower() == "b":
                 self.color = "black"
                 print("black")
 
             elif key.lower() == "o":
-                self.sudoku = save.readSudoku()
+                self.sudoku, coords = save.readSudoku()
                 self.updateSudoku(self.sudoku)
 
             elif key.lower() == "r":
@@ -222,7 +228,8 @@ class Display(Tk):
                     pass
 
                 self.Can.coords(self.rectangle, 5 + 50 * self.y, 5 + 50 * self.x, 55 + 50 * self.y, 55 + 50 * self.x)
-            self.showRaspi(False)
+            else:
+                self.showRaspi(False)
 
     def updateSudoku(self, sudoku=None, liste_position=[]):
         if sudoku is None:
@@ -251,7 +258,7 @@ class Display(Tk):
         if error == "sudoku_insoluble":
             showerror("Sudoku", "Le sudoku n'est pas résoluble !")
         elif error == "raspi_connection":
-            showerror("Connexion impossible", "Assurez-vous d'être connécté à la Rapsberry Pi !")
+            showerror("Connexion impossible", "Assurez-vous d'être connecté à la Rapsberry Pi !")
         else:
             showerror("Erreur", "Une erreur inattendue est survenue !")
 
@@ -268,8 +275,9 @@ class Display(Tk):
             showinfo("Raspberry", "L'écriture de la grille a été arrétée avec succès !")
         elif info == "up" or info == "down" or info == "numbers_get":
             print(info)
+        elif info == "continuer":
+            return askokcancel("Continuez ?", "Souhaitez-vous continuer ?")
         else:
-            print(info)
             try:
                 self.sudoku = save.stringToSudoku(info)
             except IndexError or ValueError:
@@ -293,8 +301,8 @@ class Display(Tk):
                 geo.append(s)
                 s = ''
         geo.append(s)
-        new_geo = geo[0] + "x" + geo[1] + "+" + str(int(0.5 * (self.winfo_screenwidth() - int(geo[0])))) \
-                  + "+" + str(int(0.5 * (self.winfo_screenheight() - int(geo[1]))))
+        new_geo = geo[0] + "x" + geo[1] + "+" + str((self.winfo_screenwidth() - int(geo[0])) // 2) + "+" + \
+                  str((self.winfo_screenheight() - int(geo[1])) // 2)
         self.geometry(new_geo)
 
     class HelpMenu(Toplevel):

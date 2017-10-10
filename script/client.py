@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 import socket
 import numpy as np
 
@@ -55,7 +56,7 @@ class Client:
                 self.boss.setError("raspi_connection")
                 self.connected = False
 
-    def stop(self):
+    def close(self):
         self.power = False
         self.mySocket.close()
 

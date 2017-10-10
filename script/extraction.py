@@ -81,6 +81,10 @@ for i in contours:
             max_zone = zone
             best_cnt = i
 
+coords = np.zeros((4, 2), int)
+for i in range(4):
+    for j in range(2):
+        coords[i, j] = biggest[i][0][j]
 approx = rectify(biggest)
 
 h = np.array([[0, 0], [453, 0], [453, 453], [0, 453]], np.float32)
@@ -104,4 +108,4 @@ for i in range(0, 9):
 cv2.imwrite('../pictures/Traitement/warp.jpg', warp)
 
 print(sudoku)
-saveSudoku(sudoku, "/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku.txt")
+saveSudoku(sudoku, "/home/pi/Desktop/Sudoku-Plotter/sudoku/Sudoku.txt", coords)

@@ -14,7 +14,7 @@ import lcd3
 
 class Server(th.Thread):
     """
-    Genere la creation d'une connexion sur le reseau local (serveur)
+    Genere la creation b'une connexion sur le reseau local (serveur)
     afin de communiquer par exemple avec un PC distant (client)
     """
 
