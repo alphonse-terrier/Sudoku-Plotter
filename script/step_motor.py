@@ -30,19 +30,17 @@ class MotorControl(threading.Thread):
         self.bobines_motor1 = (29, 31, 33, 35)
         self.bobines_motor2 = (7, 11, 13, 15)
         self.pwm_servo = 8
+        self.sleep_servo = 0.4
         self.turn_on_led = 19
         self.working_led = 21
         self.M = Point(0, 7)
-        self.max_speed1 = 20
-        self.max_speed2 = 80
+        self.max_speed = 0
+        self.max_speed1 = 20 / 1000
+        self.max_speed2 = 80 / 1000
         self.r_step = 0.0203
         self.theta_step = 0.0056
-        self.speed1 = []
-        self.speed2 = []
-        self.nb_steps1 = []
-        self.nb_steps2 = []
+        self.nb_steps = []
         self.pen_position = []
-        self.points = []
         self.pinInit()
 
         self.motor1 = Motor(self.bobines_motor1)
@@ -50,36 +48,58 @@ class MotorControl(threading.Thread):
         self.servoMotor = ServoMotor(self.pwm_servo)
         self.setMicroStep()
 
-        self.motor1.start()
-        self.motor2.start()
-
     def run(self):
         while self.power:
-            if self.points:
-                self.moveMotor()
-            time.sleep(0.1)
+            self.motor1.checkTime()
+            self.motor2.checkTime()
+            if not self.motor1.nb_steps and not self.motor2.nb:
+                self.writeNextPoints()
 
     def initializePosition(self):
         self.motor1.initializePosition()
 
-    def moveMotor(self):
-        points = []
-        for i in range(len(self.points)):
-            if self.points[i] != "up" and self.points[i] != "down":
-                x, y = self.points[i]
+    def writeNextPoints(self):
+        if self.up and not self.up[0]:
+            self.servoMotor.setServo("up")
+            time.sleep(self.servo_sleep)
+            self.up.pop(0)
+        elif self.down and not self.down[0]:
+            self.servoMotor.setServo("down")
+            time.sleep(self.servo_sleep)
+            self.down.pop(0)
+        else:
+            if self.nb_steps:
+                self.motor1.nb_steps = self.nb_steps[0][0]
+                self.motor2.nb_steps = self.nb_steps[0][1]
+                self.nb_steps.pop(0)
+                self.up[0] -= 1
+                self.down[0] -= 1
+                self.setTime()
+
+    def convertPoints(self, points):
+        # <previous_up> (resp. <previous_down>) definissent l'espacement entre deux "up" successifs (resp. "down")
+        previous_up = 0
+        previous_down = 0
+
+        for i in range(len(points)):
+            if points[i] == "up":
+                self.up.append(i - previous_up)  # ajout de l'ecart entre deux "up" successifs
+                previous_up = i + 1
+                previous_down += 1  # permet de ne pas comptabiliser si ce n'est pas un point (ie si point[i] = "up")
+            elif points[i] == "down":
+                self.down.append(i - previous_down)  # ajout de l'ecart entre deux "down" successifs
+                previous_down = i + 1
+                previous_up += 1  # permet de ne pas comptabiliser si ce n'est pas un point (ie si point[i] = "down")
+            else:
+                x, y = points[i]
                 B = Point(x, y)
-                points.append(self.points[i])
                 r = B.r - self.M.r
                 theta = B.theta - self.M.theta
-                self.nb_steps1.append(int(r / self.r_step + 0.5))
-                self.nb_steps2.append(int(theta / self.theta_step + 0.5))
-                self.setTime()
-                self.M = Point(self.M.r + self.nb_steps1[-1] * self.r_step,
-                               self.M.theta + self.nb_steps2[-1] * self.theta_step, "polar")
-            else:
-                self.pen_position.append((self.points[i], i))
-        self.points = []
-        for i in range(len(self.nb_steps1)):
+                self.nb_steps.append((int(r / self.r_step + 0.5), int(theta / self.theta_step + 0.5)))
+                self.M = Point(self.M.r + self.nb_steps[-1][0] * self.r_step,
+                               self.M.theta + self.nb_steps2[-1][1] * self.theta_step, "polar")
+
+        """for i in range(len(self.points)):
             if self.points[i] != "up" and self.points[i] != "down":
                 self.motor1.nb_steps = self.nb_steps1[i]
                 self.motor2.nb_steps = self.nb_steps2[i]
@@ -88,16 +108,16 @@ class MotorControl(threading.Thread):
             else:
                 self.servoMotor.setServo(self.points[0])
             while self.motor1.nb_steps != 0 or self.motor2.nb_steps != 0:
-                time.sleep(0.0001)
+                time.sleep(0.0001)"""
         self.sleep()
 
     def setTime(self):
         if not self.nb_steps1[-1]:
-            self.speed1.append(0)
-            self.speed2.append(self.max_speed2)
+            self.motor1.speed.append(0)
+            self.motor2.speed.append(self.max_speed2)
         elif not self.nb_steps2[-1]:
-            self.speed1.append(self.max_speed1)
-            self.speed2.append(0)
+            self.motor1.speed.append(self.max_speed1)
+            self.motor2.speed.append(0)
         else:
             total_time1 = abs(self.max_speed1 * self.nb_steps1[-1])
             total_time2 = abs(self.max_speed2 * self.nb_steps2[-1])
@@ -106,11 +126,8 @@ class MotorControl(threading.Thread):
                 total_time = total_time2
             else:
                 total_time = total_time1
-            self.speed1.append(abs(total_time / self.nb_steps1[-1]))
-            self.speed2.append(abs(total_time / self.nb_steps2[-1]))
-
-    def startMoving(self):
-        power = True
+            self.motor1.speed.append(abs(total_time / self.nb_steps1[-1]))
+            self.motor2.speed.append(abs(total_time / self.nb_steps2[-1]))
 
     def pinInit(self):
         """
@@ -140,12 +157,6 @@ class MotorControl(threading.Thread):
         self.r_step /= self.motor1.micro_step
         self.theta_step /= self.motor2.micro_step
 
-    def setPoints(self, points):
-        self.points = points
-
-    def getPoints(self):
-        return self.points
-
     def clearUp(self):
         B = Point(-7.5, 12)
         r = B.r - self.M.r
@@ -156,7 +167,6 @@ class MotorControl(threading.Thread):
         self.motor1.speed = self.motor2.nb_steps * self.motor2.speed / self.motor1.nb_steps
 
     def sleep(self):
-        self.points = []
         self.motor1.sleep()
         self.motor2.sleep()
 
@@ -168,7 +178,7 @@ class MotorControl(threading.Thread):
         self.power = False
 
 
-class Motor(threading.Thread):
+class Motor:
     """
     Classe permettant de controller les moteurs 
     pas-à-pas indépendamment l'un de l'autre
@@ -176,9 +186,8 @@ class Motor(threading.Thread):
     nb = 1
 
     def __init__(self, bobines=0, position=0, nb_steps=0, speed=10):
-        threading.Thread.__init__(self)
-        self.power = True
         self.speed = speed
+        self.time = 0
         self.micro_step = 8
         self.number = Motor.nb
         self.bobines = bobines
@@ -197,13 +206,11 @@ class Motor(threading.Thread):
 
         Motor.nb += 1
 
-    def run(self):
-        while self.power:
-            if self.nb_steps != 0:
-                time.sleep(self.speed / 1000)
+    def checkTime(self):
+        if self.nb_steps:
+            if time.time() - self.time >= self.speed:
                 self.moveMotor()
-            else:
-                time.sleep(0.1)
+                self.time = time.time()
 
     def initPWM(self):
         pwm = []
@@ -262,10 +269,6 @@ class Motor(threading.Thread):
 
     def stop(self):
         print("motor{}: stop".format(self.number))
-        self.power = False
-
-    def setPower(self, power):
-        self.power = power
 
 
 class ServoMotor:
@@ -338,5 +341,3 @@ class Point(Origin):
 if __name__ == "__main__":
     init = MotorControl()
     init.start()
-    """time.sleep(5)
-    init.stop()"""

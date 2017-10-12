@@ -41,7 +41,7 @@ class Main:
             self.MotorControl.initializePosition()
             lcd3.write("Sudoku writing in progress...")
             self.MotorControl.points = []
-            self.MotorControl.setPoints(self.Write.writeSudoku(sudoku))
+            self.MotorControl.convertPoints(self.Write.writeSudoku(sudoku))
         except KeyboardInterrupt:
             self.stop()
 
