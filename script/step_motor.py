@@ -1,7 +1,6 @@
 #!/usr/bin/env/python3
 # -*- coding: utf-8 -*-
 
-import pdb
 import time
 import math
 import threading
@@ -39,7 +38,7 @@ class MotorControl(threading.Thread):
         self.M = Point(0, 7)
         self.max_speed = 0
         self.max_speed1 = 20 / 1000
-        self.max_speed2 = 80 / 1000
+        self.max_speed2 = 20 / 1000
         self.r_step = 0.0203
         self.theta_step = 0.0056
         self.nb_steps = []
@@ -50,9 +49,9 @@ class MotorControl(threading.Thread):
         self.motor2 = Motor(self.bobines_motor2)
         self.servoMotor = ServoMotor(self.pwm_servo)
         self.setMicroStep()
+        self.initializePosition()
 
-    def run(self):
-        # pdb.set_trace()
+    def run(self):        
         while self.power:
             self.motor1.checkTime()
             self.motor2.checkTime()
@@ -62,8 +61,7 @@ class MotorControl(threading.Thread):
     def initializePosition(self):
         self.motor1.initializePosition()
 
-    def writeNextPoints(self):
-        pdb.set_trace()
+    def writeNextPoints(self):        
         if self.up and not self.up[0]:
             self.servoMotor.setServo("up")
             time.sleep(self.servo_sleep)
@@ -77,8 +75,9 @@ class MotorControl(threading.Thread):
                 self.motor1.nb_steps = self.nb_steps[0][0]
                 self.motor2.nb_steps = self.nb_steps[0][1]
                 self.nb_steps.pop(0)
-                self.up[0] -= 1
-                self.down[0] -= 1
+                if self.up: self.up[0] -= 1
+                if self.down: self.down[0] -= 1
+                print(self.nb_steps)
                 self.setTime()
 
     def convertPoints(self, points):
@@ -211,7 +210,7 @@ class Motor:
     def __init__(self, bobines=0, position=0, nb_steps=0, speed=10):
         self.speed = speed
         self.time = 0
-        self.micro_step = 8
+        self.micro_step = 2
         self.number = Motor.nb
         self.bobines = bobines
         self.position = position
