@@ -16,7 +16,7 @@ class Client:
     """
     def __init__(self, boss):
         self.boss = boss
-        self.host = "10.3.141.1"
+        self.host = rpi_ip
         self.port = 50000
         self.power = True
         self.connected = False
@@ -34,7 +34,6 @@ class Client:
                 self.connected = False
                 self.boss.setError("raspi_connection")
         return self.connected
-
 
     def sendSudoku(self, sudoku):
         if self.tryConnect():
